@@ -5,6 +5,8 @@ const PublicationModel = require("../models/Publication");
 const RoomModel = require("../models/Room");
 const ComplexModel = require("../models/Complex");
 
+const {loadData} = require('../seeder/loadData');
+
 const sequelize = new Sequelize(process.env.DB, {
   logging: false,
   native: false,
@@ -27,6 +29,7 @@ const dbConnection = async () => {
   try {
     await sequelize.sync({force: true});
     console.log("DB Connect");
+    await loadData(User, Publication, Room, Complex);
   } catch (error) {
     throw new Error("Fail DB Connect");
   }

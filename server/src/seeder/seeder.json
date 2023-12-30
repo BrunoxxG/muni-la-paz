@@ -1,0 +1,106 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Usuario 1",
+      "email": "usuario1@example.com",
+      "password": "contraseña123",
+      "rol": "Admin",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Usuario 2",
+      "email": "usuario2@example.com",
+      "password": "secreto456",
+      "rol": "Basic",
+      "active": true
+    },
+    {
+      "id": 3,
+      "name": "Usuario 3",
+      "email": "usuario3@example.com",
+      "password": "acceso789",
+      "rol": "Basic",
+      "active": false
+    }
+  ],
+  "publications": [
+    {
+      "id": 1,
+      "type": "Notice",
+      "title": "Título de la noticia 1",
+      "description": "Descripción de la noticia 1",
+      "date": "2023-12-30",
+      "check": true
+    },
+    {
+      "id": 2,
+      "type": "Sports",
+      "title": "Título del artículo 1",
+      "description": "Descripción del artículo 1",
+      "date": "2023-12-28",
+      "check": true
+    },
+    {
+      "id": 3,
+      "type": "Health",
+      "title": "Título del blog 1",
+      "description": "Descripción del blog 1",
+      "date": "2023-12-25",
+      "check": false
+    }
+  ],
+  "rooms": [
+    {
+      "id": 1,
+      "title": "Cabaña 1",
+      "description": "2 habitaciones, 1 baño",
+      "type": "Cabaña",
+      "capacity": "8",
+      "images": "url",
+      "check": true
+    },
+    {
+      "id": 2,
+      "title": "Cabaña 2",
+      "description": "1 habitaciones, 1 baño",
+      "type": "Cabaña",
+      "capacity": "4",
+      "images": "url",
+      "check": true
+    },
+    {
+      "id": 3,
+      "title": "Casa 1",
+      "description": "3 habitaciones, 2 baños",
+      "type": "Cabaña",
+      "capacity": "10",
+      "images": "url",
+      "check": true
+    }
+  ],
+  "complexes": [
+    {
+      "id": 1,
+      "name": "Jorge",
+      "description": "s/d",
+      "address": "Calle 123",
+      "check": true
+    },
+    {
+      "id": 2,
+      "name": "Cerro Loma Bola",
+      "description": "s/d",
+      "address": "Calle 123",
+      "check": true
+    },
+    {
+      "id": 3,
+      "name": "Bello Horizonte",
+      "description": "s/d",
+      "address": "Calle 123",
+      "check": true
+    }
+  ]
+}
