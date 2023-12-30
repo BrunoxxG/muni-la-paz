@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const { dbConnection } = require('../db/connection');
+const routes = require("../routes");
 
 // INSTANCE EXPRESS
 const app = express();
@@ -23,6 +24,6 @@ app.use(express.urlencoded({ extended: true }));
 dbConnection();
 
 // ROUTES
-
+app.use("/", routes);
 
 module.exports = app;
