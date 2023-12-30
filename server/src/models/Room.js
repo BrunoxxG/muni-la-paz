@@ -1,11 +1,20 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('Cottage', {
+  sequelize.define('Room', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     type: {
       type: DataTypes.STRING,
@@ -13,6 +22,10 @@ module.exports = (sequelize) => {
     },
     capacity: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    images: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     check: {

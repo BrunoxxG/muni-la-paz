@@ -6,9 +6,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
-    rol: {
-      type: DataTypes.ENUM("Notice", "Event"),
+    type: {
+      type: DataTypes.ENUM("Notice", "Event", "Health", "Institutional", "Sports", "Council"),
       allowNull: false,
     },
     title: {
