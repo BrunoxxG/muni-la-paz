@@ -2,8 +2,9 @@ const { User } = require('../../db/connection');
 
 module.exports = async (req, res) => {
   try {
-    const users = await User.findAll({ order: [['id', 'ASC']] });
-    return res.status(200).json(users);
+    await User.update(req.body, { where: { id: req.params.id } });
+
+    return res.status(200).json({ message: 'Update Complete' });
   } catch (error) {
     return res.status(500).json({ message: 'Error' });
   }

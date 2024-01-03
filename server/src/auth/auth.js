@@ -1,19 +1,14 @@
 const bcrypt = require('bcrypt');
 
-async function hashPassword(next) {
-  try {
+async function hashPassword(password) {
     const salt = bcrypt.genSaltSync(10);
-    const hashedPassword = bcrypt.hashSync(this.password, salt);
-    this.password = hashedPassword;
-    next();
-  } catch (error) {
-    next(error);
-  }
+    const hashedPassword = bcrypt.hashSync(password, salt);
+    return hashedPassword;
 }
 
-async function comparePassword(password) {
+async function comparePassword(passwordBody, passwordUser) {
   try {
-    return await bcrypt.compare(password, this.password);
+    return await bcrypt.compare(passwordBody, passwordUser);
   } catch (error) {
     throw new Error('Password incorrect');
   }
