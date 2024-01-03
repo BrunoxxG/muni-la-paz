@@ -3,7 +3,7 @@ const router = Router();
 const {verifyToken} = require('../jwt/jwt');
 const { getUsers } = require('../controllers');
 const updateUsers = require('../controllers/users/updateUsers');
-const createUsers = require('../controllers/users/createUsers');
+const createUsers = require('../controllers/users/createUser');
 const loginUsers = require('../controllers/users/loginUsers');
 
 router.get('/', verifyToken, getUsers);

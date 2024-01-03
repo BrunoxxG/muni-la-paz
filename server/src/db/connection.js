@@ -31,6 +31,7 @@ const dbConnection = async () => {
     console.log("DB Connect");
     await loadData(User, Publication, Room, Complex);
   } catch (error) {
+    console.log(error)
     throw new Error("Fail DB Connect");
   }
 };
