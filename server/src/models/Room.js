@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     type: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM("Cabaña", "Casa"),
       allowNull: false,
     },
     capacity: {
