@@ -1,8 +1,8 @@
-const { User } = require('../../db/connection');
+const { updateUserController } = require('../../controllers');
 
 module.exports = async (req, res) => {
   try {
-    await User.update(req.body, { where: { id: req.params.id } });
+    await updateUserController(req.body, req.params.id);
 
     return res.status(200).json({ message: 'Update Complete' });
   } catch (error) {

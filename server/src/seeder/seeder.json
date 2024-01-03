@@ -54,35 +54,6 @@
       "check": false
     }
   ],
-  "rooms": [
-    {
-      "id": 1,
-      "title": "Cabaña 1",
-      "description": "2 habitaciones, 1 baño",
-      "type": "Cabaña",
-      "capacity": "8",
-      "images": "url",
-      "check": true
-    },
-    {
-      "id": 2,
-      "title": "Cabaña 2",
-      "description": "1 habitaciones, 1 baño",
-      "type": "Cabaña",
-      "capacity": "4",
-      "images": "url",
-      "check": true
-    },
-    {
-      "id": 3,
-      "title": "Casa 1",
-      "description": "3 habitaciones, 2 baños",
-      "type": "Cabaña",
-      "capacity": "10",
-      "images": "url",
-      "check": true
-    }
-  ],
   "complexes": [
     {
       "id": 1,
