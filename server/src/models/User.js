@@ -23,8 +23,14 @@ module.exports = (sequelize) => {
     rol: {
       type: DataTypes.ENUM("Admin", "Basic"),
       allowNull: false,
+      defaultValue: "Basic",
     },
     active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    passwordChanged: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
