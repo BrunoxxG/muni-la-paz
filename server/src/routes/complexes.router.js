@@ -1,13 +1,12 @@
 const { Router } = require('express');
 const router = Router();
 const { verifyToken } = require('../jwt/jwt');
-const { getAllComplexesHandler, postComplexHandler } = require('../handlers');
-
-// const { getAllComplexesHandler } = require('../handlers/complexes/getAllComplexes.handler');
-// const { postComplexesHandler } = require('../handlers/complexes/postComplex.handler');
+const { getAllComplexesHandler, postComplexHandler, getComplexesByNameHandler, getComplexByIdHandler, updateComplexHandler } = require('../handlers');
 
 router.get('/', getAllComplexesHandler);
-router.post('/', postComplexHandler)
-//agregar un update
+router.get('/name', getComplexesByNameHandler);
+router.get('/:id', getComplexByIdHandler);
+router.post('/', verifyToken, postComplexHandler);
+router.patch('/:id', verifyToken, updateComplexHandler);
 
 module.exports = router;

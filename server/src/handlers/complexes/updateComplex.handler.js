@@ -1,8 +1,8 @@
-const { updateUserController } = require('../../controllers');
+const { updateComplexController } = require('../../controllers');
 
 module.exports = async (req, res) => {
   try {
-    await updateUserController(req.body, req.params.id);
+    await updateComplexController(req.body, req.params.id);
 
     return res.status(200).json({ message: 'Update Complete' });
   } catch (error) {

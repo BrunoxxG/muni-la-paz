@@ -1,7 +1,8 @@
 const { Complex } = require("../../db/connection");
 
 module.exports = async () => {
-  const allComplexes = await Complex.findAll({
-  });
+  
+  const allComplexes = await Complex.findAll({ order: [['id', 'ASC']] });
+
   return allComplexes;
 };
