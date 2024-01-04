@@ -6,6 +6,6 @@ module.exports = async (req, res) => {
     res.setHeader('Authorization', token);
     return res.status(200).json({ token });
   } catch (error) {
-    return res.status(500).json({ message: 'Error' });
+    return res.status(500).json({ message: error.message });
   }
 };
