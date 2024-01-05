@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       autoIncrement: true,
     },
     type: {
-      type: DataTypes.ENUM("Notice", "Event", "Health", "Institutional", "Sports", "Council"),
+      type: DataTypes.ENUM("Notice", "Event", "Health", "Institutional", "Sports", "Council", "Trash", "Water", "Help"),
       allowNull: false,
     },
     title: {
