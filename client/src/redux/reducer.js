@@ -1,20 +1,28 @@
-import { Link } from "react-router-dom";
-import style from "./card.module.css";
+import {
+  GET_COMPLEXES,
+  GET_PUBLICATIONS,
+} from "./actions";
 
-const Card = (prop) => {
-  return (
-    <div className={style.card}>
-      <div className={style.cardContainer}>
-        <h2>Name: {prop.name}</h2>
-        <img src={prop.image} alt={prop.name} />
-        <h3>Weight: {prop.weight}</h3>
-        <h3>Temperaments: {prop.temperament}</h3>
-        <button>
-          <Link to={`/detail/${prop.id}`}>Detail</Link>
-        </button>
-      </div>
-    </div>
-  );
+const initialState = {
+  complexes: [],
+  publications: [],
 };
 
-export default Card;
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+      case GET_COMPLEXES:
+          return {
+              ...state,
+              complexes: action.payload,
+          };
+      case GET_PUBLICATIONS:
+          return {
+              ...state,
+              publications: action.payload,
+          };
+      default:
+          return { ...state };
+  }
+};
+
+export default rootReducer;
