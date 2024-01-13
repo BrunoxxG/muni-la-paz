@@ -1,7 +1,10 @@
-export default function Carrousel () {
+import style from "./Carrousel.module.css";
+
+export default function Carrousel() {
+  
   return (
-    <div>
-      <h2>Carrousel</h2>
+    <div className={style.container}>
+      
     </div>
   );
 }

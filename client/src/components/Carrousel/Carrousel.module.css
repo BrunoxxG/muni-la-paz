@@ -1,0 +1,8 @@
+.container {
+  width: 1200px;
+  height: 600px;
+  background-image: url('src/assets/images/bannerAgenda.jpg');
+  background-position: center 80%;
+  background-size: cover;
+}
+
