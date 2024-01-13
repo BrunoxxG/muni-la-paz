@@ -1,20 +1,35 @@
-import { Link } from "react-router-dom";
-import style from "./card.module.css";
+import axios from "axios";
+import { URL_BASE } from "../utils/const";
 
-const Card = (prop) => {
-  return (
-    <div className={style.card}>
-      <div className={style.cardContainer}>
-        <h2>Name: {prop.name}</h2>
-        <img src={prop.image} alt={prop.name} />
-        <h3>Weight: {prop.weight}</h3>
-        <h3>Temperaments: {prop.temperament}</h3>
-        <button>
-          <Link to={`/detail/${prop.id}`}>Detail</Link>
-        </button>
-      </div>
-    </div>
-  );
+export const GET_COMPLEXES = "GET_COMPLEXES";
+export const GET_PUBLICATIONS = "GET_PUBLICATIONS";
+
+export const getComplexes = () => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`${URL_BASE}/complexes`);
+            return dispatch({
+                type: GET_COMPLEXES,
+                payload: data,
+            });
+        } catch (error) {
+            console.log(error.response.data);
+        }
+        
+    };
 };
 
-export default Card;
+export const getPublications = () => {
+  return async (dispatch) => {
+      try {
+          const { data } = await axios.get(`${URL_BASE}/publications`);
+          return dispatch({
+              type: GET_PUBLICATIONS,
+              payload: data,
+          });
+      } catch (error) {
+          console.log(error.response.data);
+      }
+      
+  };
+};

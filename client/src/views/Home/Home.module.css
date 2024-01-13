@@ -1,0 +1,99 @@
+.hero {
+  height: 80vh;
+  background: linear-gradient(135deg,#00A03D,#009C6F 25%,#009160 50%,#00949C 75%,#0065BE);
+}
+
+.carrousel {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 23rem;
+  transform: translate(-50%);
+}
+
+.content {
+  padding-top: 25rem;
+}
+
+/*---------------------------------*/
+/*SECTION EVENTS AND TOURISM*/
+.events {
+  height: 350px;
+  background-image: url("src/assets/images/bannerAgenda.jpg");
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.tourism {
+  height: 350px;
+  background-image: url("src/assets/images/slider2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.events::before, .tourism::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.textEvents {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.textEvents h2 {
+  font-size: 3em;
+  font-weight: 400;
+}
+
+.textEvents h3 {
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.events a, .tourism a {
+  position: relative;
+  z-index: 1;
+  color: white;
+  background-color: #00A03D;
+  border: 2px solid #00A03D;
+  font-weight: 800;
+  border-radius: 6px;
+  padding: 10px 15px;
+  transition: all .4s ease;
+}
+
+.events a:hover, .tourism a:hover {
+  color: #00A03D;
+  background-color: white;
+  border: 2px solid #00A03D;
+}
+
+/*---------------------------------*/
+/*SECTION NOTICES*/
+.notices {
+  height: 500px;
+}
