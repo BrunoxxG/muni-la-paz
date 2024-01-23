@@ -7,21 +7,13 @@ import style from "./NavBar.module.css";
 export default function NavBar() {
   return (
     <header>
-      <div className={style.social}>
-        <a href="https://www.facebook.com/p/Municipalidad-de-La-Paz-100064654033886/" target="blank">
-          <FaFacebookF />
-        </a>
-        <a href="">
-          <FaInstagram />
-        </a>
-      </div>
       <nav className={style.navBar}>
         <div className={style.logo}>
           <Link to="/">
             <img src={Logo} alt="Logo Municipalidad" />
           </Link>
         </div>
-        <div className={style.rightNav}>
+        <div className={style.centerNav}>
           <div className={style.links}>
             <Link to="/" className={style.border}>
               INICIO
@@ -42,6 +34,14 @@ export default function NavBar() {
               CONCEJO DELIBERANTE
             </Link>
           </div>
+        </div>
+        <div className={style.social}>
+          <a href="https://www.facebook.com/p/Municipalidad-de-La-Paz-100064654033886/" target="blank">
+            <FaFacebookF />
+          </a>
+          <a href="">
+            <FaInstagram />
+          </a>
         </div>
       </nav>
     </header>

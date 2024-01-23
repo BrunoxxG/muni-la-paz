@@ -31,27 +31,66 @@
   "publications": [
     {
       "id": 1,
-      "type": "Notice",
-      "title": "Título de la noticia 1",
-      "description": "Descripción de la noticia 1",
-      "date": "2023-12-30",
+      "type": "Servicios",
+      "title": "Vecinos, usuarios de agua corriente",
+      "description": "El servicio de agua corriente estará interrumpido hasta mañana lunes 8/1 al mediodía.",
+      "date": "07-01-2024",
+      "image": "src/assets/images/noticia1.jpg",
       "check": true
     },
     {
       "id": 2,
-      "type": "Sports",
-      "title": "Título del artículo 1",
-      "description": "Descripción del artículo 1",
-      "date": "2023-12-28",
+      "type": "Noticias",
+      "title": "Comunicado Urgente: Precaución por Crecida de Arroyos",
+      "description": "Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua.",
+      "date": "06-01-2024",
+      "image": "src/assets/images/noticia2.jpg",
       "check": true
     },
     {
       "id": 3,
-      "type": "Health",
-      "title": "Título del blog 1",
-      "description": "Descripción del blog 1",
-      "date": "2023-12-25",
-      "check": false
+      "type": "Salud",
+      "title": "Vacunatorio municipal informa",
+      "description": "El pediatra a partir de Enero completará las planillas de cus, los días Martes y Jueves",
+      "image": "src/assets/images/noticia3.jpg",
+      "date": "29-12-2023",
+      "check": true
+    },
+    {
+      "id": 4,
+      "type": "Noticias",
+      "title": "Comunicado Urgente: Precaución por Crecida de Arroyos",
+      "description": "Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua. Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua.",
+      "date": "07-01-2024",
+      "image": "src/assets/images/noticia2.jpg",
+      "check": true
+    },
+    {
+      "id": 5,
+      "type": "Noticias",
+      "title": "Comunicado Urgente: Precaución por Crecida de Arroyos",
+      "description": "Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua.",
+      "date": "06-01-2024",
+      "image": "src/assets/images/noticia2.jpg",
+      "check": true
+    },
+    {
+      "id": 6,
+      "type": "Salud",
+      "title": "Vacunatorio municipal informa",
+      "description": "El pediatra a partir de Enero completará las planillas de cus, los días Martes y Jueves",
+      "image": "src/assets/images/noticia3.jpg",
+      "date": "29-12-2023",
+      "check": true
+    },
+    {
+      "id": 7,
+      "type": "Noticias",
+      "title": "Comunicado Urgente: Precaución por Crecida de Arroyos",
+      "description": "Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua. Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua.",
+      "date": "07-01-2024",
+      "image": "src/assets/images/noticia2.jpg",
+      "check": true
     }
   ],
   "complexes": [

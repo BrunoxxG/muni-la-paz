@@ -1,99 +1,216 @@
-.hero {
-  height: 80vh;
-  background: linear-gradient(135deg,#00A03D,#009C6F 25%,#009160 50%,#00949C 75%,#0065BE);
-}
-
-.carrousel {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  top: 23rem;
-  transform: translate(-50%);
-}
-
-.content {
-  padding-top: 25rem;
+main {
+  margin-top: 100px;
 }
 
 /*---------------------------------*/
-/*SECTION EVENTS AND TOURISM*/
-.events {
-  height: 350px;
-  background-image: url("src/assets/images/bannerAgenda.jpg");
-  background-position: center;
+/*SECTION CENTER NAV BUTTONS*/
+.navCenter {
+  position: relative;
+  width: 80%;
+  margin: auto;
+  margin-top: -3rem;
+  z-index: 3;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  text-align: center;
-  overflow: hidden;
-  position: relative;
-}
-
-.tourism {
-  height: 350px;
-  background-image: url("src/assets/images/slider2.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  text-align: center;
-  overflow: hidden;
-  position: relative;
-}
-
-.events::before, .tourism::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.textEvents {
-  color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  position: relative;
-  z-index: 1;
-}
-
-.textEvents h2 {
-  font-size: 3em;
-  font-weight: 400;
-}
-
-.textEvents h3 {
-  font-size: 2em;
-  font-weight: 400;
-}
-
-.events a, .tourism a {
-  position: relative;
-  z-index: 1;
-  color: white;
-  background-color: #00A03D;
-  border: 2px solid #00A03D;
-  font-weight: 800;
-  border-radius: 6px;
-  padding: 10px 15px;
-  transition: all .4s ease;
-}
-
-.events a:hover, .tourism a:hover {
-  color: #00A03D;
-  background-color: white;
-  border: 2px solid #00A03D;
+  justify-content: space-between;
+  & .buttonNavCenter {
+    background-color: white;
+    color: var(--secondary-color);
+    font-size: 20px;
+    width: calc(100% / 7);
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    transition: 0.4s ease-in-out;
+    & span {
+      font-weight: 500;
+      color: black;
+      transition: 0.4s ease-in-out;
+    }
+    &:hover {
+      background-color: var(--secondary-color);
+      color: white;
+      transform: translate3d(0px, -24px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg)
+        skew(0deg, 0deg);
+      transform-style: preserve-3d;
+      & span {
+        color: white;
+      }
+    }
+  }
 }
 
 /*---------------------------------*/
 /*SECTION NOTICES*/
 .notices {
-  height: 500px;
+  width: 70%;
+  margin: 5rem auto;
+}
+
+.titleNotices {
+  display: flex;
+  flex-direction: column;
+  & h2 {
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 30px;
+  }
+  & span {
+    font-size: 30px;
+    font-weight: 400;
+  }
+  & a {
+    margin-left: auto;
+    color: var(--main-text-color);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    &:hover {
+      color: var(--card-link-hover-color);
+    }
+  }
+}
+
+.firstNotice {
+  max-height: 350px;
+  background-color: white;
+  margin-top: 2rem;
+  display: flex;
+  overflow: hidden;
+  & .firstNoticeImg {
+    width: 50%;
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  & .firstNoticeText {
+    width: 50%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    & .firstNoticeTextTop {
+      & small {
+        color: var(--card-link-hover-color);
+      }
+      & h3 {
+        font-size: 30px;
+        font-weight: 500;
+        margin: 1rem 0;
+        color: var(--card-title-color);
+        transition: 0.3s;
+        &:hover {
+          color: var(--card-link-hover-color);
+        }
+      }
+      & p {
+        margin: 0;
+        max-height: 5.6rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+      }
+    }
+    & label {
+      background-color: var(--button-bg-color);
+      color: var(--button-text-color);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        background-color: var(--button-hover-color);
+      }
+    }
+  }
+}
+
+.publications {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+/*---------------------------------*/
+/*SECTION EVENTS*/
+.events {
+  height: 350px;
+  background-color: #93ffa156;
+  color: var(--third-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.contentEvents {
+  width: 70%;
+  margin: auto;
+  display: flex;
+}
+
+.titleEvents {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  & h2 {
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 35px;
+  }
+  & span {
+    font-size: 30px;
+    font-weight: 400;
+  }
+  & a {
+    margin-left: auto;
+    color: var(--main-text-color);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    &:hover {
+      color: var(--card-link-hover-color);
+    }
+  }
+}
+
+.nextEvents {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  & .topNextEvents {
+    height: 80px;
+    background-color: var(--third-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+    padding: 1rem;
+    & .textNextEvents {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+  & .cardEvents {
+    height: 200px;
+    background-color: white;
+  }
+}
+
+/*---------------------------------*/
+/*SECTION TOURISM*/
+.tourism {
+  width: 70%;
+  margin: 0 auto;
+  padding: 4rem 0;
 }

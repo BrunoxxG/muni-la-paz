@@ -1,24 +1,24 @@
-/*Se maneja los complex como una card 
-y todas las publicaciones hacer una card que se usa para todos las publicaciones*/
-
-/*Notice", "Event", "Health", "Institutional", "Sports", "Council", "Trash", "Water", "Help*/
 import { Link } from "react-router-dom";
-import style from "./card.module.css";
 
-const Card = (prop) => {
+import style from "./Card.module.css";
+
+export default function Card({ publication }) {
   return (
     <div className={style.card}>
-      <div className={style.cardContainer}>
-        <h2>Name: {prop.name}</h2>
-        <img src={prop.image} alt={prop.name} />
-        <h3>Weight: {prop.weight}</h3>
-        <h3>Temperaments: {prop.temperament}</h3>
-        <button>
-          <Link to={`/detail/${prop.id}`}>Detail</Link>
-        </button>
+      <img src={publication.image} alt={publication.title} />
+      <div className={style.cardText}>
+        <small>{publication.date}</small>
+        <Link to={`/detail/${publication.id}`} className={style.link}>
+          <h3>{publication.title}</h3>
+        </Link>
+        <p>{publication.description}</p>
+      </div>
+      <div className={style.cardFooter}>
+        <span>{publication.type}</span>
+        <Link to={`/noticia/${publication.id}`} className={style.link}>
+          <label>LEER MÁS</label>
+        </Link>
       </div>
     </div>
   );
-};
-
-export default Card;
+}
