@@ -1,4 +1,6 @@
 import NavBar from './NavBar/NavBar';
-import Carrousel from './Carrousel/Carrousel';
+import Card from './Card/Card';
+import Carousel from './Carousel/Carousel';
+import Footer from './Footer/Footer';
 
-export { NavBar, Carrousel };
+export { NavBar, Card, Carousel, Footer };
