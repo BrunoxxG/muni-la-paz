@@ -1,32 +1,20 @@
 import { Routes, Route } from "react-router-dom";
 import { NavBar, Footer } from "./components";
-import { Home } from "./views";
+import { Contacts, Home, Notices } from "./views";
 import "./App.css";
-
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getComplexes, getPublications } from "./redux/actions";
 
 
 function App() {
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getComplexes())
-    .then(() => dispatch(getPublications()));
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
-
-
   return (
-    <>
+    <div className="container">
       <NavBar />
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/noticias" element={<Notices />} />
+        <Route exact path="/contacto" element={<Contacts />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

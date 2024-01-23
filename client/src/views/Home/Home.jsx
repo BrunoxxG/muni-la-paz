@@ -1,4 +1,4 @@
-import { Carousel, Card } from "../../components";
+import { Carousel, Publication } from "../../components";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 import { MdCabin, MdOutlineLibraryBooks, MdEvent, MdSportsSoccer } from "react-icons/md";
@@ -43,7 +43,7 @@ export default function Home() {
           <MdSportsSoccer size={50} />
           <span>DEPORTE</span>
         </Link>
-        <Link className={style.buttonNavCenter}>
+        <Link to='/noticias' className={style.buttonNavCenter}>
           <MdOutlineLibraryBooks size={50} />
           <span>NOTICIAS</span>
         </Link>
@@ -80,7 +80,7 @@ export default function Home() {
           </div>
         </div>
         <div className={style.publications}>
-          {publications?.map((publication, index) => index > 0 && <Card key={index} publication={publication} />)}
+          {publications?.map((publication, index) => index > 0 && <Publication key={index} publication={publication} />)}
         </div>
       </section>
       <section className={style.events}>

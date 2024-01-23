@@ -18,9 +18,6 @@ export default function NavBar() {
             <Link to="/" className={style.border}>
               INICIO
             </Link>
-            <Link to="/noticias" className={style.border}>
-              NOTICIAS
-            </Link>
             <Link to="/servicios" className={style.border}>
               SERVICIOS
             </Link>
@@ -30,15 +27,12 @@ export default function NavBar() {
             <Link to="/intitucional" className={style.border}>
               INSTITUCIONAL
             </Link>
-            <Link to="/concejo" style={{ paddingLeft: "1.5rem" }}>
+            <Link to="/concejo" className={style.border}>
               CONCEJO DELIBERANTE
             </Link>
             <Link to="/contacto" style={{ paddingLeft: "1.5rem" }}>
               CONTACTO
             </Link>
-            <Routes>
-              <Route path="/contacto" element={<Contacts />} />
-            </Routes>
           </div>
         </div>
         <div className={style.social}>

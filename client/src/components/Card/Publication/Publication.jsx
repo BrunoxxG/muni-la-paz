@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-import style from "./Card.module.css";
+import style from "./Publication.module.css";
 
-export default function Card({ publication }) {
+export default function Publication({ publication }) {
   return (
     <div className={style.card}>
       <img src={publication.image} alt={publication.title} />
