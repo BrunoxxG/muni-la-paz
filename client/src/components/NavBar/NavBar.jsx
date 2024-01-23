@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-
+import { Link, Routes, Route } from "react-router-dom";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import Logo from "../../assets/logo.png";
 import style from "./NavBar.module.css";
+import Contacts from "../../views/Contact/Contacts";
 
 export default function NavBar() {
   return (
@@ -11,7 +11,7 @@ export default function NavBar() {
         <a href="https://www.facebook.com/p/Municipalidad-de-La-Paz-100064654033886/" target="blank">
           <FaFacebookF />
         </a>
-        <a href="">
+        <a href="https://www.instagram.com/muni.lapaz?igsh=eDk1Y3g3b2tlODhz">
           <FaInstagram />
         </a>
       </div>
@@ -41,6 +41,12 @@ export default function NavBar() {
             <Link to="/concejo" style={{ paddingLeft: "1.5rem" }}>
               CONCEJO DELIBERANTE
             </Link>
+            <Link to="/contacto" style={{ paddingLeft: "1.5rem" }}>
+              CONTACTO
+            </Link>
+            <Routes>
+              <Route path="/contacto" element={<Contacts />} />
+            </Routes>
           </div>
         </div>
       </nav>
