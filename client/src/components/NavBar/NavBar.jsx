@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-
+import { Link, Routes, Route } from "react-router-dom";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import Logo from "../../assets/logo.png";
 import style from "./NavBar.module.css";
+import Contacts from "../../views/Contact/Contacts";
 
 export default function NavBar() {
   return (
@@ -33,6 +33,12 @@ export default function NavBar() {
             <Link to="/concejo" style={{ paddingLeft: "1.5rem" }}>
               CONCEJO DELIBERANTE
             </Link>
+            <Link to="/contacto" style={{ paddingLeft: "1.5rem" }}>
+              CONTACTO
+            </Link>
+            <Routes>
+              <Route path="/contacto" element={<Contacts />} />
+            </Routes>
           </div>
         </div>
         <div className={style.social}>
