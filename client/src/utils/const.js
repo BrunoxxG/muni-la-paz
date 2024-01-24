@@ -42,4 +42,4 @@ export const contacts = [
     phone: '3544-416691',
     email: 'oe.lapaz@gmail.com'
   },
-]
+];
