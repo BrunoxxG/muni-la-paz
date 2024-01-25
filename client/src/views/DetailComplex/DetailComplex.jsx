@@ -3,7 +3,7 @@ import { Contact } from '../../components';
 
 import { contacts } from '../../utils/const';
 
-const Contacts = () => {
+const DetailComplex = () => {
   return (
     <div className={style.generalContainer}>
       {contacts?.map((contact, index) =>
@@ -13,4 +13,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default DetailComplex;

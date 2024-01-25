@@ -39,7 +39,7 @@ export default function NavBar() {
           <a href="https://www.facebook.com/p/Municipalidad-de-La-Paz-100064654033886/" target="blank">
             <FaFacebookF />
           </a>
-          <a href="">
+          <a href="https://www.instagram.com/muni.lapaz?igsh=eDk1Y3g3b2tlODhz">
             <FaInstagram />
           </a>
         </div>

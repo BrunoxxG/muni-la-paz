@@ -109,8 +109,8 @@ export default function Home() {
             Alojamiento<br></br>
             <span>Si viajás o llegaste</span>
           </h2>
-          <Link>
-            Más alojamientos <FaArrowRight size={25} />
+          <Link to="/alojamientos">
+            Más alojamientos<FaArrowRight size={25} />
           </Link>
         </div>
         <div className={style.publications}>

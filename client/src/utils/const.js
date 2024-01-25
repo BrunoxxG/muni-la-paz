@@ -2,6 +2,11 @@ export const URL_BASE = 'http://localhost:3000';
 
 export const contacts = [
   {
+    title: 'Municipalidad de la Paz',
+    phone: '496-010',
+    email: 'municipalidadelapaz@hotmail.com'
+  },
+  {
     title: 'Acción Social y Oficina de Empleo',
     phone: '3544-416691',
     email: 'oe.lapaz@gmail.com'
@@ -9,13 +14,13 @@ export const contacts = [
   {
     title: 'Reclamos Agua - 8:00 a 13:00',
     phone: '3544-496010',
-    // faltaPoner="Fuera del horario de atencion al publico"
-    // cel=" 3544-651480"
+    title2:"Fuera del Horario",
+    phone2:" 3544-651480"
   },
   {
     title: 'Turismo',
     phone: '3544-594346',
-    email: 'osectorlapaz@gmail.com'
+    email: 'sectorlapaz@gmail.com'
   },
   {
     title: 'Publicidad-Radio Eventos',
@@ -23,23 +28,16 @@ export const contacts = [
     email: 'oe.lapaz@gmail.com'
   },
   {
-    title: 'Acción Social y Oficina de Empleo',
-    phone: '3544-416691',
-    email: 'oe.lapaz@gmail.com'
+    title: 'Hospital Santa Rita',
+    phone: '3544-593956',
   },
   {
-    title: 'Acción Social y Oficina de Empleo',
-    phone: '3544-416691',
-    email: 'oe.lapaz@gmail.com'
+    title: 'Comisaria La Paz',
+    phone: '496-600',
   },
   {
-    title: 'Acción Social y Oficina de Empleo',
-    phone: '3544-416691',
-    email: 'oe.lapaz@gmail.com'
-  },
-  {
-    title: 'Acción Social y Oficina de Empleo',
-    phone: '3544-416691',
-    email: 'oe.lapaz@gmail.com'
+    title: 'Bomberos Voluntarios',
+    phone: '496-600',
+    whatsapp: '3544-536590'
   },
 ];
