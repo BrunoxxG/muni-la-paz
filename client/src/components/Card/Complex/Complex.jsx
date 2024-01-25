@@ -4,8 +4,8 @@ import style from "./Complex.module.css";
 
 export default function Complex() {
   return (
-    <div className={style.card}>
-
+    <div >
+<h1>hola ruben</h1>
     </div>
   );
 }
