@@ -15,6 +15,11 @@ export default function Home() {
 
   const allPublications = useSelector((state) => state.publications);
   const publications = allPublications.filter((publication) => publication.check).slice(0, 4);
+  //complexes
+  const complexes = useSelector((state) => state.complexes)
+const allComplexes = complexes.filter((complexes) => complexes.check).slice(0, 4);
+// console.log(allComplexes)
+
 
   useEffect(() => {
     dispatch(getComplexes()).then(() => dispatch(getPublications()));
@@ -109,12 +114,29 @@ export default function Home() {
             Alojamiento<br></br>
             <span>Si viajás o llegaste</span>
           </h2>
-          <Link to="/alojamientos">
+          <Link to="/alojamientos" >
             Más alojamientos<FaArrowRight size={25} />
           </Link>
         </div>
+        <div className={style.firstNotice}>
+          <div className={style.firstNoticeImg}>
+            <img src={allComplexes[0]?.image} alt={allComplexes[0]?.id} />
+          </div>
+          <div className={style.firstNoticeText}>
+            <div className={style.firstNoticeTextTop}>
+              <small>{allComplexes[0]?.date}</small>
+              <Link to={`/detail/${publications[0]?.id}`} className={style.link}>
+                <h3>{allComplexes[0]?.name}</h3>
+              </Link>
+              <p>{allComplexes[0]?.description}</p>
+            </div>
+            <Link to={`/alojamiento/${allComplexes[0]?.id}`} className={style.link}>
+              <label>LEER MÁS</label>
+            </Link>
+          </div>
+        </div>
         <div className={style.publications}>
-          
+          {allComplexes?.map((complexes, index) => index > 0 && <Publication key={index} complexes={complexes} />)}
         </div>
       </section>
     </main>

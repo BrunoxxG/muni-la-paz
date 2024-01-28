@@ -25,7 +25,6 @@ export const contacts = [
   {
     title: 'Publicidad-Radio Eventos',
     phone: '3544-416376',
-    email: 'oe.lapaz@gmail.com'
   },
   {
     title: 'Hospital Santa Rita',

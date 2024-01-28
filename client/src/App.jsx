@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { NavBar, Footer } from "./components";
-import { Contacts, Home, Notices, Login, Dashboard } from "./views";
+import { Contacts, Home, Notices, Login, Dashboard, DetailComplex } from "./views";
 
 import AuthProvider from "react-auth-kit";
 import createStore from "react-auth-kit/createStore";
@@ -25,6 +25,8 @@ function App() {
             <Route exact path="/noticias" element={<Notices />} />
             <Route exact path="/contacto" element={<Contacts />} />
             <Route exact path="/login" element={<Login />} />
+            <Route path="/alojamientos" element={<DetailComplex />} />
+            <Route path="/alojamientos/:id" element={<DetailComplex />} />
             <Route
               exact
               path="/dashboard"
