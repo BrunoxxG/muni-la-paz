@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { NavBar, Footer } from "./components";
-import { Contacts, Home, Publications, Login, Dashboard } from "./views";
+import { Contacts, Home, Publications, Login, Dashboard, DetailComplex } from "./views";
 
 import RequireAuth from '@auth-kit/react-router/RequireAuth'
 
@@ -17,6 +17,8 @@ function App() {
             <Route exact path="/noticias" element={<Publications />} />
             <Route exact path="/contacto" element={<Contacts />} />
             <Route exact path="/login" element={<Login />} />
+            <Route path="/alojamientos" element={<DetailComplex />} />
+            <Route path="/alojamientos/:id" element={<DetailComplex />} />
             <Route
               exact
               path="/dashboard/*"

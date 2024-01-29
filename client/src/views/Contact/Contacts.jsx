@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./Contacts.module.css";
 import { Contact } from '../../components';
 

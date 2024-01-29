@@ -1,11 +1,22 @@
+// solo se muestra cuando se le da a la flecha de mas alojameintos, luego cuando se le da clck a una cabaña en particular se lo lleva a la vista del detalle de las cabañas(views).
 import { Link } from "react-router-dom";
 
-import style from "./Complex.module.css";
-
-export default function Complex() {
+export default function Publication({ publication }) {
   return (
-    <div className={style.card}>
-
+    <div className="">
+      <div className="">
+        <small>{publication.date}</small>
+        <Link to={`/complex/${publication.id}`} className="">
+          <h3>{publication.name}</h3>
+        </Link>
+        <p>{publication.description}</p>
+      </div>
+      <div className={style.cardFooter}>
+        <span>{publication.type}</span>
+        <Link to={`/noticia/${publication.id}`} className={style.link}>
+          <label>LEER MÁS</label>
+        </Link>
+      </div>
     </div>
   );
 }

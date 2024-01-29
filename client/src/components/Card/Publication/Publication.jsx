@@ -8,7 +8,7 @@ import style from "./Publication.module.css";
 import { useDispatch } from "react-redux";
 import { getPublications } from "../../../redux/actions";
 
-export default function Publication({ publication, user }) {
+export default function Publication({ publication, user, complexes }) {
   const dispatch = useDispatch();
   
   
@@ -38,6 +38,7 @@ export default function Publication({ publication, user }) {
   };
 
   return (
+    publication ? 
     <div className={style.card}>
       <img src={publication.image} alt={publication.title} />
       <div className={style.cardText}>
@@ -72,6 +73,23 @@ export default function Publication({ publication, user }) {
           )}
         </div>
       )}
+    </div>
+    :
+    <div className={style.card}>
+      <img src={complexes.image} alt={complexes.name} />
+      <div className={style.cardText}>
+        <Link to={`/detail/${complexes.id}`} className={style.link}>
+          <h3>{complexes.name}</h3>
+        </Link>
+        <p>{complexes.address}</p>
+        <p>{complexes.description}</p>
+      </div>
+      <div className={style.cardFooter}>
+        {/* <span>{complexes.type}</span> */}
+        <Link to={`/alojamientos/#${complexes.id}`} className={style.link}>
+          <label>LEER MÁS</label>
+        </Link>
+      </div>
     </div>
   );
 }
