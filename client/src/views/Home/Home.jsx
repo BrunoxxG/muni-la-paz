@@ -58,7 +58,7 @@ const allComplexes = complexes.filter((complexes) => complexes.check).slice(0, 4
         </Link>
       </div>
       <section className={style.notices}>
-        <div className={style.titleNotices}>
+        <div className={style.titlePublications}>
           <h2>
             Últimas<br></br>
             <span>Noticias</span>
@@ -109,7 +109,7 @@ const allComplexes = complexes.filter((complexes) => complexes.check).slice(0, 4
         </div>
       </section>
       <section className={style.tourism}>
-        <div className={style.titleNotices}>
+        <div className={style.titlePublications}>
           <h2>
             Alojamiento<br></br>
             <span>Si viajás o llegaste</span>

@@ -4,16 +4,23 @@ const { generateToken } = require('../../jwt/jwt');
 
 module.exports = async (data) => {
     const { email, password } = data;
-    const user = await User.findOne({ where: { email } });
-
-    if (!user) throw new Error('Incorrect email or password');
-
-    const isMatchPassword = await comparePassword(password, user.password);
-    if (!isMatchPassword) throw new Error('Incorrect email or password');
-
-    if(!user.passwordChanged) throw new Error('Change password required');
+    try {
+        const user = await User.findOne({ where: { email } });
     
-    const token = generateToken(user.email, user.rol);
+        if (!user) throw ({ statusCode: 402,message: 'Email o Contraseña Incorrectos' });
     
-    return token;
+        const isMatchPassword = await comparePassword(password, user.password);
+        if (!isMatchPassword) throw ({ statusCode: 402,message: 'Email o Contraseña Incorrectos' });
+    
+        if(!user.active) throw ({ statusCode: 405, message: 'Usuario Desactivado' });
+    
+        if(!user.passwordChanged) throw ({ statusCode: 406, message: 'Se necesita cambiar la Contraseña, revise su Email' });
+        
+        const token = generateToken(user.email, user.rol, user.name);
+        
+        return token;
+        
+    } catch (error) {
+        throw error;
+    }
 };

@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "name": "Usuario 1",
+      "name": "Luis Canales",
       "email": "usuario1@example.com",
       "password": "$2b$10$D.RfzQijTcNxkPQ9dzieiOD/mK8EGPRvPdMAG.DYjPxx3YS7.G95q",
       "rol": "Admin",
@@ -16,7 +16,7 @@
       "password": "$2b$10$VM0fk.QWcmFxF55JDrBp..oQ6H1O36PkT14Qij8yQ.OOEKAYlZnoG",
       "rol": "Basic",
       "active": true,
-      "passwordChanged": false
+      "passwordChanged": true
     },
     {
       "id": 3,
@@ -54,7 +54,7 @@
       "description": "El pediatra a partir de Enero completará las planillas de cus, los días Martes y Jueves",
       "image": "src/assets/images/noticia3.jpg",
       "date": "29-12-2023",
-      "check": true
+      "check": false
     },
     {
       "id": 4,
@@ -63,7 +63,7 @@
       "description": "Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua. Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua.",
       "date": "07-01-2024",
       "image": "src/assets/images/noticia2.jpg",
-      "check": true
+      "check": false
     },
     {
       "id": 5,
@@ -90,7 +90,7 @@
       "description": "Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua. Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua.",
       "date": "07-01-2024",
       "image": "src/assets/images/noticia2.jpg",
-      "check": true
+      "check": false
     }
   ],
   "complexes": [

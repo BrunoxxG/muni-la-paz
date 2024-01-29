@@ -6,7 +6,7 @@ header {
   width: 100%;
   height: 100px;
   /* background: linear-gradient(135deg,#00A03D,#009C6F 25%,#009160 50%,#00949C 75%,#0065BE); */
-  background-color: var(--secondary-color);
+  background-color: var(--main-color);
   display: flex;
   align-items: center;
 }

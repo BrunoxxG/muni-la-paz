@@ -1,14 +1,14 @@
 .card {
-  width: 400px;
-  height: 480px;
+  /* width: 400px;
+  height: 480px; */
   background-color: var(--card-bg-color);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   & img {
-    width: 400px;
-    height: 250px;
+    /* max-width: 300px; */
+    max-height: 250px;
     object-fit: cover;
   }
 }
@@ -45,7 +45,7 @@
 }
 
 .cardFooter {
-  color: var(--secondary-color);
+  color: var(--main-color);
   font-size: 16px;
   text-transform: uppercase;
   margin-top: auto;
@@ -74,5 +74,50 @@
   &:link,
   &:active {
     color: inherit;
+  }
+}
+
+.buttons {
+  position: absolute;
+  display: flex;
+  gap: .5rem;
+  left: 50%;
+  top: 1%;
+  transform: translateX(-50%);
+  .btn {
+    display: flex;
+    align-items: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgb(190, 190, 190);
+    padding: 1rem;
+    font-size: 1.5rem;
+    border: 1px solid transparent;
+  }
+  .edit{
+    color: blue;
+  }
+  .delete {
+    color:red;
+  }
+  .check {
+    color: green;
+  }
+  .edit:hover {
+    border: 1px solid blue;
+    background: rgba(0, 0, 255, 0.5);
+    color: black;
+  }
+  .delete:hover {
+    border: 1px solid red;
+    background: rgba(255, 0, 0, 0.5);
+    color: black;
+  }
+  .check:hover {
+    border: 1px solid green;
+    background: rgba(0, 128, 0, 0.5);
+    color: black;
   }
 }
