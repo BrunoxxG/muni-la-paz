@@ -82,10 +82,10 @@ export default function Login() {
               </div>
             </div>
             <div className={style.inputDiv}>
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Contraseña</label>
               <div className={style.input}>
                 <BsFillShieldLockFill className={style.icon} />
-                <input type="password" name="password" placeholder="Ingrese Password" onChange={handleInput} />
+                <input type="password" name="password" placeholder="Ingrese Contraseña" onChange={handleInput} />
               </div>
             </div>
             <button type="submit" className={style.btn}>
