@@ -1,20 +1,12 @@
-import { Link } from "react-router-dom";
-import style from "./card.module.css";
 
-const Card = (prop) => {
+
+import style from "./Publications.module.css";
+
+export default function Publications() {
+
   return (
-    <div className={style.card}>
-      <div className={style.cardContainer}>
-        <h2>Name: {prop.name}</h2>
-        <img src={prop.image} alt={prop.name} />
-        <h3>Weight: {prop.weight}</h3>
-        <h3>Temperaments: {prop.temperament}</h3>
-        <button>
-          <Link to={`/detail/${prop.id}`}>Detail</Link>
-        </button>
-      </div>
-    </div>
+    <main>
+      <h1>NOTICES</h1>
+    </main>
   );
-};
-
-export default Card;
+}

@@ -6,7 +6,7 @@ import logo from "../../../assets/logo.png";
 import style from "./SideBar.module.css";
 
 export default function SideBar({ user, signOut, onLinkClick }) {
-  const [activeLink, setActiveLink] = useState("");
+  const [activeLink, setActiveLink] = useState('');
 
   const handleLinkClick = (link) => {
     if (onLinkClick) {
@@ -34,12 +34,12 @@ export default function SideBar({ user, signOut, onLinkClick }) {
             </div>
           </li>
           <li
-            className={`${style.listItem} ${activeLink === "notices" ? style.active : ""}`}
-            onClick={() => handleLinkClick("notices")}
+            className={`${style.listItem} ${activeLink === "publications" ? style.active : ""}`}
+            onClick={() => handleLinkClick("publications")}
           >
             <div className={style.menuLink}>
               <MdOutlineLibraryBooks className={style.icon} />
-              <span className={style.smallText}>Noticias</span>
+              <span className={style.smallText}>Publicaciones</span>
             </div>
           </li>
           <li

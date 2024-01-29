@@ -1,12 +1,10 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { NavBar, Footer } from "./components";
-import { Contacts, Home, Notices, Login, Dashboard } from "./views";
-
+import { Contacts, Home, Publications, Login, Dashboard } from "./views";
 
 import RequireAuth from '@auth-kit/react-router/RequireAuth'
 
 import "./App.css";
-import Detail from "./views/DetailComplex/Detail";
 
 function App() {
   const location = useLocation();
@@ -16,10 +14,9 @@ function App() {
         {!location.pathname.startsWith('/dashboard') && <NavBar />}
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/noticias" element={<Notices />} />
+            <Route exact path="/noticias" element={<Publications />} />
             <Route exact path="/contacto" element={<Contacts />} />
             <Route exact path="/login" element={<Login />} />
-            <Route exact path="/complexes/:id" element={<Detail />} />
             <Route
               exact
               path="/dashboard/*"

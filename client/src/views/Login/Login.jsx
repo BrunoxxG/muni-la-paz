@@ -41,7 +41,7 @@ export default function Login() {
           name: response.data.name,
           ...(response.data.rol && { rol: response.data.rol }),
         };
-        
+        console.log(response.data.token)
         signIn({
           auth: {
             token: response.data.token,

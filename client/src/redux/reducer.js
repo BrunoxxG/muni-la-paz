@@ -1,14 +1,17 @@
 import {
   GET_COMPLEXES,
   GET_PUBLICATIONS,
+  GET_USERS,
   GET_COMPLEX_DETAIL,
   GET_PUBLICATION_DETAIL,
-  CLEAN_DETAIL
+  CLEAN_DETAIL,
+  GET_PUBLICATIONS_BY_TITLE
 } from "./actions";
 
 const initialState = {
   complexes: [],
   publications: [],
+  users: [],
   complexDetail: {},
   publicationDetail: {},
 };
@@ -25,6 +28,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         publications: action.payload,
       };
+    case GET_USERS:
+      return {
+        ...state,
+        users: action.payload,
+      };
     case GET_COMPLEX_DETAIL:
       return {
         ...state,
@@ -40,6 +48,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         complexDetail: {},
         publicationDetail: {},
+      };
+    case GET_PUBLICATIONS_BY_TITLE:
+      return {
+        ...state,
+        publications: action.payload,
       };
     default:
       return { ...state };

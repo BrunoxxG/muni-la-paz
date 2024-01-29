@@ -9,9 +9,9 @@ import Contact from './Card/Contact/Contact';
 import SideBar from './Dashboard/SideBar/SideBar';
 import Top from './Dashboard/Top/Top';
 import Panel from './Dashboard/Panel/Panel';
-import Notices from './Dashboard/Notices/Notices';
-import Complexes from './Dashboard/Complexes/Complexes';
+import PublicationsDashboard from './Dashboard/Publications/PublicationsDashboard';
+import ComplexesDashboard from './Dashboard/Complexes/ComplexesDashboard';
 import Users from './Dashboard/Users/Users';
 import SearchBar from './Dashboard/SearchBar/SearchBar';
 
-export { NavBar, Carousel, Footer, Publication, Complex, Contact, SideBar, Top, Panel, Notices, Complexes, Users, SearchBar };
+export { NavBar, Carousel, Footer, Publication, Complex, Contact, SideBar, Top, Panel, PublicationsDashboard, ComplexesDashboard, Users, SearchBar };
