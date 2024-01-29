@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 import style from "./Publication.module.css";
 
 export default function Publication({ publication, complexes }) {

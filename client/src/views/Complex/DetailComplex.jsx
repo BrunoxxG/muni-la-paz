@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getComplexes } from "../../redux/actions";
@@ -14,20 +14,19 @@ const DetailComplex = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const element = document.getElementById(`#${id??2}`); // Reemplaza 'tuId' con el id del elemento al que deseas hacer scroll
-
+    const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" }); // 'smooth' proporciona un desplazamiento suave
     }
-  }, []);
+  }, [id]);
 
   return (
     <div className={style.Container}>
       <Link to="/">
         <span> volver</span>
       </Link>
-      <div className="">
-        {allComplexes?.map((complexes, index) => (
+      <div>
+        {allComplexes?.map((complexes) => (
           <div id={`#${complexes.id}`}>
             <h1>{complexes.name}</h1>
             <img src={complexes?.image} alt={complexes?.id} />
