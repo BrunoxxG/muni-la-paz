@@ -18,7 +18,6 @@ export default function Carousel() {
         delay: 4000,
         
       }}
-      className={style.swiper}
     >
       {data?.map((slide, index) => (
         <SwiperSlide key={index}>

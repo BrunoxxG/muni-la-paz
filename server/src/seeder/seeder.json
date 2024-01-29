@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "name": "Usuario 1",
+      "name": "Luis Canales",
       "email": "usuario1@example.com",
       "password": "$2b$10$D.RfzQijTcNxkPQ9dzieiOD/mK8EGPRvPdMAG.DYjPxx3YS7.G95q",
       "rol": "Admin",
@@ -16,7 +16,7 @@
       "password": "$2b$10$VM0fk.QWcmFxF55JDrBp..oQ6H1O36PkT14Qij8yQ.OOEKAYlZnoG",
       "rol": "Basic",
       "active": true,
-      "passwordChanged": false
+      "passwordChanged": true
     },
     {
       "id": 3,

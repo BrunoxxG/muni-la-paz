@@ -14,7 +14,7 @@ main {
   justify-content: space-between;
   & .buttonNavCenter {
     background-color: white;
-    color: var(--secondary-color);
+    color: var(--main-color);
     font-size: 20px;
     width: calc(100% / 7);
     height: 200px;
@@ -30,7 +30,7 @@ main {
       transition: 0.4s ease-in-out;
     }
     &:hover {
-      background-color: var(--secondary-color);
+      background-color: var(--main-color);
       color: white;
       transform: translate3d(0px, -24px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg)
         skew(0deg, 0deg);
@@ -143,8 +143,8 @@ main {
 /*SECTION EVENTS*/
 .events {
   height: 350px;
-  background-color: #93ffa156;
-  color: var(--third-color);
+  background-color: var(--bg-green-opacity);
+  color: var(--secondary-color);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -188,7 +188,7 @@ main {
   flex-direction: column;
   & .topNextEvents {
     height: 80px;
-    background-color: var(--third-color);
+    background-color: var(--secondary-color);
     display: flex;
     justify-content: space-between;
     align-items: center;

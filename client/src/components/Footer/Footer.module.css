@@ -10,7 +10,7 @@ footer {
   align-items: flex-end;
   gap: 3rem;
   & .contact {
-    color: var(--third-color);
+    color: var(--secondary-color);
     align-items: center;
     margin: 2em 0;
     flex-direction: column;
@@ -40,7 +40,7 @@ footer {
 }
 
 .bottomFooter {
-  background-color: var(--third-color);
+  background-color: var(--secondary-color);
   & .contentBottomFooter {
     width: 70%;
     margin: auto;

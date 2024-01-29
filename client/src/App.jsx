@@ -1,33 +1,28 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { NavBar, Footer } from "./components";
 import { Contacts, Home, Notices, Login, Dashboard } from "./views";
 
-import AuthProvider from "react-auth-kit";
-import createStore from "react-auth-kit/createStore";
+
 import RequireAuth from '@auth-kit/react-router/RequireAuth'
-const store = createStore({
-  authName: "_auth",
-  authType: "cookie",
-  cookieDomain: window.location.hostname,
-  cookieSecure: window.location.protocol === "https:",
-});
 
 import "./App.css";
+import Detail from "./views/DetailComplex/Detail";
 
 function App() {
+  const location = useLocation();
+
   return (
     <div className="container">
-      <AuthProvider store={store}>
-        <BrowserRouter>
-          <NavBar />
+        {!location.pathname.startsWith('/dashboard') && <NavBar />}
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/noticias" element={<Notices />} />
             <Route exact path="/contacto" element={<Contacts />} />
             <Route exact path="/login" element={<Login />} />
+            <Route exact path="/complexes/:id" element={<Detail />} />
             <Route
               exact
-              path="/dashboard"
+              path="/dashboard/*"
               element={
                 <RequireAuth fallbackPath={"/login"}>
                   <Dashboard />
@@ -35,9 +30,7 @@ function App() {
               }
             />
           </Routes>
-          <Footer />
-        </BrowserRouter>
-      </AuthProvider>
+          {!location.pathname.startsWith('/dashboard') && <Footer />}
     </div>
   );
 }

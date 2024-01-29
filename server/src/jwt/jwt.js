@@ -1,11 +1,14 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const generateToken = (email, rol) => {
-  const payload = { email, rol };
+const generateToken = (email, rol, name) => {
+  const payload = { email, rol, name};
   const options = { expiresIn: '360m' };
   const token = jwt.sign(payload, process.env.JWT_SECRET, options);
-  return token;
+  if (rol === 'Admin') {
+    return { token, rol, name };
+  }
+  return {token, name};
 };
 
 const verifyToken = (req, res, next) => {

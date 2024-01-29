@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
   font-family: 'Montserrat', sans-serif;
@@ -6,8 +6,8 @@
 
   --main-bg-color: #EEEEEE;
   --main-text-color: #444444;
-  --secondary-color: #00A03D;
-  --third-color: #009160;
+  --main-color: #00A03D;
+  --secondary-color: #009160;
   --card-bg-color: #FFFFFF;
   --card-title-color: #000000;
   --card-description-color: #777777;
@@ -16,6 +16,7 @@
   --button-text-color: #FFFFFF;
   --button-hover-color: #009160;
   --footer-bg-color: #ffffff;
+  --bg-green-opacity: #93ffa156;
 
   color: var(--main-text-color);
   background-color: var(--main-bg-color);
@@ -40,4 +41,8 @@ a:link, a:visited, a:active {
 
 h1, h2, h3, h4, p {
   margin: 0;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
 }
