@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import style from "./Complexes.module.css";
 import { getComplexes } from "../../redux/actions";
+import { Publication } from "../../components";
 
 export default function Complexes() {
 
@@ -19,16 +20,9 @@ export default function Complexes() {
       <Link to="/">
         <span> volver</span>
       </Link>
-      <div>
+      <div className={style.grid}>
         {allComplexes?.map((complex, index) => (
-          <div id={`#${complex?.id}`} key={index}>
-            <h1>{complex?.name}</h1>
-            <img src={complex?.image} alt={complex?.id} />
-            <p>Descripcion: {complex?.description}</p>
-            <span>Direccion: {complex?.address}</span>
-            <p>Contacto: {complex?.contact}</p>
-            <Link to={`/alojamientos/${complex?.id}`}>VER MAS</Link>
-          </div>
+          <Publication key={index} complex={complex} />
         ))}
       </div>
     </div>

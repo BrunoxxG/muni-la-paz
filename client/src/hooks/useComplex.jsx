@@ -7,7 +7,6 @@ const useComplex = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
 
-    console.log(id)
     const complex = useSelector((state) => state.complexDetail);
 
     useEffect(() => {

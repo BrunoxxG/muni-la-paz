@@ -17,7 +17,7 @@ export default function Home() {
   const publications = allPublications.filter((publication) => publication.check).slice(0, 4);
   //complexes
   const complexes = useSelector((state) => state.complexes)
-const allComplexes = complexes.filter((complexes) => complexes.check).slice(0, 4);
+const allComplexes = complexes.filter((complexes) => complexes.check).slice(0, 3);
 // console.log(allComplexes)
 
 
@@ -118,25 +118,8 @@ const allComplexes = complexes.filter((complexes) => complexes.check).slice(0, 4
             Más alojamientos<FaArrowRight size={25} />
           </Link>
         </div>
-        <div className={style.firstNotice}>
-          <div className={style.firstNoticeImg}>
-            <img src={allComplexes[0]?.image} alt={allComplexes[0]?.id} />
-          </div>
-          <div className={style.firstNoticeText}>
-            <div className={style.firstNoticeTextTop}>
-              <small>{allComplexes[0]?.date}</small>
-              <Link to={`/alojamientos/${allComplexes[0]?.id}`} className={style.link}>
-                <h3>{allComplexes[0]?.name}</h3>
-              </Link>
-              <p>{allComplexes[0]?.description}</p>
-            </div>
-            <Link to={`/alojamientos/${allComplexes[0]?.id}`} className={style.link}>
-              <label>LEER MÁS</label>
-            </Link>
-          </div>
-        </div>
         <div className={style.publications}>
-          {allComplexes?.map((complexes, index) => index > 0 && <Publication key={index} complexes={complexes} />)}
+          {allComplexes?.map((complex, index) => <Publication key={index} complex={complex} />)}
         </div>
       </section>
     </main>

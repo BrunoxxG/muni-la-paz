@@ -7,6 +7,8 @@ const ComplexDetail = () => {
 
   const complex = useComplex();
 
+  console.log(complex)
+
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -14,13 +16,15 @@ const ComplexDetail = () => {
   }
 
   return (
+    
     <div className={style.container}>
+      {console.log(complex)}
       <button onClick={handleBack}>
         volver
       </button>
       <div>
-        <h1>{complex.name}</h1>
-        <img src={complex?.image} alt={complex?.id} />
+        <h1>{complex?.name}</h1>
+        <img src={complex.image} alt={complex.name} />
         <p>Descripcion: {complex.description}</p>
         <span>Direccion: {complex.address}</span>
         <p>Contacto: {complex.contact}</p>
