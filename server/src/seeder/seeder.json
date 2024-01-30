@@ -96,23 +96,38 @@
   "complexes": [
     {
       "id": 1,
-      "name": "Jorge",
-      "description": "s/d",
+      "name": "JorgEEEEEEEEEE",
+      "description": "Nuestra Hosteria cuenta con 12 habitaciones, en un ambiente íntimo donde los huéspedes podrán disfrutar de un parque de 4 hectáreas, realizar paseos entre nogales, olivos, robles, ceibos, innumerables plantas autóctonas y hermosas flores.",
       "address": "Calle 123",
+      "image": "src/assets/images/complejo.jpg",
+      "contact":"3554454643",
       "check": true
     },
     {
       "id": 2,
       "name": "Cerro Loma Bola",
-      "description": "s/d",
+      "description": "Nuestra Hosteria cuenta con 12 habitaciones, en un ambiente íntimo donde los huéspedes podrán disfrutar de un parque de 4 hectáreas, realizar paseos entre nogales, olivos, robles, ceibos, innumerables plantas autóctonas y hermosas flores.",
       "address": "Calle 123",
+      "image": "src/assets/images/complejo1.jpg",
+      "contact":"3554454643",
       "check": true
     },
     {
       "id": 3,
       "name": "Bello Horizonte",
-      "description": "s/d",
+      "description": "Nuestra Hosteria cuenta con 12 habitaciones, en un ambiente íntimo donde los huéspedes podrán disfrutar de un parque de 4 hectáreas, realizar paseos entre nogales, olivos, robles, ceibos, innumerables plantas autóctonas y hermosas flores.",
       "address": "Calle 123",
+      "image": "src/assets/images/complejo2.jpg",
+      "contact":"3554454643",
+      "check": true
+    },
+    {
+      "id": 4,
+      "name": "Bello uptie",
+      "description": "Nuestra Hosteria cuenta con 12 habitaciones, en un ambiente íntimo donde los huéspedes podrán disfrutar de un parque de 4 hectáreas, realizar paseos entre nogales, olivos, robles, ceibos, innumerables plantas autóctonas y hermosas flores.",
+      "address": "Calle 1234",
+      "image": "src/assets/images/complejo4.jpg",
+      "contact":"3554454643",
       "check": true
     }
   ]
