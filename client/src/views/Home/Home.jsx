@@ -4,28 +4,12 @@ import { FaArrowRight } from "react-icons/fa6";
 import { MdCabin, MdOutlineLibraryBooks, MdEvent, MdSportsSoccer } from "react-icons/md";
 import { FaHeartbeat, FaBook, FaRegCalendarAlt } from "react-icons/fa";
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getComplexes, getPublications } from "../../redux/actions";
-
 import style from "./Home.module.css";
 
-export default function Home() {
-  const dispatch = useDispatch();
-
-  const allPublications = useSelector((state) => state.publications);
-  const publications = allPublications.filter((publication) => publication.check).slice(0, 4);
-  //complexes
-  const complexes = useSelector((state) => state.complexes)
-const allComplexes = complexes.filter((complexes) => complexes.check).slice(0, 3);
-// console.log(allComplexes)
-
-
-  useEffect(() => {
-    dispatch(getComplexes()).then(() => dispatch(getPublications()));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+export default function Home({publications, complexes}) {
+  publications = publications.filter((publication) => publication.check).slice(0, 4);
+  complexes = complexes.filter((complexes) => complexes.check).slice(0, 3);
+  
   return (
     <main>
       <div className={style.carrousel}>
@@ -119,7 +103,7 @@ const allComplexes = complexes.filter((complexes) => complexes.check).slice(0, 3
           </Link>
         </div>
         <div className={style.publications}>
-          {allComplexes?.map((complex, index) => <Publication key={index} complex={complex} />)}
+          {complexes?.map((complex, index) => <Publication key={index} complex={complex} />)}
         </div>
       </section>
     </main>

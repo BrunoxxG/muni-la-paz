@@ -7,8 +7,6 @@ const ComplexDetail = () => {
 
   const complex = useComplex();
 
-  console.log(complex)
-
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -18,7 +16,6 @@ const ComplexDetail = () => {
   return (
     
     <div className={style.container}>
-      {console.log(complex)}
       <button onClick={handleBack}>
         volver
       </button>
