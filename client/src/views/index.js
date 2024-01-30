@@ -1,8 +1,10 @@
 import Home from './Home/Home';
 import Contacts from './Contact/Contacts';
-import Publications from './Publications/Publications';
 import Login from './Login/Login';
 import Dashboard from './Dashboard/Dashboard';
-import DetailComplex from './Complex/DetailComplex';
+import Complexes from './Complexes/Complexes';
+import Publications from './Publications/Publications';
+import ComplexDetail from './Detail/ComplexDetail/ComplexDetail';
+import PublicationDetail from './Detail/PublicationDetail/PublicationDetail';
 
-export { Home, Contacts, Publications, Login, Dashboard, DetailComplex};
+export { Home, Contacts, Login, Dashboard, Complexes, Publications, ComplexDetail, PublicationDetail};

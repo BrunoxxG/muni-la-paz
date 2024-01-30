@@ -125,12 +125,12 @@ const allComplexes = complexes.filter((complexes) => complexes.check).slice(0, 4
           <div className={style.firstNoticeText}>
             <div className={style.firstNoticeTextTop}>
               <small>{allComplexes[0]?.date}</small>
-              <Link to={`/detail/${publications[0]?.id}`} className={style.link}>
+              <Link to={`/alojamientos/${allComplexes[0]?.id}`} className={style.link}>
                 <h3>{allComplexes[0]?.name}</h3>
               </Link>
               <p>{allComplexes[0]?.description}</p>
             </div>
-            <Link to={`/alojamiento/${allComplexes[0]?.id}`} className={style.link}>
+            <Link to={`/alojamientos/${allComplexes[0]?.id}`} className={style.link}>
               <label>LEER MÁS</label>
             </Link>
           </div>

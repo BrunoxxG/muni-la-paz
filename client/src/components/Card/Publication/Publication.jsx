@@ -86,7 +86,7 @@ export default function Publication({ publication, user, complexes }) {
       </div>
       <div className={style.cardFooter}>
         {/* <span>{complexes.type}</span> */}
-        <Link to={`/alojamientos/#${complexes.id}`} className={style.link}>
+        <Link to={`/alojamientos/${complexes.id}`} className={style.link}>
           <label>LEER MÁS</label>
         </Link>
       </div>
