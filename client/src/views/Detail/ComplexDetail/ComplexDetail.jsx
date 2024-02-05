@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import style from "./ComplexDetail.module.css";
 
-const ComplexDetail = () => {
+const ComplexDetail = ({complexes}) => {
+
+  console.log(complexes)
 
   const complex = useComplex();
 
@@ -13,15 +15,22 @@ const ComplexDetail = () => {
     navigate(-1);
   }
 
+  if (!complex) {
+    return (
+      <div className={style.container}>
+        <p>Cargando...</p>
+      </div>
+    );
+  }
+
   return (
-    
     <div className={style.container}>
       <button onClick={handleBack}>
-        volver
+        Volver
       </button>
       <div>
-        <h1>{complex?.name}</h1>
-        <img src={complex.image} alt={complex.name} />
+        <h1>{complex.name}</h1>
+        <img src={complexes[2]?.image} alt={complex.name} />
         <p>Descripcion: {complex.description}</p>
         <span>Direccion: {complex.address}</span>
         <p>Contacto: {complex.contact}</p>
@@ -29,5 +38,6 @@ const ComplexDetail = () => {
     </div>
   );
 };
+
 
 export default ComplexDetail;

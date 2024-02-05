@@ -16,7 +16,7 @@ const useComplex = () => {
         };
     }, [dispatch, id]);
 
-    return complex;
+    return complex && complex.image ? complex : null;
 };
 
 export default useComplex;

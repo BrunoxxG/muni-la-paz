@@ -29,7 +29,7 @@ function App() {
         <Route exact path="/contacto" element={<Contacts />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/alojamientos" element={<Complexes complexes={allComplexes}/>} />
-        <Route exact path="/alojamientos/:id" element={<ComplexDetail />} />
+        <Route exact path="/alojamientos/:id" element={<ComplexDetail complexes={allComplexes}/>} />
         <Route
           exact
           path="/dashboard/*"

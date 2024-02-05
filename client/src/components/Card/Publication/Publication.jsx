@@ -1,25 +1,24 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { URL_BASE } from "../../../utils/const";
-
+import { Drawer } from "vaul";
 import { MdEdit, MdDelete, MdCheck } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import style from "./Publication.module.css";
 import { useDispatch } from "react-redux";
 import { getPublications } from "../../../redux/actions";
+import { PublicationForm } from "../../";
+import { useState } from "react";
 
 export default function Publication({ publication, user, complex }) {
+
+  const [open, setOpen] = useState(false);
+
   const dispatch = useDispatch();
-  
-  
 
-  const handleEdit = async () => {
-    
-  };
+  const handleEdit = async () => {};
 
-  const handleDelete = async () => {
-    
-  };
+  const handleDelete = async () => {};
 
   const handleCheck = async (value) => {
     const updatePublication = {
@@ -37,8 +36,7 @@ export default function Publication({ publication, user, complex }) {
     }
   };
 
-  return (
-    publication ? 
+  return publication ? (
     <div className={style.card}>
       <img src={publication.image} alt={publication.title} />
       <div className={style.cardText}>
@@ -56,9 +54,29 @@ export default function Publication({ publication, user, complex }) {
       </div>
       {user && (
         <div className={style.buttons}>
-          <button className={`${style.btn} ${style.edit}`}>
-            <MdEdit />
-          </button>
+          <Drawer.Root shouldScaleBackground dismissible={false} open={open}>
+            <Drawer.Trigger asChild>
+              <button className={`${style.btn} ${style.edit}`} onClick={() => setOpen(true)}>
+                <MdEdit />
+              </button>
+            </Drawer.Trigger>
+            <Drawer.Portal>
+              <Drawer.Overlay className={style.overlay} />
+              <Drawer.Content className={style.contentDraw}>
+                <div>
+                  <div className={style.deslized} />
+                  <PublicationForm publication={publication} />
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </Drawer.Content>
+              <Drawer.Overlay />
+            </Drawer.Portal>
+          </Drawer.Root>
           <button className={`${style.btn} ${style.delete}`}>
             <MdDelete />
           </button>
@@ -74,7 +92,7 @@ export default function Publication({ publication, user, complex }) {
         </div>
       )}
     </div>
-    :
+  ) : (
     <div className={style.card}>
       <img src={complex.image} alt={complex.name} />
       <div className={style.cardText}>

@@ -13,5 +13,8 @@ import PublicationsDashboard from './Dashboard/Publications/PublicationsDashboar
 import ComplexesDashboard from './Dashboard/Complexes/ComplexesDashboard';
 import Users from './Dashboard/Users/Users';
 import SearchBar from './Dashboard/SearchBar/SearchBar';
+//FORMS
+import PublicationForm from './Form/Publication/publicationForm';
+import ComplexForm from './Form/Complex/complexForm';
 
-export { NavBar, Carousel, Footer, Publication, Complex, Contact, SideBar, Top, Panel, PublicationsDashboard, ComplexesDashboard, Users, SearchBar };
+export { NavBar, Carousel, Footer, Publication, Complex, Contact, SideBar, Top, Panel, PublicationsDashboard, ComplexesDashboard, Users, SearchBar, PublicationForm, ComplexForm };
