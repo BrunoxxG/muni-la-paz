@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { NavBar, Footer } from "./components";
-import { Contacts, Home, Publications, Login, Dashboard, Complexes, ComplexDetail } from "./views";
+import { Contacts, Home, Publications, Login, Dashboard, Complexes, ComplexDetail,PublicationDetail } from "./views";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getComplexes, getPublications } from "./redux/actions";
@@ -14,10 +14,20 @@ function App() {
 
   const allPublications = useSelector((state) => state.publications);
   const allComplexes = useSelector((state) => state.complexes);
+
+  const general = allPublications.filter((publication) => publication.check);
+  const events = allPublications.filter((publication) => publication.type === 'Eventos' && publication.check);
+  const deportes = allPublications.filter((publication) => publication.type === 'Deportes' && publication.check);
+  const health = allPublications.filter((publication) => publication.type === 'Salud' && publication.check);
+  const culture = allPublications.filter((publication) => publication.type === 'Cultura' && publication.check);
+  const services = allPublications.filter((publication) => publication.type === 'Servicios' && publication.check);
+  const tourism = allPublications.filter((publication) => publication.type === 'Turismo' && publication.check);
+  const institutional = allPublications.filter((publication) => publication.type === 'Institucional' && publication.check);
+  const advice = allPublications.filter((publication) => publication.type === 'Concejo' && publication.check);
+
   
   useEffect(() => {
     dispatch(getComplexes()).then(() => dispatch(getPublications()));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -25,11 +35,20 @@ function App() {
       {!location.pathname.startsWith("/dashboard") && <NavBar />}
       <Routes>
         <Route exact path="/" element={<Home publications={allPublications} complexes={allComplexes}/>} />
-        <Route exact path="/noticias" element={<Publications publications={allPublications}/>} />
         <Route exact path="/contacto" element={<Contacts />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/alojamientos" element={<Complexes complexes={allComplexes}/>} />
         <Route exact path="/alojamientos/:id" element={<ComplexDetail />} />
+        <Route exact path="/noticia/:id" element={<PublicationDetail />} />
+        <Route exact path="/cultura" element={<Publications publications={culture}/>} />
+        <Route exact path="/salud" element={<Publications publications={health}/>} />
+        <Route exact path="/deportes" element={<Publications publications={deportes}/>} />
+        <Route exact path="/noticias" element={<Publications publications={general}/>} />
+        <Route exact path="/eventos" element={<Publications publications={events} />} />
+        <Route exact path="/servicios" element={<Publications publications={services} />} />
+        <Route exact path="/turismo" element={<Publications publications={tourism} />} />
+        <Route exact path="/institucional" element={<Publications publications={institutional} />} />
+        <Route exact path="/concejo" element={<Publications publications={advice} />} />
         <Route
           exact
           path="/dashboard/*"

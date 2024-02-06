@@ -1,8 +1,15 @@
 const { Publication } = require("../../db/connection");
 
-module.exports = async () => {
+module.exports = async (type) => {
 
-  const allPublications = await Publication.findAll({ order: [['id', 'DESC']] });
+  const allPublications = !type? await Publication.findAll({ order: [['id', 'DESC']] })
+  :
+  await Publication.findAll({
+    where: {
+      type: type
+    },
+    order: [['id', 'DESC']]
+  });
 
   return allPublications;
 };

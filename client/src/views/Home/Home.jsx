@@ -4,6 +4,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { MdCabin, MdOutlineLibraryBooks, MdEvent, MdSportsSoccer } from "react-icons/md";
 import { FaHeartbeat, FaBook, FaRegCalendarAlt } from "react-icons/fa";
 
+
 import style from "./Home.module.css";
 
 export default function Home({publications, complexes}) {
@@ -16,19 +17,19 @@ export default function Home({publications, complexes}) {
         <Carousel />
       </div>
       <div className={style.navCenter}>
-        <Link className={style.buttonNavCenter}>
+        <Link to="/alojamientos" className={style.buttonNavCenter}>
           <MdCabin size={50} />
           <span>ALOJAMIENTO</span>
         </Link>
-        <Link className={style.buttonNavCenter}>
+        <Link to="/cultura" className={style.buttonNavCenter}>
           <FaBook size={50} />
           <span>CULTURA</span>
         </Link>
-        <Link className={style.buttonNavCenter}>
+        <Link to="/salud" className={style.buttonNavCenter}>
           <FaHeartbeat size={50} />
           <span>SALUD</span>
         </Link>
-        <Link className={style.buttonNavCenter}>
+        <Link to="/deportes" className={style.buttonNavCenter}>
           <MdSportsSoccer size={50} />
           <span>DEPORTE</span>
         </Link>
@@ -36,7 +37,7 @@ export default function Home({publications, complexes}) {
           <MdOutlineLibraryBooks size={50} />
           <span>NOTICIAS</span>
         </Link>
-        <Link className={style.buttonNavCenter}>
+        <Link to="/eventos" className={style.buttonNavCenter}>
           <MdEvent size={50} />
           <span>EVENTOS</span>
         </Link>
@@ -47,7 +48,7 @@ export default function Home({publications, complexes}) {
             Últimas<br></br>
             <span>Noticias</span>
           </h2>
-          <Link>
+          <Link to="/noticias">
             Más noticias <FaArrowRight size={25} />
           </Link>
         </div>

@@ -23,7 +23,7 @@ export default function NavBar() {
             <Link to="/turismo" className={style.border}>
               TURISMO
             </Link>
-            <Link to="/intitucional" className={style.border}>
+            <Link to="/institucional" className={style.border}>
               INSTITUCIONAL
             </Link>
             <Link to="/concejo" className={style.border}>

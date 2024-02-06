@@ -85,7 +85,6 @@ export default function Publication({ publication, user, complex }) {
         <p>{complex.description}</p>
       </div>
       <div className={style.cardFooter}>
-        {/* <span>{complexes.type}</span> */}
         <Link to={`/alojamientos/${complex.id}`} className={style.link}>
           <label>VER MÁS</label>
         </Link>

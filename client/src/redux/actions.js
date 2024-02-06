@@ -24,10 +24,12 @@ export const getComplexes = () => {
     };
 };
 
-export const getPublications = () => {
+export const getPublications = (tipo) => {
   return async (dispatch) => {
       try {
-          const { data } = await axios.get(`${URL_BASE}/publications`);
+          const { data } = !tipo? await axios.get(`${URL_BASE}/publications`)
+          :
+          await axios.get(`${URL_BASE}/publications?type=${tipo}`)
           return dispatch({
               type: GET_PUBLICATIONS,
               payload: data,
