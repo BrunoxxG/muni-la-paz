@@ -19,6 +19,8 @@ export default function Dashboard() {
 
   const dispatch = useDispatch();
 
+  
+
   const allPublications = useSelector((state) => state.publications);
   const allComplexes = useSelector((state) => state.complexes);
   const allUsers = useSelector((state) => state.users);
@@ -50,7 +52,7 @@ export default function Dashboard() {
               <PublicationsDashboard publications={allPublications} user={authUser} />
             )}
             {activeComponent === "complexes" && <ComplexesDashboard complexes={allComplexes} user={authUser} />}
-            {activeComponent === "users" && authUser.rol && <Users />}
+            {activeComponent === "users" && authUser.rol && <Users users={allUsers} userActive={authUser} />}
           </div>
         </div>
       </div>

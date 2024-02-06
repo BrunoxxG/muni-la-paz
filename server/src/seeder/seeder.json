@@ -1,7 +1,6 @@
 {
   "users": [
     {
-      "id": 1,
       "name": "Luis Canales",
       "email": "usuario1@example.com",
       "password": "$2b$10$D.RfzQijTcNxkPQ9dzieiOD/mK8EGPRvPdMAG.DYjPxx3YS7.G95q",
@@ -10,7 +9,6 @@
       "passwordChanged": true
     },
     {
-      "id": 2,
       "name": "Usuario 2",
       "email": "usuario2@example.com",
       "password": "$2b$10$VM0fk.QWcmFxF55JDrBp..oQ6H1O36PkT14Qij8yQ.OOEKAYlZnoG",
@@ -19,7 +17,6 @@
       "passwordChanged": true
     },
     {
-      "id": 3,
       "name": "Usuario 3",
       "email": "usuario3@example.com",
       "password": "$2b$10$80y8E3QX7IeEOObMkiA6vOPG2Trfqouty3XLWj2YJ9loSJhMq7ixS",
@@ -30,72 +27,63 @@
   ],
   "publications": [
     {
-      "id": 1,
       "type": "Servicios",
       "title": "Vecinos, usuarios de agua corriente",
       "description": "El servicio de agua corriente estará interrumpido hasta mañana lunes 8/1 al mediodía.",
-      "date": "07/01/2024",
+      "date": "2024-02-05T23:30:46.682Z",
       "image": "src/assets/images/noticia1.jpg",
       "check": true
     },
     {
-      "id": 2,
       "type": "General",
       "title": "Comunicado Urgente: Precaución por Crecida de Arroyos",
       "description": "Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua.",
-      "date": "06/01/2024",
+      "date": "2024-02-05T22:30:46.682Z",
       "image": "src/assets/images/noticia2.jpg",
       "check": true
     },
     {
-      "id": 3,
       "type": "Salud",
       "title": "Vacunatorio municipal informa",
       "description": "El pediatra a partir de Enero completará las planillas de cus, los días Martes y Jueves",
       "image": "src/assets/images/noticia3.jpg",
-      "date": "29/12/2023",
+      "date": "2024-02-03T22:30:46.682Z",
       "check": false
     },
     {
-      "id": 4,
       "type": "General",
       "title": "Comunicado Urgente: Precaución por Crecida de Arroyos",
       "description": "Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua. Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua.",
-      "date": "07/01/2024",
+      "date": "2024-01-06T22:30:46.682Z",
       "image": "src/assets/images/noticia2.jpg",
       "check": false
     },
     {
-      "id": 5,
       "type": "Concejo",
       "title": "Comunicado Urgente: Precaución por Crecida de Arroyos",
       "description": "Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua.",
-      "date": "06/01/2024",
+      "date": "2024-01-05T22:30:46.682Z",
       "image": "src/assets/images/noticia2.jpg",
       "check": true
     },
     {
-      "id": 6,
       "type": "Salud",
       "title": "Vacunatorio municipal informa",
       "description": "El pediatra a partir de Enero completará las planillas de cus, los días Martes y Jueves",
       "image": "src/assets/images/noticia3.jpg",
-      "date": "24/12//02/",
-      "check": true
+      "date": "2023-12-29T22:30:46.682Z"
     },
     {
-      "id": 7,
       "type": "Deportes",
       "title": "Comunicado Urgente: Precaución por Crecida de Arroyos",
       "description": "Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua. Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua.",
-      "date": "07/01/2024",
+      "date": "2023-12-23T22:30:46.682Z",
       "image": "src/assets/images/noticia2.jpg",
       "check": false
     }
   ],
   "complexes": [
     {
-      "id": 1,
       "name": "JorgEEEEEEEEEE",
       "description": "Nuestra Hosteria cuenta con 12 habitaciones, en un ambiente íntimo donde los huéspedes podrán disfrutar de un parque de 4 hectáreas, realizar paseos entre nogales, olivos, robles, ceibos, innumerables plantas autóctonas y hermosas flores.",
       "address": "Calle 123",
@@ -104,7 +92,6 @@
       "check": true
     },
     {
-      "id": 2,
       "name": "Cerro Loma Bola",
       "description": "Nuestra Hosteria cuenta con 12 habitaciones, en un ambiente íntimo donde los huéspedes podrán disfrutar de un parque de 4 hectáreas, realizar paseos entre nogales, olivos, robles, ceibos, innumerables plantas autóctonas y hermosas flores.",
       "address": "Calle 123",
@@ -113,7 +100,6 @@
       "check": true
     },
     {
-      "id": 3,
       "name": "Bello Horizonte",
       "description": "Nuestra Hosteria cuenta con 12 habitaciones, en un ambiente íntimo donde los huéspedes podrán disfrutar de un parque de 4 hectáreas, realizar paseos entre nogales, olivos, robles, ceibos, innumerables plantas autóctonas y hermosas flores.",
       "address": "Calle 123",
@@ -122,7 +108,6 @@
       "check": true
     },
     {
-      "id": 4,
       "name": "Bello uptie",
       "description": "Nuestra Hosteria cuenta con 12 habitaciones, en un ambiente íntimo donde los huéspedes podrán disfrutar de un parque de 4 hectáreas, realizar paseos entre nogales, olivos, robles, ceibos, innumerables plantas autóctonas y hermosas flores.",
       "address": "Calle 1234",

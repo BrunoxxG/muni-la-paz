@@ -19,6 +19,9 @@ const { User, Publication, Complex } = sequelize.models;
 User.belongsToMany(Publication, { through: "user_publication", timestamps: false, tableName: 'users' });
 Publication.belongsTo(User, { through: "user_publication", timestamps: false, tableName: 'publications' });
 
+User.belongsToMany(Complex, { through: "user_complex", timestamps: false, tableName: 'users' });
+Complex.belongsTo(User, { through: "user_complex", timestamps: false, tableName: 'complexes' });
+
 const dbConnection = async () => {
   try {
     await sequelize.sync({ force: true });
