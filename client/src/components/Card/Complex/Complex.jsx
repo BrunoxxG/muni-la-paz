@@ -1,4 +1,3 @@
-// solo se muestra cuando se le da a la flecha de mas alojameintos, luego cuando se le da clck a una cabaña en particular se lo lleva a la vista del detalle de las cabañas(views).
 import { Link } from "react-router-dom";
 
 export default function Publication({ publication }) {

@@ -27,7 +27,7 @@ export const getComplexes = () => {
 export const getPublications = () => {
   return async (dispatch) => {
       try {
-          const { data } = await axios.get(`${URL_BASE}/publications`);
+          const { data } = await axios.get(`${URL_BASE}/publications`)
           return dispatch({
               type: GET_PUBLICATIONS,
               payload: data,
