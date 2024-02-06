@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
-import Logo from "../../assets/logo.png";
+import Logo1 from "../../assets/logo1.jpg";
+import Logo2 from "../../assets/logo2.jpg";
 import style from "./NavBar.module.css";
 
 export default function NavBar() {
@@ -9,7 +10,7 @@ export default function NavBar() {
       <nav className={style.navBar}>
         <div className={style.logo}>
           <Link to="/">
-            <img src={Logo} alt="Logo Municipalidad" />
+            <img src={Logo1} alt="Logo Municipalidad" />
           </Link>
         </div>
         <div className={style.centerNav}>
@@ -33,14 +34,17 @@ export default function NavBar() {
               CONTACTO
             </Link>
           </div>
+          <div className={style.social}>
+            <a href="https://www.facebook.com/p/Municipalidad-de-La-Paz-100064654033886/" target="blank">
+              <FaFacebookF />
+            </a>
+            <a href="https://www.instagram.com/muni.lapaz?igsh=eDk1Y3g3b2tlODhz">
+              <FaInstagram />
+            </a>
+          </div>
         </div>
-        <div className={style.social}>
-          <a href="https://www.facebook.com/p/Municipalidad-de-La-Paz-100064654033886/" target="blank">
-            <FaFacebookF />
-          </a>
-          <a href="https://www.instagram.com/muni.lapaz?igsh=eDk1Y3g3b2tlODhz">
-            <FaInstagram />
-          </a>
+        <div className={style.logo2}>
+          <img src={Logo2} alt="Logo Municipalidad" />
         </div>
       </nav>
     </header>

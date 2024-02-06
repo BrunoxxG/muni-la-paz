@@ -36,6 +36,13 @@
   gap: 1rem;
 }
 
+.usersContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  justify-content: center;
+  gap: 1rem;
+}
+
 .icon {
   font-size: 1.25rem;
 }

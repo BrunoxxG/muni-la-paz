@@ -1,8 +1,8 @@
 import React from "react";
-import { ComplexForm, Publication, PublicationForm } from "../../";
+import { ComplexForm, Publication, PublicationForm, User } from "../../";
 import style from "./Panel.module.css";
 
-export default function Panel({ user, publications, complexes, users }) {
+export default function Panel({ authUser, publications, complexes, users }) {
   publications = publications.filter((item) => !item.check);
   complexes = complexes.filter((item) => !item.check);
   users = users.filter((item) => !item.active);
@@ -14,11 +14,11 @@ export default function Panel({ user, publications, complexes, users }) {
           <div className={style.heading}>
             <h3>Publicaciones en revisión</h3>
           </div>
-
+          <PublicationForm authUser={authUser} />
           {publications?.length !== 0 ? (
             <div className={style.itemsContainer}>
               {publications?.map((publication, index) => (
-                <Publication key={index} publication={publication} user={user} />
+                <Publication key={index} publication={publication} authUser={authUser} />
               ))}
             </div>
           ) : (
@@ -32,26 +32,26 @@ export default function Panel({ user, publications, complexes, users }) {
           {complexes.length !== 0 ? (
             <div className={style.itemsContainer}>
               {complexes?.map((complex, index) => (
-                <Publication key={index} complex={complex} user={user} />
+                <Publication key={index} complex={complex} authUser={authUser} />
               ))}
             </div>
           ) : (
             <h2>No hay alojamientos para revisar</h2>
           )}
         </div>
-        {user.rol && (
+        {authUser.rol && (
           <div className={style.listDiv}>
             <div className={style.heading}>
               <h3>Usuarios en revisión</h3>
             </div>
             {users.length !== 0 ? (
               <div className={style.usersContainer}>
-                {users?.map((user, index) => (
-                  <div key={index}>
-                    <h2>{user.name}</h2>
-                    <h3>{user.email}</h3>
-                  </div>
-                ))}
+                {users?.map(
+                  (user, index) =>
+                    user.email !== authUser.email && (
+                      <User key={index} user={user} authUser={authUser} />
+                    )
+                )}
               </div>
             ) : (
               <h2>No hay usuarios para revisar</h2>
@@ -68,7 +68,7 @@ export default function Panel({ user, publications, complexes, users }) {
 
           <button className={style.btnAccess}>CREAR ALOJAMIENTO</button>
 
-          {user.rol && <button className={style.btnAccess}>CREAR USUARIO</button>}
+          {authUser.rol && <button className={style.btnAccess}>CREAR USUARIO</button>}
         </div>
       </div>
     </div>

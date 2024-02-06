@@ -5,6 +5,7 @@ import Footer from './Footer/Footer';
 import Publication from './Card/Publication/Publication';
 import Complex from './Card/Complex/Complex';
 import Contact from './Card/Contact/Contact';
+import User from './Card/User/User';
 //DASHBOARD COMPONENTS
 import SideBar from './Dashboard/SideBar/SideBar';
 import Top from './Dashboard/Top/Top';
@@ -17,4 +18,4 @@ import SearchBar from './Dashboard/SearchBar/SearchBar';
 import PublicationForm from './Form/Publication/publicationForm';
 import ComplexForm from './Form/Complex/complexForm';
 
-export { NavBar, Carousel, Footer, Publication, Complex, Contact, SideBar, Top, Panel, PublicationsDashboard, ComplexesDashboard, Users, SearchBar, PublicationForm, ComplexForm };
+export { NavBar, Carousel, Footer, Publication, Complex, Contact, User, SideBar, Top, Panel, PublicationsDashboard, ComplexesDashboard, Users, SearchBar, PublicationForm, ComplexForm };

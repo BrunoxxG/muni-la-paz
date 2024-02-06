@@ -4,6 +4,7 @@ const postComplexController = require('./complexes/postComplex.controller');
 const getComplexesByNameController = require('./complexes/getComplexesByName.controller');
 const getComplexByIdController = require('./complexes/getComplexById.controller');
 const updateComplexController = require('./complexes/updateComplex.controller');
+const deleteComplexController = require('./complexes/deleteComplex.controller');
 
 //PUBLICATIONS CONTROLLERS
 const getPublicationsController = require('./publications/getPublications.controller');
@@ -11,6 +12,7 @@ const getPublicationsByTitleController = require('./publications/getPublications
 const getPublicationByIdController = require('./publications/getPublicationById.controller');
 const postPublicationController = require('./publications/postPublication.controller');
 const updatePublicationController = require('./publications/updatePublication.controller');
+const deletePublicationController = require('./publications/deletePublication.controller');
 
 //USERS CONTROLLERS
 const getUsersController = require('./users/getUsers.controller');
@@ -26,11 +28,13 @@ module.exports = {
   getComplexesByNameController,
   getComplexByIdController,
   updateComplexController,
+  deleteComplexController,
   getPublicationsController,
   getPublicationsByTitleController,
   getPublicationByIdController,
   postPublicationController,
   updatePublicationController,
+  deletePublicationController,
   getUsersController,
   createUserController,
   loginUserController,

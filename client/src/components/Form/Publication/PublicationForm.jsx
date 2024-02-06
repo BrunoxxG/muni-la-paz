@@ -11,7 +11,7 @@ import { getPublications } from "../../../redux/actions";
 import { URL_BASE } from "../../../utils/const";
 import { useDispatch } from "react-redux";
 
-export default function PublicationForm({ publication, user }) {
+export default function PublicationForm({ publication, authUser }) {
   const dispatch = useDispatch();
 
   const allTypes = ["General", "Eventos", "Salud", "Institucional", "Deportes", "Concejo", "Servicios"];
@@ -59,7 +59,7 @@ export default function PublicationForm({ publication, user }) {
     e.preventDefault();
     try {
       const response = await axios.post(`${URL_BASE}/publications`, input, {
-        headers: { Authorization: user.token },
+        headers: { Authorization: authUser.token },
       });
       if (response.status === 200) {
         dispatch(getPublications());

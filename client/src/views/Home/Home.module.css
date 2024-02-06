@@ -205,7 +205,35 @@ main {
   }
   & .cardEvents {
     height: 200px;
-    background-color: white;
+    background: var(--main-bg-color);
+    overflow: auto;
+    .eventCard {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: .3rem;
+      padding: .3rem;
+      background: white;
+      color: var(--main-color);
+      text-align: center;
+      & small {
+        white-space: nowrap;
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+      h3 {
+        margin: 0 .3rem
+      }
+      img {
+        width: 60px;
+      }
+
+      transition: .3s ease;
+      &:hover {
+        background: var(--main-color);
+        color: white;
+      }
+    }
   }
 }
 

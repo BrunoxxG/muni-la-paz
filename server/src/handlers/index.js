@@ -4,6 +4,7 @@ const postComplexHandler = require('./complexes/postComplex.handler');
 const getComplexesByNameHandler = require('./complexes/getComplexesByName.handler');
 const getComplexByIdHandler = require('./complexes/getComplexById.handler');
 const updateComplexHandler = require ('./complexes/updateComplex.handler');
+const deleteComplexHandler = require ('./complexes/deleteComplex.handler');
 
 //PUBLICATIONS HANDLERS
 const getPublicationsHandler = require('./publications/getPublications.handler');
@@ -11,6 +12,7 @@ const getPublicationsByTitleHandler = require('./publications/getPublicationsByT
 const getPublicationByIdHandler = require('./publications/getPublicationById.handler');
 const postPublicationHandler = require('./publications/postPublication.handler');
 const updatePublicationHandler = require('./publications/updatePublication.handler');
+const deletePublicationHandler = require('./publications/deletePublication.handler');
 
 //USERS HANDLERS
 const getUsersHandler = require('./users/getUsers.handler');
@@ -25,11 +27,13 @@ module.exports = {
   getComplexesByNameHandler,
   getComplexByIdHandler,
   updateComplexHandler,
+  deleteComplexHandler,
   getPublicationsHandler,
   getPublicationsByTitleHandler,
   getPublicationByIdHandler,
   postPublicationHandler,
   updatePublicationHandler,
+  deletePublicationHandler,
   getUsersHandler,
   createUserHandler,
   loginUserHandler,

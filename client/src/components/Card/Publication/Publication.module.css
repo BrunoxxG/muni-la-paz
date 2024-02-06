@@ -43,7 +43,7 @@
         color: var(--card-description-color);
         font-size: 18px;
         margin-bottom: 1rem;
-        max-height: 3.6rem;
+        max-height: 4rem;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 3;
@@ -131,38 +131,4 @@
     background: rgba(0, 128, 0, 0.5);
     color: black;
   }
-}
-
-/*---EDIT POPUP---*/
-.overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.contentDraw {
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  margin-top: 6rem;
-  flex-direction: column;
-  height: 100%;
-  background-color: #f3f4f6;
-  max-height: 96%;
-  width: 100%;
-  z-index: 200;
-  border-radius: 16px 16px 0 0;
-}
-
-.deslized {
-  margin: 1rem auto;
-  border-radius: 9999px;
-  width: 5rem;
-  height: 0.5rem;
-  background-color: #d1d5db;
-  cursor: pointer;
 }
