@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { FaCircleArrowLeft } from "react-icons/fa6";
 
 import style from "./Complexes.module.css";
 import { getComplexes } from "../../redux/actions";
@@ -18,7 +19,7 @@ export default function Complexes() {
   return (
     <div className={style.container}>
       <Link to="/">
-        <span> volver</span>
+        <span><FaCircleArrowLeft size={30}/></span>
       </Link>
       <div className={style.grid}>
         {allComplexes?.map((complex, index) => (

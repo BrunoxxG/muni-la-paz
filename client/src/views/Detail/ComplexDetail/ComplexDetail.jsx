@@ -1,19 +1,18 @@
-import useComplex from '../../../hooks/useComplex';
-import { useNavigate } from 'react-router-dom';
+import useComplex from "../../../hooks/useComplex";
+import { useNavigate } from "react-router-dom";
+import { FaCircleArrowLeft } from "react-icons/fa6";
 
 import style from "./ComplexDetail.module.css";
 
-const ComplexDetail = ({complexes}) => {
-
-  console.log(complexes)
-
+const ComplexDetail = () => {
   const complex = useComplex();
 
   const navigate = useNavigate();
 
   const handleBack = () => {
     navigate(-1);
-  }
+  };
+
 
   if (!complex) {
     return (
@@ -23,14 +22,13 @@ const ComplexDetail = ({complexes}) => {
     );
   }
 
+
   return (
     <div className={style.container}>
-      <button onClick={handleBack}>
-        Volver
-      </button>
+      <button onClick={handleBack}><FaCircleArrowLeft size={30}/></button>
       <div>
-        <h1>{complex.name}</h1>
-        <img src={complexes[2]?.image} alt={complex.name} />
+        <h1>{complex?.name}</h1>
+        <img src={complex?.image} alt={complex.name} />
         <p>Descripcion: {complex.description}</p>
         <span>Direccion: {complex.address}</span>
         <p>Contacto: {complex.contact}</p>
