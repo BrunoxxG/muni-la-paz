@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 import axios from "axios";
 import { URL_BASE } from "../../../utils/const";
 import { MdEdit, MdDelete, MdCheck } from "react-icons/md";
@@ -12,41 +13,88 @@ import { format, setDefaultOptions } from "date-fns";
 import { es } from "date-fns/locale";
 setDefaultOptions({ locale: es });
 
-export default function Publication({ publication, user, complex }) {
+export default function Publication({ publication, complex, authUser }) {
   const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const handleDelete = async () => {};
+  const handleDelete = async (type) => {
+    Swal.fire({
+      title: "Confirmación",
+      text: `Confirma ELIMINAR`,
+      icon: "wairning",
+      showDenyButton: true,
+      confirmButtonText: "Confirmar",
+      denyButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        if (type === "publication") {
+          try {
+            const response = await axios.delete(`${URL_BASE}/publications/${publication.id}`, {
+              headers: { Authorization: authUser.token },
+            });
+            if (response.status === 200) {
+              dispatch(getPublications());
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          try {
+            const response = await axios.delete(`${URL_BASE}/complexes/${complex.id}`, {
+              headers: { Authorization: authUser.token },
+            });
+            if (response.status === 200) {
+              dispatch(getComplexes());
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      }
+    });
+  };
 
   const handleCheck = async (value, type) => {
-    const updateCheck = {
-      check: value,
-    };
-    if (type === "publication") {
-      try {
-        const response = await axios.patch(`${URL_BASE}/publications/${publication.id}`, updateCheck, {
-          headers: { Authorization: user.token },
-        });
-        if (response.status === 200) {
-          dispatch(getPublications());
+    const textAlert = value ? 'habilitar' : 'deshabilitar';
+    Swal.fire({
+      title: "Confirmación",
+      text: `Confirma ${textAlert}`,
+      icon: "wairning",
+      showDenyButton: true,
+      confirmButtonText: "Confirmar",
+      denyButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const updateCheck = {
+          check: value,
+        };
+        if (type === "publication") {
+          try {
+            const response = await axios.patch(`${URL_BASE}/publications/${publication.id}`, updateCheck, {
+              headers: { Authorization: authUser.token },
+            });
+            if (response.status === 200) {
+              dispatch(getPublications());
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          try {
+            const response = await axios.patch(`${URL_BASE}/complexes/${complex.id}`, updateCheck, {
+              headers: { Authorization: authUser.token },
+            });
+            if (response.status === 200) {
+              dispatch(getComplexes());
+            }
+          } catch (error) {
+            console.log(error);
+          }
         }
-      } catch (error) {
-        console.log(error);
       }
-    } else {
-      try {
-        const response = await axios.patch(`${URL_BASE}/complexes/${complex.id}`, updateCheck, {
-          headers: { Authorization: user.token },
-        });
-        if (response.status === 200) {
-          dispatch(getComplexes());
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    });
   };
 
   return publication ? (
@@ -58,7 +106,7 @@ export default function Publication({ publication, user, complex }) {
       >
         <img src={publication.image} alt={publication.title} />
         <div className={style.cardText}>
-          <small>{format(publication.date, 'PP')}</small>
+          <small>{format(publication.date, "PP")}</small>
           <h3>{publication.title}</h3>
           <p>{publication.description}</p>
         </div>
@@ -67,16 +115,16 @@ export default function Publication({ publication, user, complex }) {
           <p>LEER MÁS</p>
         </div>
       </Link>
-      {user && (
+      {authUser && (
         <div className={style.buttons}>
           <button className={`${style.btn} ${style.edit}`} onClick={() => setOpen(true)}>
             <MdEdit />
           </button>
 
-          <button className={`${style.btn} ${style.delete}`}>
+          <button className={`${style.btn} ${style.delete}`} onClick={() => handleDelete("publication")}>
             <MdDelete />
           </button>
-          {user.rol && publication.check === false ? (
+          {authUser.rol && publication.check === false ? (
             <button className={`${style.btn} ${style.check}`} onClick={() => handleCheck(true, "publication")}>
               <MdCheck />
             </button>
@@ -105,16 +153,16 @@ export default function Publication({ publication, user, complex }) {
           <p>VER MÁS</p>
         </div>
       </Link>
-      {user && (
+      {authUser && (
         <div className={style.buttons}>
           <button className={`${style.btn} ${style.edit}`} onClick={() => setOpen(true)}>
             <MdEdit />
           </button>
 
-          <button className={`${style.btn} ${style.delete}`}>
+          <button className={`${style.btn} ${style.delete}`} onClick={() => handleDelete("complex")}>
             <MdDelete />
           </button>
-          {user.rol && complex.check === false ? (
+          {authUser.rol && complex.check === false ? (
             <button className={`${style.btn} ${style.check}`} onClick={() => handleCheck(true, "complex")}>
               <MdCheck />
             </button>

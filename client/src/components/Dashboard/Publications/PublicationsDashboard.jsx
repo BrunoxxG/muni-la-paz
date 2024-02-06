@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import style from "./PublicationsDashboard.module.css";
 import { getPublicationsByTitle } from "../../../redux/actions";
 
-export default function PublicationsDasboard({ publications, user }) {
+export default function PublicationsDasboard({ publications, authUser }) {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -15,7 +15,7 @@ export default function PublicationsDasboard({ publications, user }) {
   };
 
   return (
-    <div className={style.noticesSection}>
+    <div className={style.publicationsSection}>
       <h2>TODAS LAS PUBLICACIONES</h2>
       <div className={style.gridDiv}>
         <div className={style.SearchBar}>
@@ -23,7 +23,7 @@ export default function PublicationsDasboard({ publications, user }) {
         </div>
         <div className={style.publications}>
           {publications?.map((publication, index) => (
-            <Publication key={index} publication={publication} user={user} />
+            <Publication key={index} publication={publication} authUser={authUser} />
           ))}
         </div>
       </div>

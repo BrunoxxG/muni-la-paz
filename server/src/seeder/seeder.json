@@ -43,7 +43,7 @@
       "check": true
     },
     {
-      "type": "Salud",
+      "type": "Deportes",
       "title": "Vacunatorio municipal informa",
       "description": "El pediatra a partir de Enero completará las planillas de cus, los días Martes y Jueves",
       "image": "src/assets/images/noticia3.jpg",
@@ -71,7 +71,8 @@
       "title": "Vacunatorio municipal informa",
       "description": "El pediatra a partir de Enero completará las planillas de cus, los días Martes y Jueves",
       "image": "src/assets/images/noticia3.jpg",
-      "date": "2023-12-29T22:30:46.682Z"
+      "date": "2023-12-29T22:30:46.682Z",
+      "check": true
     },
     {
       "type": "Deportes",
@@ -79,7 +80,7 @@
       "description": "Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua. Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua.",
       "date": "2024-01-23T22:30:46.682Z",
       "image": "src/assets/images/noticia2.jpg",
-      "check": false
+      "check": true
     },
     {
       "type": "Concejo",

@@ -3,14 +3,18 @@ import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 import { MdCabin, MdOutlineLibraryBooks, MdEvent, MdSportsSoccer } from "react-icons/md";
 import { FaHeartbeat, FaBook, FaRegCalendarAlt } from "react-icons/fa";
+import { format, setDefaultOptions } from "date-fns";
+import { es } from "date-fns/locale";
+setDefaultOptions({ locale: es });
 
 
 import style from "./Home.module.css";
 
 export default function Home({publications, complexes}) {
-  publications = publications.filter((publication) => publication.check).slice(0, 4);
-  complexes = complexes.filter((complexes) => complexes.check).slice(0, 3);
-  
+  const filteredPublications = publications.filter((publication) => publication.check && publication.type !== "Eventos").slice(0, 4);
+  const filteredComplexes = complexes.filter((complexes) => complexes.check).slice(0, 3);
+  const events = publications.filter((publication) => publication.check && publication.type === "Deportes").slice(0, 4);
+
   return (
     <main>
       <div className={style.carrousel}>
@@ -54,23 +58,23 @@ export default function Home({publications, complexes}) {
         </div>
         <div className={style.firstNotice}>
           <div className={style.firstNoticeImg}>
-            <img src={publications[0]?.image} alt={publications[0]?.id} />
+            <img src={filteredPublications[0]?.image} alt={filteredPublications[0]?.id} />
           </div>
           <div className={style.firstNoticeText}>
             <div className={style.firstNoticeTextTop}>
-              <small>{publications[0]?.date}</small>
-              <Link to={`/detail/${publications[0]?.id}`} className={style.link}>
-                <h3>{publications[0]?.title}</h3>
+              <small>{filteredPublications[0]?.date}</small>
+              <Link to={`/detail/${filteredPublications[0]?.id}`} className={style.link}>
+                <h3>{filteredPublications[0]?.title}</h3>
               </Link>
-              <p>{publications[0]?.description}</p>
+              <p>{filteredPublications[0]?.description}</p>
             </div>
-            <Link to={`/noticia/${publications[0]?.id}`} className={style.link}>
+            <Link to={`/noticia/${filteredPublications[0]?.id}`} className={style.link}>
               <label>LEER MÁS</label>
             </Link>
           </div>
         </div>
         <div className={style.publications}>
-          {publications?.map((publication, index) => index > 0 && <Publication key={index} publication={publication} />)}
+          {filteredPublications?.map((publication, index) => index > 0 && <Publication key={index} publication={publication} />)}
         </div>
       </section>
       <section className={style.events}>
@@ -89,7 +93,15 @@ export default function Home({publications, complexes}) {
               </div>
               <FaArrowRight size={30} />
             </Link>
-            <div className={style.cardEvents}></div>
+            <div className={style.cardEvents}>
+              {events?.map((event, index) => 
+                <Link to={`/noticia/${event?.id}`} key={index} className={style.eventCard}>
+                  <small>{format(event.date, "PP")}</small>
+                  <h3>{event.title}</h3>
+                  <img src={event.image} alt={event.title} />
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </section>
@@ -104,7 +116,7 @@ export default function Home({publications, complexes}) {
           </Link>
         </div>
         <div className={style.publications}>
-          {complexes?.map((complex, index) => <Publication key={index} complex={complex} />)}
+          {filteredComplexes?.map((complex, index) => <Publication key={index} complex={complex} />)}
         </div>
       </section>
     </main>

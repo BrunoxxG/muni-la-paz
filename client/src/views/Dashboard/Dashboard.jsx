@@ -13,13 +13,11 @@ export default function Dashboard() {
   const [activeComponent, setActiveComponent] = useState("");
 
   const signOut = useSignOut();
-  const [_, token] = useAuthHeader().split(' ');
+  const [_, token] = useAuthHeader().split(" ");
   const authUser = { ...useAuthUser(), token };
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-
-  
 
   const allPublications = useSelector((state) => state.publications);
   const allComplexes = useSelector((state) => state.complexes);
@@ -46,13 +44,13 @@ export default function Dashboard() {
           <Top />
           <div className={style.bottom}>
             {activeComponent === "" && (
-              <Panel user={authUser} publications={allPublications} complexes={allComplexes} users={allUsers} />
+              <Panel authUser={authUser} publications={allPublications} complexes={allComplexes} users={allUsers} />
             )}
             {activeComponent === "publications" && (
-              <PublicationsDashboard publications={allPublications} user={authUser} />
+              <PublicationsDashboard publications={allPublications} authUser={authUser} />
             )}
-            {activeComponent === "complexes" && <ComplexesDashboard complexes={allComplexes} user={authUser} />}
-            {activeComponent === "users" && authUser.rol && <Users users={allUsers} userActive={authUser} />}
+            {activeComponent === "complexes" && <ComplexesDashboard complexes={allComplexes} authUser={authUser} />}
+            {activeComponent === "users" && authUser.rol && <Users users={allUsers} authUser={authUser} />}
           </div>
         </div>
       </div>
