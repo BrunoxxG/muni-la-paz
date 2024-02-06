@@ -8,6 +8,8 @@ export const GET_COMPLEX_DETAIL = "GET_COMPLEX_DETAIL";
 export const GET_PUBLICATION_DETAIL = "GET_PUBLICATION_DETAIL";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const GET_PUBLICATIONS_BY_TITLE = "GET_PUBLICATIONS_BY_TITLTE";
+export const GET_COMPLEXES_BY_NAME = "GET_COMPLEXES_BY_NAME";
+export const GET_USERS_BY_NAME = "GET_USERS_BY_NAME";
 
 export const getComplexes = () => {
     return async (dispatch) => {
@@ -20,29 +22,29 @@ export const getComplexes = () => {
         } catch (error) {
             console.log(error.response.data);
         }
-        
+
     };
 };
 
 export const getPublications = () => {
-  return async (dispatch) => {
-      try {
-          const { data } = await axios.get(`${URL_BASE}/publications`)
-          return dispatch({
-              type: GET_PUBLICATIONS,
-              payload: data,
-          });
-      } catch (error) {
-          console.log(error.response.data);
-      }
-      
-  };
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`${URL_BASE}/publications`);
+            return dispatch({
+                type: GET_PUBLICATIONS,
+                payload: data,
+            });
+        } catch (error) {
+            console.log(error.response.data);
+        }
+
+    };
 };
 
 export const getUsers = (token) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${URL_BASE}/users`, {headers: { Authorization: token }});
+            const { data } = await axios.get(`${URL_BASE}/users`, { headers: { Authorization: token } });
             return dispatch({
                 type: GET_USERS,
                 payload: data,
@@ -50,9 +52,9 @@ export const getUsers = (token) => {
         } catch (error) {
             console.log(error.response.data);
         }
-        
+
     };
-  };
+};
 
 export const getComplexDetail = (id) => {
     return async (dispatch) => {
@@ -108,7 +110,53 @@ export const getPublicationsByTitle = (title) => {
                 type: GET_PUBLICATIONS_BY_TITLE,
                 payload: [],
             });
-        } 
+        }
+        //finally {
+        //     /* setTimeout(()=>dispatch( */dispatch(setLoader({show: false, message: ""}))/* ), 500) */;
+        // }
+    };
+};
+
+export const getComplexesByName = (name) => {
+    return async (dispatch) => {
+        try {
+            // dispatch(setLoader({show: true, message: "Loading"}));
+            const { data } = await axios.get(
+                `${URL_BASE}/complexes/name?name=${name.trim()}`
+            );
+            return dispatch({
+                type: GET_COMPLEXES_BY_NAME,
+                payload: data,
+            });
+        } catch (error) {
+            return dispatch({
+                type: GET_COMPLEXES_BY_NAME,
+                payload: [],
+            });
+        }
+        //finally {
+        //     /* setTimeout(()=>dispatch( */dispatch(setLoader({show: false, message: ""}))/* ), 500) */;
+        // }
+    };
+};
+
+export const getUsersByName = (name, token) => {
+    return async (dispatch) => {
+        try {
+            // dispatch(setLoader({show: true, message: "Loading"}));
+            const { data } = await axios.get(
+                `${URL_BASE}/users/name?name=${name.trim()}`, { headers: { Authorization: token } }
+            );
+            return dispatch({
+                type: GET_USERS_BY_NAME,
+                payload: data,
+            });
+        } catch (error) {
+            return dispatch({
+                type: GET_USERS_BY_NAME,
+                payload: [],
+            });
+        }
         //finally {
         //     /* setTimeout(()=>dispatch( */dispatch(setLoader({show: false, message: ""}))/* ), 500) */;
         // }

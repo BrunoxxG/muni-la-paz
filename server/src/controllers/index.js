@@ -17,6 +17,7 @@ const getUsersController = require('./users/getUsers.controller');
 const createUserController = require('./users/createUser.controller');
 const loginUserController = require('./users/loginUser.controller');
 const updateUserController = require('./users/updateUser.controller');
+const getUsersByNameController = require('./users/getUsersByName.controller');
 
 
 module.exports = {
@@ -33,5 +34,6 @@ module.exports = {
   getUsersController,
   createUserController,
   loginUserController,
-  updateUserController
+  updateUserController,
+  getUsersByNameController
 };

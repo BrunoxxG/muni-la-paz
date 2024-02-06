@@ -138,7 +138,7 @@ main {
   grid-auto-rows: 480px;
   justify-content: space-between;
   gap: 1rem;
-  overflow: hidden;
+  
 }
 
 /*---------------------------------*/

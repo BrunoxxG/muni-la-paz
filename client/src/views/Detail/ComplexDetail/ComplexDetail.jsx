@@ -12,6 +12,17 @@ const ComplexDetail = () => {
   const handleBack = () => {
     navigate(-1);
   };
+
+
+  if (!complex) {
+    return (
+      <div className={style.container}>
+        <p>Cargando...</p>
+      </div>
+    );
+  }
+
+
   return (
     <div className={style.container}>
       <button onClick={handleBack}><FaCircleArrowLeft size={30}/></button>
@@ -25,5 +36,6 @@ const ComplexDetail = () => {
     </div>
   );
 };
+
 
 export default ComplexDetail;

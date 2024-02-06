@@ -1,0 +1,25 @@
+.noticesSection {
+  width: 100%;
+  h2 {
+    font-size: 1rem;
+  }
+  .SearchBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gridDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 1.5rem;
+
+    .publications {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 350px));
+      justify-content: center;
+      gap: 3rem;
+    }
+  }
+}
