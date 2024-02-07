@@ -1,5 +1,6 @@
 import React from "react";
 import { ComplexForm, Publication, PublicationForm, User } from "../../";
+import { IoIosAddCircle } from "react-icons/io";
 import style from "./Panel.module.css";
 
 export default function Panel({ authUser, publications, complexes, users }) {
@@ -47,10 +48,7 @@ export default function Panel({ authUser, publications, complexes, users }) {
             {users.length !== 0 ? (
               <div className={style.usersContainer}>
                 {users?.map(
-                  (user, index) =>
-                    user.email !== authUser.email && (
-                      <User key={index} user={user} authUser={authUser} />
-                    )
+                  (user, index) => user.email !== authUser.email && <User key={index} user={user} authUser={authUser} />
                 )}
               </div>
             ) : (
@@ -64,11 +62,19 @@ export default function Panel({ authUser, publications, complexes, users }) {
           <h3>Accesos Rápidos</h3>
         </div>
         <div className={style.buttonsAccess}>
-          <button className={style.btnAccess}>CREAR PUBLICACION</button>
+          <button className={style.btnAccess}>
+            <p>CREAR PUBLICACION</p> <IoIosAddCircle className={style.icon}/>
+          </button>
 
-          <button className={style.btnAccess}>CREAR ALOJAMIENTO</button>
+          <button className={style.btnAccess}>
+            <p>CREAR ALOJAMIENTO</p> <IoIosAddCircle className={style.icon}/>
+          </button>
 
-          {authUser.rol && <button className={style.btnAccess}>CREAR USUARIO</button>}
+          {authUser.rol && (
+            <button className={style.btnAccess}>
+              <p>CREAR USUARIO</p> <IoIosAddCircle className={style.icon}/>
+            </button>
+          )}
         </div>
       </div>
     </div>

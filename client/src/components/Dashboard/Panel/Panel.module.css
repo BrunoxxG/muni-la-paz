@@ -44,7 +44,7 @@
 }
 
 .icon {
-  font-size: 1.25rem;
+  font-size: 2rem;
 }
 
 .rightDiv{
@@ -61,6 +61,7 @@
   .btnAccess {
     width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     border: none;
     outline: none;
