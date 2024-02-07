@@ -23,7 +23,7 @@ export default function Publication({ publication, complex, authUser }) {
     Swal.fire({
       title: "Confirmación",
       text: `Confirma ELIMINAR`,
-      icon: "wairning",
+      icon: "warning",
       showDenyButton: true,
       confirmButtonText: "Confirmar",
       denyButtonText: "Cancelar",
@@ -57,11 +57,11 @@ export default function Publication({ publication, complex, authUser }) {
   };
 
   const handleCheck = async (value, type) => {
-    const textAlert = value ? 'habilitar' : 'deshabilitar';
+    const textAlert = value ? "habilitar" : "deshabilitar";
     Swal.fire({
       title: "Confirmación",
       text: `Confirma ${textAlert}`,
-      icon: "wairning",
+      icon: "warning",
       showDenyButton: true,
       confirmButtonText: "Confirmar",
       denyButtonText: "Cancelar",
@@ -124,14 +124,18 @@ export default function Publication({ publication, complex, authUser }) {
           <button className={`${style.btn} ${style.delete}`} onClick={() => handleDelete("publication")}>
             <MdDelete />
           </button>
-          {authUser.rol && publication.check === false ? (
-            <button className={`${style.btn} ${style.check}`} onClick={() => handleCheck(true, "publication")}>
-              <MdCheck />
-            </button>
-          ) : (
-            <button className={`${style.btn} ${style.delete}`} onClick={() => handleCheck(false, "publication")}>
-              <RxCross2 />
-            </button>
+          {authUser.rol && (
+            <div>
+              {publication.check === false ? (
+                <button className={`${style.btn} ${style.check}`} onClick={() => handleCheck(true, "publication")}>
+                  <MdCheck />
+                </button>
+              ) : (
+                <button className={`${style.btn} ${style.delete}`} onClick={() => handleCheck(false, "publication")}>
+                  <RxCross2 />
+                </button>
+              )}
+            </div>
           )}
         </div>
       )}
@@ -162,14 +166,18 @@ export default function Publication({ publication, complex, authUser }) {
           <button className={`${style.btn} ${style.delete}`} onClick={() => handleDelete("complex")}>
             <MdDelete />
           </button>
-          {authUser.rol && complex.check === false ? (
-            <button className={`${style.btn} ${style.check}`} onClick={() => handleCheck(true, "complex")}>
-              <MdCheck />
-            </button>
-          ) : (
-            <button className={`${style.btn} ${style.delete}`} onClick={() => handleCheck(false, "complex")}>
-              <RxCross2 />
-            </button>
+          {authUser.rol && (
+            <div>
+              {complex.check === false ? (
+                <button className={`${style.btn} ${style.check}`} onClick={() => handleCheck(true, "complex")}>
+                  <MdCheck />
+                </button>
+              ) : (
+                <button className={`${style.btn} ${style.delete}`} onClick={() => handleCheck(false, "complex")}>
+                  <RxCross2 />
+                </button>
+              )}
+            </div>
           )}
         </div>
       )}

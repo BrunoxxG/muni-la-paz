@@ -23,6 +23,21 @@ export default function Dashboard() {
   const allComplexes = useSelector((state) => state.complexes);
   const allUsers = useSelector((state) => state.users);
 
+  const sumObjectsDisable = (array) => {
+    return array.reduce((total, currentObject) => {
+      if (currentObject.check === false || currentObject.active === false) {
+        return total + 1;
+      } else {
+        return total;
+      }
+    }, 0);
+  };
+
+  const sumTotal =
+    sumObjectsDisable(allPublications) +
+    sumObjectsDisable(allComplexes) +
+    sumObjectsDisable(allUsers);
+
   const signOutAction = () => {
     signOut();
     navigate("/login");
@@ -41,7 +56,7 @@ export default function Dashboard() {
       <div className={style.container}>
         <SideBar user={authUser} signOut={signOutAction} onLinkClick={handleLinkClick} />
         <div className={style.mainContent}>
-          <Top />
+          <Top notifications={sumTotal} authUser={authUser}/>
           <div className={style.bottom}>
             {activeComponent === "" && (
               <Panel authUser={authUser} publications={allPublications} complexes={allComplexes} users={allUsers} />

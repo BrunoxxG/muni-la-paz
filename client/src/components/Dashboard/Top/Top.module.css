@@ -10,6 +10,7 @@
       }
     }
     .notificationDiv {
+      position: relative;
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -19,6 +20,21 @@
         border-radius: 5px;
         padding: 5px;
         box-shadow: 0 2px 4px rgb(190, 190, 190);
+      }
+      .number {
+        position: absolute;
+        top: 70%;
+        left: -30%;
+        background: red;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        color: white;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
       }
     }
   }
