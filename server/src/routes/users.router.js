@@ -5,7 +5,7 @@ const {getUsersHandler, getUsersByNameHandler, updateUserHandler, createUserHand
 
 router.get('/', verifyToken, getUsersHandler);
 router.get('/name', verifyToken, getUsersByNameHandler);
-router.patch('/:id', verifyToken, updateUserHandler);
+router.patch('/', verifyToken, updateUserHandler);
 router.post('/', verifyToken, createUserHandler);
 router.post('/login', loginUserHandler);
 

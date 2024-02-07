@@ -4,13 +4,20 @@ import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import useSignOut from "react-auth-kit/hooks/useSignOut";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import { ComplexesDashboard, PublicationsDashboard, Panel, SideBar, Top, Users } from "../../components";
-
+import { BsFillShieldLockFill } from "react-icons/bs";
+import { FaArrowRightLong } from "react-icons/fa6";
 import style from "./Dashboard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getComplexes, getPublications, getUsers } from "../../redux/actions";
+import axios from "axios";
+import { URL_BASE } from "../../utils/const";
 
 export default function Dashboard() {
   const [activeComponent, setActiveComponent] = useState("");
+  const [input, setInput] = useState({
+    password: "",
+    passwordRepeat: "",
+  });
 
   const signOut = useSignOut();
   const [_, token] = useAuthHeader().split(" ");
@@ -33,10 +40,7 @@ export default function Dashboard() {
     }, 0);
   };
 
-  const sumTotal =
-    sumObjectsDisable(allPublications) +
-    sumObjectsDisable(allComplexes) +
-    sumObjectsDisable(allUsers);
+  const sumTotal = sumObjectsDisable(allPublications) + sumObjectsDisable(allComplexes) + sumObjectsDisable(allUsers);
 
   const signOutAction = () => {
     signOut();
@@ -51,12 +55,81 @@ export default function Dashboard() {
     setActiveComponent(component);
   };
 
+  const handleInput = (event) => {
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handlePasswordChanged = async(event) => {
+    event.preventDefault();
+    const formatedInput = {
+      password: input.passwordRepeat,
+      updatePassword: true
+    };
+    try {
+      const response = await axios.patch(`${URL_BASE}/users`, formatedInput, {
+        headers: { Authorization: authUser.token },
+      });
+      if (response.status === 200) {
+        signOut();
+        setInput({
+          email: "",
+          password: "",
+        });
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  if (authUser?.passwordChanged === false) {
+    return (
+      <div className={style.body}>
+        <div className={style.container}>
+          <form onSubmit={handlePasswordChanged} className={style.form}>
+            <h2>Debe cambiar su contraseña</h2>
+            <div className={style.inputDiv}>
+              <label>
+                Contraseña
+                <div className={style.input}>
+                  <BsFillShieldLockFill className={style.icon} />
+                  <input type="password" name="password" placeholder="Ingrese Contraseña" onChange={handleInput} />
+                </div>
+              </label>
+            </div>
+            <div className={style.inputDiv}>
+              <label>
+                Repita la Contraseña
+                <div className={style.input}>
+                  <BsFillShieldLockFill className={style.icon} />
+                  <input
+                    type="password"
+                    name="passwordRepeat"
+                    placeholder="Ingrese Contraseña"
+                    onChange={handleInput}
+                  />
+                </div>
+              </label>
+            </div>
+            <button type="submit" className={style.btn}>
+              <span>Cambiar</span>
+              <FaArrowRightLong className={style.icon} />
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={style.body}>
       <div className={style.container}>
         <SideBar user={authUser} signOut={signOutAction} onLinkClick={handleLinkClick} />
         <div className={style.mainContent}>
-          <Top notifications={sumTotal} authUser={authUser}/>
+          <Top notifications={sumTotal} authUser={authUser} />
           <div className={style.bottom}>
             {activeComponent === "" && (
               <Panel authUser={authUser} publications={allPublications} complexes={allComplexes} users={allUsers} />

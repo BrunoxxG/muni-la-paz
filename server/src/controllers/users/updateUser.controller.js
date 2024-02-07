@@ -3,7 +3,7 @@ const { User } = require('../../db/connection');
 
 module.exports = async (data, id) => {
 
-    if (data.updatePassword === 'true') {
+    if (data.updatePassword) {
         data = { ...data, 
             passwordChanged: true, 
             password: await hashPassword(data.password) 
