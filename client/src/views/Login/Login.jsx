@@ -39,9 +39,9 @@ export default function Login() {
         const userState = {
           email: input.email,
           name: response.data.name,
-          ...(response.data.rol && { rol: response.data.rol }),
+          ...(response.data.hasOwnProperty("rol") && { rol: response.data.rol }),
+          ...(response.data.hasOwnProperty("passwordChanged") && { passwordChanged: response.data.passwordChanged }),
         };
-        console.log(response.data.token)
         signIn({
           auth: {
             token: response.data.token,
@@ -85,18 +85,22 @@ export default function Login() {
             <form onSubmit={handleLogIn} className={style.form}>
               {loginStatus && <span className={style.showMessage}>{loginStatus}</span>}
               <div className={style.inputDiv}>
-                <label htmlFor="email">Email</label>
-                <div className={style.input}>
-                  <FaUserShield className={style.icon} />
-                  <input type="email" name="email" placeholder="Ingrese Email" onChange={handleInput} />
-                </div>
+                <label>
+                  Email
+                  <div className={style.input}>
+                    <FaUserShield className={style.icon} />
+                    <input type="email" name="email" placeholder="Ingrese Email" onChange={handleInput} />
+                  </div>
+                </label>
               </div>
               <div className={style.inputDiv}>
-                <label htmlFor="password">Password</label>
-                <div className={style.input}>
-                  <BsFillShieldLockFill className={style.icon} />
-                  <input type="password" name="password" placeholder="Ingrese Password" onChange={handleInput} />
-                </div>
+                <label>
+                  Contraseña
+                  <div className={style.input}>
+                    <BsFillShieldLockFill className={style.icon} />
+                    <input type="password" name="password" placeholder="Ingrese Contraseña" onChange={handleInput} />
+                  </div>
+                </label>
               </div>
               <button type="submit" className={style.btn}>
                 <span>Ingresar</span>

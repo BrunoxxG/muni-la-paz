@@ -9,12 +9,12 @@
       "passwordChanged": true
     },
     {
-      "name": "Usuario 2",
+      "name": "Bruno Gimenez",
       "email": "usuario2@example.com",
       "password": "$2b$10$VM0fk.QWcmFxF55JDrBp..oQ6H1O36PkT14Qij8yQ.OOEKAYlZnoG",
       "rol": "Basic",
       "active": true,
-      "passwordChanged": true
+      "passwordChanged": false
     },
     {
       "name": "Usuario 3",

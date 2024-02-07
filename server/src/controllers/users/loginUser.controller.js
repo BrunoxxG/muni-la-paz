@@ -13,10 +13,8 @@ module.exports = async (data) => {
         if (!isMatchPassword) throw ({ statusCode: 402,message: 'Email o Contraseña Incorrectos' });
     
         if(!user.active) throw ({ statusCode: 405, message: 'Usuario Desactivado' });
-    
-        if(!user.passwordChanged) throw ({ statusCode: 406, message: 'Se necesita cambiar la Contraseña, revise su Email' });
         
-        const token = generateToken(user.email, user.rol, user.name);
+        const token = generateToken(user.id, user.email, user.name, user.rol, user.passwordChanged);
         
         return token;
         
