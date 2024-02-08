@@ -4,7 +4,7 @@ import axios from "axios";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
 import { URL_BASE } from "../../utils/const";
-
+import Swal from "sweetalert2";
 import { FaUserShield } from "react-icons/fa";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -21,8 +21,6 @@ export default function Login() {
     email: "",
     password: "",
   });
-
-  const [loginStatus, setLoginStatus] = useState("");
 
   const handleInput = function (event) {
     setInput({
@@ -55,10 +53,13 @@ export default function Login() {
         navigate("/dashboard");
       }
     } catch (error) {
-      setLoginStatus(error.response.data.message);
-      setTimeout(() => {
-        setLoginStatus("");
-      }, 4000);
+      Swal.fire({
+        title: "Error",
+        text: `${error.response.data.message}`,
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2500
+      });
     }
   };
 
@@ -83,7 +84,6 @@ export default function Login() {
               <img src={logo} alt="Logo Image" className={style.image} />
             </div>
             <form onSubmit={handleLogIn} className={style.form}>
-              {loginStatus && <span className={style.showMessage}>{loginStatus}</span>}
               <div className={style.inputDiv}>
                 <label>
                   Email

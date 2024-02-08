@@ -24,19 +24,7 @@
   height: 100%;
   padding: 2rem;
   overflow: auto;
-
-  .bottom {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
 }
-
-
-
 
 /* FORM INGRESAR CONTRASEÑA */
 .form {

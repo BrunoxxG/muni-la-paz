@@ -144,7 +144,7 @@ export default function PublicationForm({ publication, authUser }) {
         </div>
       ) : (
         <div>
-          <h1>FORM CREATE PUBLICATION</h1>
+          <h1>Crear una Publicación</h1>
           <form onSubmit={handleCreate} className={style.form}>
             <div className=" w-2/5">
               <label className="block mb-2 text-m font-medium text-gray-900 ">
@@ -190,8 +190,6 @@ export default function PublicationForm({ publication, authUser }) {
                   })}
                 </select>
               </label>
-
-              {/* {errors.category && <p className=" text-red-600 text-sm font-semibold ">{errors.category}</p>} */}
             </div>
             {input.type === "Eventos" && (
               <div className=" w-2/5">
