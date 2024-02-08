@@ -20,7 +20,7 @@ export default function PublicationForm({ publication, authUser }) {
     description: publication?.description || "",
     image: "prueba",
     type: publication?.type || "General",
-    date: publication?.date || new Date(),
+    date: publication?.date ? new Date(publication.date) : new Date(),
   });
 
   let footer;
@@ -73,7 +73,6 @@ export default function PublicationForm({ publication, authUser }) {
       }
     } catch (error) {
       console.log(error);
-      alert(error);
     }
   };
 
@@ -134,8 +133,7 @@ export default function PublicationForm({ publication, authUser }) {
                   locale={es}
                   onDayClick={handleChange}
                   defaultMonth={input.date}
-                  selected={selected}
-                  onSelect={setSelected}
+                  selected={input.date}
                   footer={footer}
                 />
                 {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}

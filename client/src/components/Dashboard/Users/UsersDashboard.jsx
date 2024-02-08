@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Publication, PublicationForm, SearchBar } from "../..";
+import { SearchBar, User, UserForm } from "../..";
 import { useDispatch } from "react-redux";
 
-import style from "./PublicationsDashboard.module.css";
-import { getPublicationsByTitle } from "../../../redux/actions";
+import style from "./UsersDashboard.module.css";
+import { getUsersByName } from "../../../redux/actions";
 
-export default function PublicationsDasboard({ publications, authUser }) {
+export default function UsersDashboard({ users, authUser }) {
 
   const [viewForm, setViewForm] = useState({
     visible: false,
@@ -17,7 +17,7 @@ export default function PublicationsDasboard({ publications, authUser }) {
   const handleChange = (e) => {
     e.preventDefault();
     const value = e.target.value;
-    dispatch(getPublicationsByTitle(value));
+    dispatch(getUsersByName(value, authUser.token));
   };
 
   const handleForm = (event, item) => {
@@ -40,7 +40,7 @@ export default function PublicationsDasboard({ publications, authUser }) {
   if (viewForm.visible) {
     return (
       <div>
-        <PublicationForm publication={viewForm.data} authUser={authUser} />
+        <UserForm publication={viewForm.data} authUser={authUser} />
         <button className={style.btnAccess} name="cancel" onClick={handleForm}>
           <p>CANCELAR</p>
         </button>
@@ -48,17 +48,16 @@ export default function PublicationsDasboard({ publications, authUser }) {
     );
   }
 
-
   return (
-    <div className={style.publicationsSection}>
-      <h2>TODAS LAS PUBLICACIONES</h2>
+    <div className={style.usersSection}>
+      <h2>TODOS LOS USUARIOS</h2>
       <div className={style.gridDiv}>
         <div className={style.SearchBar}>
           <SearchBar handleChange={handleChange} />
         </div>
-        <div className={style.publications}>
-          {publications?.map((publication, index) => (
-            <Publication key={index} publication={publication} authUser={authUser} handleForm={handleForm}/>
+        <div className={style.users}>
+          {users?.map((user, index) => user.email !== authUser.email && (
+            <User key={index} user={user} authUser={authUser} handleForm={handleForm}/>
           ))}
         </div>
       </div>

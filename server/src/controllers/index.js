@@ -20,6 +20,7 @@ const createUserController = require('./users/createUser.controller');
 const loginUserController = require('./users/loginUser.controller');
 const updateUserController = require('./users/updateUser.controller');
 const getUsersByNameController = require('./users/getUsersByName.controller');
+const deleteUserController = require('./users/deleteUser.controller');
 
 
 module.exports = {
@@ -39,5 +40,6 @@ module.exports = {
   createUserController,
   loginUserController,
   updateUserController,
-  getUsersByNameController
+  getUsersByNameController,
+  deleteUserController
 };

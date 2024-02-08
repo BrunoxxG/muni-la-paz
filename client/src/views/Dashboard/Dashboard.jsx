@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import useSignOut from "react-auth-kit/hooks/useSignOut";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { ComplexesDashboard, PublicationsDashboard, Panel, SideBar, Top, Users } from "../../components";
+import { ComplexesDashboard, PublicationsDashboard, Panel, SideBar, Top, UsersDashboard } from "../../components";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 import style from "./Dashboard.module.css";
@@ -138,7 +138,7 @@ export default function Dashboard() {
               <PublicationsDashboard publications={allPublications} authUser={authUser} />
             )}
             {activeComponent === "complexes" && <ComplexesDashboard complexes={allComplexes} authUser={authUser} />}
-            {activeComponent === "users" && authUser.rol && <Users users={allUsers} authUser={authUser} />}
+            {activeComponent === "users" && authUser.rol && <UsersDashboard users={allUsers} authUser={authUser} />}
           </div>
         </div>
       </div>

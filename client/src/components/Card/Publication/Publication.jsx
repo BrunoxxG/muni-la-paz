@@ -13,7 +13,7 @@ import { format, setDefaultOptions } from "date-fns";
 import { es } from "date-fns/locale";
 setDefaultOptions({ locale: es });
 
-export default function Publication({ publication, complex, authUser }) {
+export default function Publication({ publication, complex, authUser, handleForm }) {
   const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -117,7 +117,7 @@ export default function Publication({ publication, complex, authUser }) {
       </Link>
       {authUser && (
         <div className={style.buttons}>
-          <button className={`${style.btn} ${style.edit}`} onClick={() => setOpen(true)}>
+          <button className={`${style.btn} ${style.edit}`} name="publication" onClick={(event) => handleForm(event, publication)}>
             <MdEdit />
           </button>
 
@@ -159,7 +159,7 @@ export default function Publication({ publication, complex, authUser }) {
       </Link>
       {authUser && (
         <div className={style.buttons}>
-          <button className={`${style.btn} ${style.edit}`} onClick={() => setOpen(true)}>
+          <button className={`${style.btn} ${style.edit}`} name="complex" onClick={(event) => handleForm(event, complex)}>
             <MdEdit />
           </button>
 

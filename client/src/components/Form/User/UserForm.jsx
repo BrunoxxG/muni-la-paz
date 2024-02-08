@@ -1,10 +1,11 @@
 import { useState } from "react";
-import style from "./ComplexForm.module.css";
+import style from "./UserForm.module.css";
 
-export default function ComplexForm({complex, authUser}) {
+export default function UserForm({user, authUser}) {
   const [input, setInput] = useState({
-    title: "",
-    description: "",
+    name: "",
+    email: "",
+    rol: ""
   });
 
   const handleChange = (e) => {
@@ -16,16 +17,16 @@ export default function ComplexForm({complex, authUser}) {
 
   return (
     <div>
-      <h1>FORM COMPLEX</h1>
+      <h1>FORM USER</h1>
       <form className={style.form}>
         <div>
-          <label>Descripción</label>
+          <label>Name</label>
           <input
             type="text"
-            name="description"
-            value={input.description}
+            name="name"
+            value={input.name}
             onChange={handleChange}
-            placeholder="Descripción"
+            placeholder="Nombre"
           />
         </div>
       </form>
