@@ -3,7 +3,7 @@ import { format, setDefaultOptions } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import { es } from "date-fns/locale";
 setDefaultOptions({ locale: es });
-
+import Swal from "sweetalert2";
 import style from "./PublicationForm.module.css";
 import "react-day-picker/dist/style.css";
 import axios from "axios";
@@ -57,30 +57,69 @@ export default function PublicationForm({ publication, authUser }) {
 
   const handleCreate = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(`${URL_BASE}/publications`, input, {
-        headers: { Authorization: authUser.token },
-      });
-      if (response.status === 200) {
-        dispatch(getPublications());
-        setInput({
-          title: "",
-          description: "",
-          image: "prueba",
-          type: "General",
-          date: new Date(),
-        });
+    Swal.fire({
+      title: "Confirmación",
+      text: `Confirma CREAR`,
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "Confirmar",
+      denyButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await axios.post(`${URL_BASE}/publications`, input, {
+            headers: { Authorization: authUser.token },
+          });
+          if (response.status === 200) {
+            dispatch(getPublications());
+            setInput({
+              title: "",
+              description: "",
+              image: "prueba",
+              type: "General",
+              date: new Date(),
+            });
+            window.location.reload();
+          }
+        } catch (error) {
+          console.log(error);
+        }
       }
-    } catch (error) {
-      console.log(error);
-    }
+    });
   };
 
-  const handleEdit = () => {
-    alert("EDITAAA");
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    Swal.fire({
+      title: "Confirmación",
+      text: `Confirma EDITAR`,
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "Confirmar",
+      denyButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await axios.patch(`${URL_BASE}/publications/${publication.id}`, input, {
+            headers: { Authorization: authUser.token },
+          });
+          if (response.status === 200) {
+            dispatch(getPublications());
+            setInput({
+              title: "",
+              description: "",
+              image: "prueba",
+              type: "General",
+              date: new Date(),
+            });
+            window.location.reload();
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
   };
-
-  // console.log(input)
 
   return (
     <div>
@@ -143,68 +182,61 @@ export default function PublicationForm({ publication, authUser }) {
           </form>
         </div>
       ) : (
-        <div>
-          <h1>Crear una Publicación</h1>
+        <div className={style.content}>
+          <h2>Crear Publicación</h2>
           <form onSubmit={handleCreate} className={style.form}>
-            <div className=" w-2/5">
-              <label className="block mb-2 text-m font-medium text-gray-900 ">
-                Titulo{" "}
-                <input
-                  type="text"
-                  name="title"
-                  value={input.title}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                  placeholder="Titulo"
-                />
-              </label>
+            <div className={style.inputContent}>
+              <div className={style.leftForm}>
+                <div className={style.input}>
+                  <label>
+                    Titulo{" "}
+                    <input type="text" name="title" value={input.title} onChange={handleChange} placeholder="Titulo" />
+                  </label>
 
-              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
-            </div>
-            <div className=" w-2/5">
-              <label className="block mb-2 text-m font-medium text-gray-900 ">
-                Descripción{" "}
-                <input
-                  type="text"
-                  name="description"
-                  value={input.description}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                  placeholder="Descripción"
-                />
-              </label>
+                  {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+                </div>
+                <div className={style.input}>
+                  <label>
+                    Descripción{" "}
+                    <input
+                      type="text"
+                      name="description"
+                      value={input.description}
+                      onChange={handleChange}
+                      placeholder="Descripción"
+                    />
+                  </label>
 
-              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
-            </div>
-            <div className=" w-2/5">
-              <label className="block mb-2 text-m font-medium text-gray-900 ">
-                Tipo{" "}
-                <select
-                  className="bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                  name="type"
-                  value={input.type}
-                  onChange={handleChange}
-                >
-                  {allTypes?.map((type, index) => {
-                    return <option key={index}>{type}</option>;
-                  })}
-                </select>
-              </label>
-            </div>
-            {input.type === "Eventos" && (
-              <div className=" w-2/5">
-                {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
-
-                <DayPicker
-                  mode="single"
-                  locale={es}
-                  onDayClick={handleChange}
-                  defaultMonth={input.date}
-                  selected={input.date}
-                  footer={footer}
-                />
+                  {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+                </div>
               </div>
-            )}
+              <div className={style.rightForm}>
+                <div className={style.input}>
+                  <label>
+                    Tipo{" "}
+                    <select name="type" value={input.type} onChange={handleChange}>
+                      {allTypes?.map((type, index) => {
+                        return <option key={index}>{type}</option>;
+                      })}
+                    </select>
+                  </label>
+                </div>
+                {input.type === "Eventos" && (
+                  <div className={style.input}>
+                    {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+
+                    <DayPicker
+                      mode="single"
+                      locale={es}
+                      onDayClick={handleChange}
+                      defaultMonth={input.date}
+                      selected={input.date}
+                      footer={footer}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
             <button type="submit">CREAR</button>
           </form>
         </div>
