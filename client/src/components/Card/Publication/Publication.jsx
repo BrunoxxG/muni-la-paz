@@ -7,14 +7,11 @@ import { RxCross2 } from "react-icons/rx";
 import style from "./Publication.module.css";
 import { useDispatch } from "react-redux";
 import { getComplexes, getPublications } from "../../../redux/actions";
-import { PublicationForm } from "../../";
-import { useState } from "react";
 import { format, setDefaultOptions } from "date-fns";
 import { es } from "date-fns/locale";
 setDefaultOptions({ locale: es });
 
 export default function Publication({ publication, complex, authUser, handleForm }) {
-  const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -57,7 +54,7 @@ export default function Publication({ publication, complex, authUser, handleForm
   };
 
   const handleCheck = async (value, type) => {
-    const textAlert = value ? "habilitar" : "deshabilitar";
+    const textAlert = value ? "HABILITAR" : "DESHABILITAR";
     Swal.fire({
       title: "Confirmación",
       text: `Confirma ${textAlert}`,
@@ -104,7 +101,7 @@ export default function Publication({ publication, complex, authUser, handleForm
         target={location.pathname === "/dashboard" ? "_blank" : "_self"}
         className={style.data}
       >
-        <img src={publication.image} alt={publication.title} />
+        <img src={URL_BASE + publication.images[0]} alt={publication.title} />
         <div className={style.cardText}>
           <small>{format(publication.date, "PP")}</small>
           <h3>{publication.title}</h3>
@@ -147,7 +144,7 @@ export default function Publication({ publication, complex, authUser, handleForm
         target={location.pathname === "/dashboard" ? "_blank" : "_self"}
         className={style.data}
       >
-        <img src={complex.image} alt={complex.name} />
+        <img src={URL_BASE + complex.images[0]} alt={complex.name} />
         <div className={style.cardText}>
           <h3>{complex.name}</h3>
           <p>{complex.address}</p>

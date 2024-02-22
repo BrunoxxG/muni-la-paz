@@ -61,6 +61,7 @@
 
 .image {
   width: 200px;
+  aspect-ratio: 50/39;
 }
 
 .form {

@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const {verifyToken} = require('../jwt/jwt');
+const {verifyToken} = require('../middlewares/jwt/jwt');
 const {getUsersHandler, getUsersByNameHandler, updateUserHandler, createUserHandler, loginUserHandler, deleteUserHandler} = require('../handlers');
 
 router.get('/', verifyToken, getUsersHandler);

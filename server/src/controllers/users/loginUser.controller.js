@@ -1,6 +1,6 @@
 const { User } = require('../../db/connection');
-const { comparePassword } = require('../../auth/auth');
-const { generateToken } = require('../../jwt/jwt');
+const { comparePassword } = require('../../middlewares/auth/auth');
+const { generateToken } = require('../../middlewares/jwt/jwt');
 
 module.exports = async (data) => {
     const { email, password } = data;

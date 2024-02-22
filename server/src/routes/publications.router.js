@@ -1,12 +1,13 @@
 const { Router } = require('express');
 const router = Router();
-const { verifyToken } = require('../jwt/jwt');
+const { verifyToken } = require('../middlewares/jwt/jwt');
+const upload = require('../middlewares/upload/upload');
 const { getPublicationsHandler, postPublicationHandler, getPublicationsByTitleHandler, getPublicationByIdHandler, updatePublicationHandler, deletePublicationHandler } = require('../handlers');
 
 router.get('/', getPublicationsHandler);
 router.get('/title', getPublicationsByTitleHandler);
 router.get('/:id', getPublicationByIdHandler);
-router.post('/', verifyToken, postPublicationHandler);
+router.post('/', verifyToken, upload, postPublicationHandler);
 router.patch('/:id', verifyToken, updatePublicationHandler);
 router.delete('/:id', verifyToken, deletePublicationHandler);
 

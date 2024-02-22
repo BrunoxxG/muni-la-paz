@@ -24,9 +24,8 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    images: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
     check: {
       type: DataTypes.BOOLEAN,
