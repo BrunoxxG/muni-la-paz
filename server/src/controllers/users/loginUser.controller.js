@@ -1,6 +1,6 @@
 const { User } = require('../../db/connection');
-const { comparePassword } = require('../../auth/auth');
-const { generateToken } = require('../../jwt/jwt');
+const { comparePassword } = require('../../middlewares/auth/auth');
+const { generateToken } = require('../../middlewares/jwt/jwt');
 
 module.exports = async (data) => {
     const { email, password } = data;
@@ -12,7 +12,7 @@ module.exports = async (data) => {
         const isMatchPassword = await comparePassword(password, user.password);
         if (!isMatchPassword) throw ({ statusCode: 402,message: 'Email o Contraseña Incorrectos' });
     
-        if(!user.active) throw ({ statusCode: 405, message: 'Usuario Desactivado' });
+        if(!user.active) throw ({ statusCode: 405, message: 'Usuario Desactivado, pida Autorización' });
         
         const token = generateToken(user.id, user.email, user.name, user.rol, user.passwordChanged);
         

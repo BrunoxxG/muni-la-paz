@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import useSignOut from "react-auth-kit/hooks/useSignOut";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { ComplexesDashboard, PublicationsDashboard, Panel, SideBar, Top, Users } from "../../components";
+import { ComplexesDashboard, PublicationsDashboard, Panel, SideBar, UsersDashboard } from "../../components";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 import style from "./Dashboard.module.css";
@@ -62,11 +62,11 @@ export default function Dashboard() {
     });
   };
 
-  const handlePasswordChanged = async(event) => {
+  const handlePasswordChanged = async (event) => {
     event.preventDefault();
     const formatedInput = {
       password: input.passwordRepeat,
-      updatePassword: true
+      updatePassword: true,
     };
     try {
       const response = await axios.patch(`${URL_BASE}/users`, formatedInput, {
@@ -81,7 +81,7 @@ export default function Dashboard() {
         navigate("/login");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -129,17 +129,20 @@ export default function Dashboard() {
       <div className={style.container}>
         <SideBar user={authUser} signOut={signOutAction} onLinkClick={handleLinkClick} />
         <div className={style.mainContent}>
-          <Top notifications={sumTotal} authUser={authUser} />
-          <div className={style.bottom}>
-            {activeComponent === "" && (
-              <Panel authUser={authUser} publications={allPublications} complexes={allComplexes} users={allUsers} />
-            )}
-            {activeComponent === "publications" && (
-              <PublicationsDashboard publications={allPublications} authUser={authUser} />
-            )}
-            {activeComponent === "complexes" && <ComplexesDashboard complexes={allComplexes} authUser={authUser} />}
-            {activeComponent === "users" && authUser.rol && <Users users={allUsers} authUser={authUser} />}
-          </div>
+          {activeComponent === "" && (
+            <Panel
+              authUser={authUser}
+              notifications={sumTotal}
+              publications={allPublications}
+              complexes={allComplexes}
+              users={allUsers}
+            />
+          )}
+          {activeComponent === "publications" && (
+            <PublicationsDashboard publications={allPublications} authUser={authUser} />
+          )}
+          {activeComponent === "complexes" && <ComplexesDashboard complexes={allComplexes} authUser={authUser} />}
+          {activeComponent === "users" && authUser.rol && <UsersDashboard users={allUsers} authUser={authUser} />}
         </div>
       </div>
     </div>

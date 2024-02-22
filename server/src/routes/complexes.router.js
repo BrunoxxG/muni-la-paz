@@ -1,12 +1,13 @@
 const { Router } = require('express');
 const router = Router();
-const { verifyToken } = require('../jwt/jwt');
+const { verifyToken } = require('../middlewares/jwt/jwt');
 const { getAllComplexesHandler, postComplexHandler, getComplexesByNameHandler, getComplexByIdHandler, updateComplexHandler, deleteComplexHandler } = require('../handlers');
+const upload = require('../middlewares/upload/upload');
 
 router.get('/', getAllComplexesHandler);
 router.get('/name', getComplexesByNameHandler);
 router.get('/:id', getComplexByIdHandler);
-router.post('/', verifyToken, postComplexHandler);
+router.post('/', verifyToken, upload, postComplexHandler);
 router.patch('/:id', verifyToken, updateComplexHandler);
 router.delete('/:id', verifyToken, deleteComplexHandler);
 

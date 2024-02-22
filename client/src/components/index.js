@@ -3,19 +3,18 @@ import Carousel from './Carousel/Carousel';
 import Footer from './Footer/Footer';
 //CARDS
 import Publication from './Card/Publication/Publication';
-import Complex from './Card/Complex/Complex';
 import Contact from './Card/Contact/Contact';
 import User from './Card/User/User';
 //DASHBOARD COMPONENTS
 import SideBar from './Dashboard/SideBar/SideBar';
-import Top from './Dashboard/Top/Top';
 import Panel from './Dashboard/Panel/Panel';
 import PublicationsDashboard from './Dashboard/Publications/PublicationsDashboard';
 import ComplexesDashboard from './Dashboard/Complexes/ComplexesDashboard';
-import Users from './Dashboard/Users/Users';
+import UsersDashboard from './Dashboard/Users/UsersDashboard';
 import SearchBar from './Dashboard/SearchBar/SearchBar';
 //FORMS
-import PublicationForm from './Form/Publication/publicationForm';
-import ComplexForm from './Form/Complex/complexForm';
+import PublicationForm from './Form/Publication/PublicationForm';
+import ComplexForm from './Form/Complex/ComplexForm';
+import UserForm from './Form/User/UserForm';
 
-export { NavBar, Carousel, Footer, Publication, Complex, Contact, User, SideBar, Top, Panel, PublicationsDashboard, ComplexesDashboard, Users, SearchBar, PublicationForm, ComplexForm };
+export { NavBar, Carousel, Footer, Publication, Contact, User, SideBar, Panel, PublicationsDashboard, ComplexesDashboard, UsersDashboard, SearchBar, PublicationForm, ComplexForm, UserForm };

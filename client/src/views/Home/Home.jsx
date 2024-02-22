@@ -9,6 +9,7 @@ setDefaultOptions({ locale: es });
 
 
 import style from "./Home.module.css";
+import { URL_BASE } from "../../utils/const";
 
 export default function Home({publications, complexes}) {
   const filteredPublications = publications.filter((publication) => publication.check && publication.type !== "Eventos").slice(0, 4);
@@ -58,7 +59,7 @@ export default function Home({publications, complexes}) {
         </div>
         <div className={style.firstNotice}>
           <div className={style.firstNoticeImg}>
-            <img src={filteredPublications[0]?.image} alt={filteredPublications[0]?.id} />
+            <img src={ URL_BASE + filteredPublications[0]?.images[0]} alt={filteredPublications[0]?.id} />
           </div>
           <div className={style.firstNoticeText}>
             <div className={style.firstNoticeTextTop}>
@@ -98,7 +99,7 @@ export default function Home({publications, complexes}) {
                 <Link to={`/noticia/${event?.id}`} key={index} className={style.eventCard}>
                   <small>{format(event.date, "PP")}</small>
                   <h3>{event.title}</h3>
-                  <img src={event.image} alt={event.title} />
+                  <img src={URL_BASE + event.images[0]} alt={event.title} />
                 </Link>
               )}
             </div>

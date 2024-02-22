@@ -1,5 +1,5 @@
 const { User } = require('../../db/connection');
-const { hashPassword } = require('../../auth/auth');
+const { hashPassword } = require('../../middlewares/auth/auth');
 
 module.exports = async (user) => {
     const { name, email } = user;

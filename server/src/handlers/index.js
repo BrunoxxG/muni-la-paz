@@ -20,6 +20,7 @@ const createUserHandler = require('./users/createUser.handler');
 const loginUserHandler = require('./users/loginUser.handler');
 const updateUserHandler = require('./users/updateUser.handler');
 const getUsersByNameHandler = require('./users/getUsersByName.handler');
+const deleteUserHandler = require('./users/deleteUser.handler');
 
 module.exports = {
   getAllComplexesHandler,
@@ -38,5 +39,6 @@ module.exports = {
   createUserHandler,
   loginUserHandler,
   updateUserHandler,
-  getUsersByNameHandler
+  getUsersByNameHandler,
+  deleteUserHandler
 }

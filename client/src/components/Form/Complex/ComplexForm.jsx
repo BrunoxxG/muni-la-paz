@@ -1,7 +1,7 @@
 import { useState } from "react";
 import style from "./ComplexForm.module.css";
 
-export default function ComplexForm() {
+export default function ComplexForm({complex, authUser}) {
   const [input, setInput] = useState({
     title: "",
     description: "",
@@ -25,7 +25,6 @@ export default function ComplexForm() {
             name="description"
             value={input.description}
             onChange={handleChange}
-            className
             placeholder="Descripción"
           />
         </div>
