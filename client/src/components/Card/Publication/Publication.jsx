@@ -13,7 +13,7 @@ import { format, setDefaultOptions } from "date-fns";
 import { es } from "date-fns/locale";
 setDefaultOptions({ locale: es });
 
-export default function Publication({ publication, complex, authUser }) {
+export default function Publication({ publication, complex, authUser, isDetailPage }) {
   const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -96,7 +96,6 @@ export default function Publication({ publication, complex, authUser }) {
       }
     });
   };
-
   return publication ? (
     <div className={style.card}>
       <Link
@@ -104,7 +103,15 @@ export default function Publication({ publication, complex, authUser }) {
         target={location.pathname === "/dashboard" ? "_blank" : "_self"}
         className={style.data}
       >
-        <img src={publication.image} alt={publication.title} />
+         { isDetailPage ? ( 
+        <img src={publication.image.map((image, index) => (
+            <img key={index} image={image} alt={`Image ${index + 1}`} />
+        ))} alt={publication.title} />
+
+      ) : (
+        <img src={publication.image[0]} alt={publication.title} />
+      )}
+
         <div className={style.cardText}>
           <small>{format(publication.date, "PP")}</small>
           <h3>{publication.title}</h3>
@@ -147,7 +154,13 @@ export default function Publication({ publication, complex, authUser }) {
         target={location.pathname === "/dashboard" ? "_blank" : "_self"}
         className={style.data}
       >
-        <img src={complex.image} alt={complex.name} />
+        { isDetailPage ? ( 
+      complex.image.map((image, index) => (
+          <img key={index} image={image} alt={`Image ${index + 1}`} />
+        ))
+      ) : (
+        <img src={complex.image[0]} alt={complex.name} />
+      )}
         <div className={style.cardText}>
           <h3>{complex.name}</h3>
           <p>{complex.address}</p>

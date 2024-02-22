@@ -22,28 +22,28 @@ export default function Home({publications, complexes}) {
       </div>
       <div className={style.navCenter}>
         <Link to="/alojamientos" className={style.buttonNavCenter}>
-          <MdCabin size={50} />
-          <span>ALOJAMIENTO</span>
+          <MdCabin size={70} />
+          <span>Alojamientos</span>
         </Link>
         <Link to="/cultura" className={style.buttonNavCenter}>
-          <FaBook size={50} />
-          <span>CULTURA</span>
+          <FaBook size={70} />
+          <span>Cultura</span>
         </Link>
         <Link to="/salud" className={style.buttonNavCenter}>
-          <FaHeartbeat size={50} />
-          <span>SALUD</span>
+          <FaHeartbeat size={70} />
+          <span>Salud</span>
         </Link>
         <Link to="/deportes" className={style.buttonNavCenter}>
-          <MdSportsSoccer size={50} />
-          <span>DEPORTE</span>
+          <MdSportsSoccer size={70} />
+          <span>Deportes</span>
         </Link>
         <Link to='/noticias' className={style.buttonNavCenter}>
-          <MdOutlineLibraryBooks size={50} />
-          <span>NOTICIAS</span>
+          <MdOutlineLibraryBooks size={70} />
+          <span>Noticias</span>
         </Link>
         <Link to="/eventos" className={style.buttonNavCenter}>
-          <MdEvent size={50} />
-          <span>EVENTOS</span>
+          <MdEvent size={70} />
+          <span>Eventos</span>
         </Link>
       </div>
       <section className={style.notices}>
@@ -74,7 +74,7 @@ export default function Home({publications, complexes}) {
           </div>
         </div>
         <div className={style.publications}>
-          {filteredPublications?.map((publication, index) => index > 0 && <Publication key={index} publication={publication} />)}
+          {filteredPublications?.map((publication, index) => <Publication key={index} publication={publication} isDetailPage={false} />)}
         </div>
       </section>
       <section className={style.events}>
@@ -108,15 +108,15 @@ export default function Home({publications, complexes}) {
       <section className={style.tourism}>
         <div className={style.titlePublications}>
           <h2>
-            Alojamiento<br></br>
-            <span>Si viajás o llegaste</span>
+            Alojamientos<br></br>
+            <span>En La Pedania</span>
           </h2>
           <Link to="/alojamientos" >
             Más alojamientos<FaArrowRight size={25} />
           </Link>
         </div>
         <div className={style.publications}>
-          {filteredComplexes?.map((complex, index) => <Publication key={index} complex={complex} />)}
+          {filteredComplexes?.map((complex, index) => <Publication key={index} complex={complex} isDetailPage={false} />)}
         </div>
       </section>
     </main>

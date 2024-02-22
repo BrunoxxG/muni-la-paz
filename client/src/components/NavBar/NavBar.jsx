@@ -16,22 +16,22 @@ export default function NavBar() {
         <div className={style.centerNav}>
           <div className={style.links}>
             <Link to="/" className={style.border}>
-              INICIO
+              Inicio
             </Link>
             <Link to="/servicios" className={style.border}>
-              SERVICIOS
+              Servicios
             </Link>
             <Link to="/turismo" className={style.border}>
-              TURISMO
+              Turismo
             </Link>
             <Link to="/institucional" className={style.border}>
-              INSTITUCIONAL
+              Institucional
             </Link>
             <Link to="/concejo" className={style.border}>
-              CONCEJO DELIBERANTE
+              Concejo Deliberante
             </Link>
             <Link to="/contacto" style={{ paddingLeft: "1.5rem" }}>
-              CONTACTO
+              Contacto
             </Link>
           </div>
           <div className={style.social}>
