@@ -15,7 +15,6 @@ const useComplex = () => {
             dispatch(cleanDetail());
         };
     }, [dispatch, id]);
-
     return complex && complex.image ? complex : null;
 };
 

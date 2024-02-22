@@ -11,7 +11,7 @@ import { format, setDefaultOptions } from "date-fns";
 import { es } from "date-fns/locale";
 setDefaultOptions({ locale: es });
 
-export default function Publication({ publication, complex, authUser, handleForm }) {
+export default function Publication({ publication, complex, authUser, handleForm, isDetailPage }) {
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -93,7 +93,6 @@ export default function Publication({ publication, complex, authUser, handleForm
       }
     });
   };
-
   return publication ? (
     <div className={style.card}>
       <Link

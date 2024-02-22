@@ -13,7 +13,7 @@ main {
   display: flex;
   justify-content: space-between;
   & .buttonNavCenter {
-    background-color: white;
+    background-color: rgb(117, 170, 219);
     color: var(--main-color);
     font-size: 20px;
     width: calc(100% / 7);
