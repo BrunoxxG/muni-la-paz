@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
-import Logo1 from "../../assets/logo1.jpg";
-import Logo2 from "../../assets/logo2.jpg";
+import Logo1 from "../../assets/logo3.png";
+import Logo2 from "../../assets/logo2.png";
 import style from "./NavBar.module.css";
 
 export default function NavBar() {

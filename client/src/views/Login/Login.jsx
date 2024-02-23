@@ -9,7 +9,7 @@ import { FaUserShield } from "react-icons/fa";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 import style from "./Login.module.css";
-import logo from "../../assets/logo1.jpg";
+import logo from "../../assets/logo1.png";
 
 export default function Login() {
   const signIn = useSignIn();
