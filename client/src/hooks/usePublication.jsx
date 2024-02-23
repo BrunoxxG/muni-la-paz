@@ -15,7 +15,7 @@ const usePublication = () => {
         };
     }, [dispatch, id]);
 
-    return publication && publication.image ? publication : null;
+    return publication && publication.images ? publication : null;
 };
 
 export default usePublication;

@@ -4,19 +4,13 @@ import { FaCircleArrowLeft } from "react-icons/fa6";
 import { format as dateformat } from "date-fns";
 import usePublication from "../../../hooks/usePublication";
 import style from "./PublicationDetail.module.css";
-
-const image = "/src/assets/images/noticia1.jpg";
-const image1 = "/src/assets/images/noticia2.jpg";
-const image2 = "/src/assets/images/noticia3.jpg";
-const image3 = "/src/assets/images/noticia2.jpg";
-const image4 = "/src/assets/images/noticia3.jpg";
+import { URL_BASE } from "../../../utils/const";
 
 export default function PublicationDetail() {
   const publication = usePublication();
 
   const [showPopup, setShowPopup] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
-  const [images] = useState([image, image1, image2, image3, image4]);
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -32,14 +26,14 @@ export default function PublicationDetail() {
   };
 
   const handleArrowClick = (direction) => {
-    const currentIndex = images.indexOf(selectedImage);
+    const currentIndex = publication.images.indexOf(selectedImage.replace(URL_BASE, ""));
     let newIndex;
     if (direction === "left") {
-      newIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+      newIndex = currentIndex === 0 ? publication.images.length - 1 : currentIndex - 1;
     } else {
-      newIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+      newIndex = currentIndex === publication.images.length - 1 ? 0 : currentIndex + 1;
     }
-    setSelectedImage(images[newIndex]);
+    setSelectedImage(URL_BASE + publication.images[newIndex]);
   };
 
   return (
@@ -52,22 +46,22 @@ export default function PublicationDetail() {
 
         {/* se renderiza si hay imagenes */}
         <div className={style.images}>
-          {publication?.image[0] && (
+          {publication?.images && publication.images.length > 0 && (
             <div className={style.imagesContainer}>
               <img
                 onClick={() => handleImageClick(image)}
-                src={image}
+                src={URL_BASE + publication.images[0]}
                 alt={publication.title}
               />
               <div className={style.imgDiv}>
-                {images.map(
+                {publication.images.map(
                   (image, index) =>
                     index !== 0 && (
                       <img
                         key={index}
-                        src={image}
+                        src={URL_BASE + image}
                         alt={`Image ${index + 1}`}
-                        onClick={() => handleImageClick(image)}
+                        onClick={() => handleImageClick(URL_BASE + image)}
                       />
                     )
                 )}
@@ -76,10 +70,7 @@ export default function PublicationDetail() {
           )}
         </div>
         <p>Descripcion: {publication?.description}</p>
-        <span>
-          Fecha:{" "}
-          {publication ? dateformat(publication.date, "PP") : "Sin fecha"}
-        </span>
+        <span>Fecha: {publication ? dateformat(publication.date, "PP") : "Sin fecha"}</span>
         <p> {publication?.type}</p>
       </div>
       {showPopup && (
@@ -91,13 +82,7 @@ export default function PublicationDetail() {
             >
               <FaArrowCircleLeft />
             </button>
-            {selectedImage && (
-              <img
-                src={selectedImage}
-                alt="Popup"
-                className={style.popupImage}
-              />
-            )}
+            {selectedImage && <img src={selectedImage} alt="Popup" className={style.popupImage} />}
             <button
               className={`${style.carouselControl} ${style.carouselControlRight}`}
               onClick={() => handleArrowClick("right")}

@@ -75,7 +75,7 @@ export default function Home({publications, complexes}) {
           </div>
         </div>
         <div className={style.publications}>
-          {filteredPublications?.map((publication, index) => <Publication key={index} publication={publication} isDetailPage={false} />)}
+          {filteredPublications?.map((publication, index) => index > 0 && <Publication key={index} publication={publication} isDetailPage={false} />)}
         </div>
       </section>
       <section className={style.events}>

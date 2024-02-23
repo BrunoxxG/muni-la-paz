@@ -3,11 +3,7 @@ import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
 import useComplex from "../../../hooks/useComplex";
 import style from "./ComplexDetail.module.css";
 import { useLocation } from "react-router-dom";
-
-const image = "/src/assets/images/complejo.jpg";
-const image1 = "/src/assets/images/complejo1.jpg";
-const image2 = "/src/assets/images/complejo2.jpg";
-const image4 = "/src/assets/images/complejo4.jpg";
+import { URL_BASE } from "../../../utils/const";
 
 const ComplexDetail = () => {
   const complex = useComplex();
@@ -15,7 +11,6 @@ const ComplexDetail = () => {
 
   const [showPopup, setShowPopup] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
-  const [images] = useState([image, image1, image2, image4]);
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -31,14 +26,14 @@ const ComplexDetail = () => {
   };
 
   const handleArrowClick = (direction) => {
-    const currentIndex = images.indexOf(selectedImage);
+    const currentIndex = complex.images.indexOf(selectedImage.replace(URL_BASE, ""));
     let newIndex;
     if (direction === "left") {
-      newIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+      newIndex = currentIndex === 0 ? complex.images.length - 1 : currentIndex - 1;
     } else {
-      newIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+      newIndex = currentIndex === complex.images.length - 1 ? 0 : currentIndex + 1;
     }
-    setSelectedImage(images[newIndex]);
+    setSelectedImage(URL_BASE + complex.images[newIndex]);
   };
 
   return (
@@ -51,22 +46,18 @@ const ComplexDetail = () => {
 
         {/* se renderiza si hay imagenes */}
         <div className={style.images}>
-          {complex?.image[0] && (
+          {complex?.images && complex.images.length > 0 && (
             <div className={style.imagesContainer}>
-              <img
-                onClick={() => handleImageClick(image)}
-                src={image}
-                alt={complex.name}
-              />
+              <img onClick={() => handleImageClick(image)} src={URL_BASE + complex.images[0]} alt={complex.name} />
               <div className={style.imgDiv}>
-                {images.map(
+                {complex.images.map(
                   (image, index) =>
                     index !== 0 && (
                       <img
                         key={index}
-                        src={image}
+                        src={URL_BASE + image}
                         alt={`Image ${index + 1}`}
-                        onClick={() => handleImageClick(image)}
+                        onClick={() => handleImageClick(URL_BASE + image)}
                       />
                     )
                 )}
@@ -87,13 +78,7 @@ const ComplexDetail = () => {
             >
               <FaArrowCircleLeft />
             </button>
-            {selectedImage && (
-              <img
-                src={selectedImage}
-                alt="Popup"
-                className={style.popupImage}
-              />
-            )}
+            {selectedImage && <img src={selectedImage} alt="Popup" className={style.popupImage} />}
             <button
               className={`${style.carouselControl} ${style.carouselControlRight}`}
               onClick={() => handleArrowClick("right")}
