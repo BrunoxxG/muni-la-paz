@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       autoIncrement: true,
     },
     type: {
-      type: DataTypes.ENUM("General", "Eventos", "Salud", "Institucional", "Deportes", "Concejo", "Servicios", "Turismo", "Cultura"),
+      type: DataTypes.ENUM("General", "Evento", "Salud", "Institucional", "Deporte", "Concejo", "Servicio", "Turismo", "Cultura"),
       allowNull: false,
     },
     title: {
@@ -21,6 +21,14 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    isEvent: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    eventDate: {
       type: DataTypes.DATE,
       allowNull: false,
     },

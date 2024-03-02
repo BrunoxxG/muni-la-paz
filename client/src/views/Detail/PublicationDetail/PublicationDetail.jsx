@@ -49,7 +49,7 @@ export default function PublicationDetail() {
           {publication?.images && publication.images.length > 0 && (
             <div className={style.imagesContainer}>
               <img
-                onClick={() => handleImageClick(image)}
+                onClick={() => handleImageClick(URL_BASE + publication.images[0])}
                 src={URL_BASE + publication.images[0]}
                 alt={publication.title}
               />

@@ -5,7 +5,7 @@ const generateToken = (id, email, name, rol, passwordChanged) => {
   const payload = { id, email, name};
   const options = { expiresIn: '360m' };
   const token = jwt.sign(payload, process.env.JWT_SECRET, options);
-  if (rol === 'Admin') {
+  if (rol === 'Admin' && passwordChanged) {
     return { token, id, name, rol };
   }
   if (!passwordChanged) {

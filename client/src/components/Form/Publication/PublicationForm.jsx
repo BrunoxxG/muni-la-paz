@@ -10,25 +10,28 @@ import axios from "axios";
 import { getPublications } from "../../../redux/actions";
 import { URL_BASE } from "../../../utils/const";
 import { useDispatch } from "react-redux";
+import { FaUpload } from "react-icons/fa";
 
 export default function PublicationForm({ publication, authUser }) {
   const dispatch = useDispatch();
 
-  const allTypes = ["General", "Eventos", "Salud", "Institucional", "Deportes", "Concejo", "Servicios"];
+  const allTypes = ["General", "Salud", "Institucional", "Deporte", "Concejo", "Servicio"];
   const [input, setInput] = useState({
     title: publication?.title || "",
     description: publication?.description || "",
     images: [],
     imagesPreviews: [],
     type: publication?.type || "General",
+    isEvent: publication?.isEvent || false,
     date: publication?.date ? new Date(publication.date) : new Date(),
+    eventDate: publication?.eventDate ? new Date(publication.eventDate) : new Date(),
   });
 
   let footer;
-  if (input.date) {
+  if (input.eventDate) {
     footer = (
       <p>
-        Fecha seleccionada: <b>{format(input.date, "P")}</b>.
+        Fecha seleccionada: <b>{format(input.eventDate, "P")}</b>.
       </p>
     );
   }
@@ -38,7 +41,7 @@ export default function PublicationForm({ publication, authUser }) {
       if (e instanceof Date) {
         return {
           ...prevInput,
-          date: e,
+          eventDate: e,
         };
       } else if (e.target.type === "file") {
         const selectedFiles = Array.from(e.target.files);
@@ -46,6 +49,11 @@ export default function PublicationForm({ publication, authUser }) {
           ...prevInput,
           images: selectedFiles,
           imagesPreviews: selectedFiles.map((file) => URL.createObjectURL(file)),
+        };
+      } else if (e.target.name === "isEvent") {
+        return {
+          ...prevInput,
+          isEvent: e.target.checked,
         };
       } else {
         return {
@@ -60,6 +68,14 @@ export default function PublicationForm({ publication, authUser }) {
     setInput((prevInput) => {
       const updatedImages = prevInput.images.filter((_, index) => index !== indexImage);
       const updatedPreviews = prevInput.imagesPreviews.filter((_, index) => index !== indexImage);
+
+      Swal.fire({
+        title: "Borrar imagen",
+        text: "Se borro la imagen correctamente",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
       return {
         ...prevInput,
@@ -82,6 +98,14 @@ export default function PublicationForm({ publication, authUser }) {
         ...prevInput.imagesPreviews.slice(0, indexImage),
         ...prevInput.imagesPreviews.slice(indexImage + 1),
       ];
+
+      Swal.fire({
+        title: "Selección imagen principal",
+        text: "Se selecciono correctamente",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
       return {
         ...prevInput,
@@ -106,7 +130,9 @@ export default function PublicationForm({ publication, authUser }) {
         formData.append("title", input.title);
         formData.append("description", input.description);
         formData.append("type", input.type);
+        formData.append("isEvent", input.isEvent);
         formData.append("date", input.date.toISOString());
+        formData.append("eventDate", input.eventDate.toISOString());
 
         input.images.forEach((image) => {
           formData.append(`images`, image);
@@ -116,13 +142,22 @@ export default function PublicationForm({ publication, authUser }) {
             headers: { Authorization: authUser.token },
           });
           if (response.status === 200) {
-            dispatch(getPublications());
             setInput({
               title: "",
               description: "",
               images: [],
+              imagesPreviews: [],
               type: "General",
+              isEvent: false,
               date: new Date(),
+              eventDate: new Date(),
+            });
+            Swal.fire({
+              title: "Creado",
+              text: "Se creo correctamente",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 2500,
             });
             window.location.reload();
           }
@@ -150,18 +185,40 @@ export default function PublicationForm({ publication, authUser }) {
       denyButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
+        const formData = new FormData();
+        formData.append("title", input.title);
+        formData.append("description", input.description);
+        formData.append("type", input.type);
+        formData.append("isEvent", input.isEvent);
+        formData.append("date", input.date.toISOString());
+        formData.append("eventDate", input.eventDate.toISOString());
+
+        if (input.images.length) {
+          input.images.forEach((image) => {
+            formData.append(`images`, image);
+          });
+        }
         try {
-          const response = await axios.patch(`${URL_BASE}/publications/${publication.id}`, input, {
+          const response = await axios.patch(`${URL_BASE}/publications/${publication.id}`, formData, {
             headers: { Authorization: authUser.token },
           });
           if (response.status === 200) {
-            dispatch(getPublications());
             setInput({
               title: "",
               description: "",
-              image: "prueba",
+              images: [],
+              imagesPreviews: [],
               type: "General",
+              isEvent: false,
               date: new Date(),
+              eventDate: new Date(),
+            });
+            Swal.fire({
+              title: "Actulaizado",
+              text: "Se actualizo correctamente",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 2500,
             });
             window.location.reload();
           }
@@ -181,84 +238,20 @@ export default function PublicationForm({ publication, authUser }) {
   return (
     <div>
       {publication ? (
-        <div>
-          <h1>FORM EDIT PUBLICATION</h1>
-          <form onSubmit={handleEdit} className={style.form} encType="multipart/form-data">
-            <div className=" w-2/5">
-              <label className="block mb-2 text-m font-medium text-gray-900 ">Titulo</label>
-              <input
-                type="text"
-                name="title"
-                value={input.title}
-                onChange={handleChange}
-                className="bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                placeholder="Your product name"
-              />
-              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
-            </div>
-            <div className=" w-2/5">
-              <label className="block mb-2 text-m font-medium text-gray-900 ">Descripción</label>
-              <input
-                type="text"
-                name="description"
-                value={input.description}
-                onChange={handleChange}
-                className="bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                placeholder="Your product name"
-              />
-              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
-            </div>
-            <div className=" w-2/5">
-              <label className="block mb-2 text-m font-medium text-gray-900 ">Tipo</label>
-              <select
-                className="bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                name="type"
-                value={input.type}
-                onChange={handleChange}
-              >
-                {allTypes?.map((type, index) => {
-                  return <option key={index}>{type}</option>;
-                })}
-              </select>
-              {/* {errors.category && <p className=" text-red-600 text-sm font-semibold ">{errors.category}</p>} */}
-            </div>
-            {input.type === "Eventos" && (
-              <div className=" w-2/5">
-                <DayPicker
-                  mode="single"
-                  locale={es}
-                  onDayClick={handleChange}
-                  defaultMonth={input.date}
-                  selected={input.date}
-                  footer={footer}
-                />
-                {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
-              </div>
-            )}
-            <div className=" w-2/5">
-              <label className="block mb-2 text-m font-medium text-gray-900 ">Descripción</label>
-              <input
-                type="file"
-                name="images"
-                multiple
-                value={input.images}
-                onChange={handleChange}
-                className="bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                placeholder="Your product name"
-              />
-              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
-            </div>
-            <button>EDITAR</button>
-          </form>
-        </div>
-      ) : (
         <div className={style.content}>
-          <h2>Crear Publicación</h2>
-          <form onSubmit={handleCreate} className={style.form} encType="multipart/form-data">
-            <div className={style.divInput}>
+          <h1>Editar Publicación</h1>
+          <form onSubmit={handleEdit} className={style.form} encType="multipart/form-data">
+          <div className={style.divInput}>
               <label>
                 Titulo{" "}
-                <input type="text" name="title" value={input.title} onChange={handleChange} placeholder="Titulo" className={style.inputText} />
+                <input
+                  type="text"
+                  name="title"
+                  value={input.title}
+                  onChange={handleChange}
+                  placeholder="Titulo"
+                  className={style.inputText}
+                />
               </label>
 
               {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
@@ -277,9 +270,10 @@ export default function PublicationForm({ publication, authUser }) {
 
               {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
             </div>
+
             <div className={style.divInput}>
               <label>
-                Tipo{" "}
+                Elegir el tipo de publicación
                 <select name="type" value={input.type} onChange={handleChange}>
                   {allTypes?.map((type, index) => {
                     return <option key={index}>{type}</option>;
@@ -287,44 +281,181 @@ export default function PublicationForm({ publication, authUser }) {
                 </select>
               </label>
             </div>
-            {input.type === "Eventos" && (
+
+            <div className={style.divInput}>
+              <label className={style.isEventLabel}>
+                Marcar si es un Evento
+                <input type="checkbox" name="isEvent" checked={input.isEvent} className={style.inputCheckbox} onChange={handleChange} />
+              </label>
+            </div>
+
+            {input.isEvent && (
               <div className={style.divInput}>
                 {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
-
+                <label>Seleccione fecha del evento</label>
                 <DayPicker
                   mode="single"
                   locale={es}
                   onDayClick={handleChange}
-                  defaultMonth={input.date}
-                  selected={input.date}
+                  defaultMonth={input.eventDate}
+                  selected={input.eventDate}
                   footer={footer}
                   className={style.dayPicker}
+                  fromDate={new Date()}
                 />
               </div>
             )}
 
             <div className={style.divInput}>
-              <label>
-                Imágenes
-                <input type="file" multiple className="hidden" onChange={handleChange} />
-              </label>
-              {input.imagesPreviews &&
-                input.imagesPreviews.map((link, index) => (
-                  <div key={index}>
-                    <img src={link} alt="" />
-                    <button type="button" onClick={() => removePhoto(index)}>
-                      eliminar
-                    </button>
-                    {index !== 0 && (
-                      <button type="button" onClick={() => selectAsMainPhoto(index)}>
-                        hacer principal
-                      </button>
-                    )}
-                  </div>
-                ))}
+              {input.type === "Concejo" ? (
+                <label>
+                  Archivo PDF
+                  <input type="file" className={style.inputFile} onChange={handleChange} />
+                </label>
+              ) : (
+                <>
+                  <label>
+                    Imágenes
+                    <input type="file" multiple className={style.inputFile} onChange={handleChange} />
+                    <FaUpload className={style.icon}/>
+                  </label>
+                  {input.imagesPreviews && (
+                    <div className={style.gridImages}>
+                      {input.imagesPreviews.map((link, index) => (
+                        <div key={index} className={style.divImage}>
+                          <img src={link} alt={`imagen ${index}`} />
+                          <div className={style.buttonsImage}>
+                            <button type="button" className={style.btnDelete} onClick={() => removePhoto(index)}>
+                              eliminar
+                            </button>
+                            {index !== 0 && (
+                              <button type="button" className={style.btn} onClick={() => selectAsMainPhoto(index)}>
+                                hacer principal
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
             </div>
 
-            <button type="submit">CREAR</button>
+            <button type="submit" className={style.btn}>
+              EDITAR
+            </button>
+          </form>
+        </div>
+      ) : (
+        <div className={style.content}>
+          <h2>Crear Publicación</h2>
+          <form onSubmit={handleCreate} className={style.form} encType="multipart/form-data">
+            <div className={style.divInput}>
+              <label>
+                Titulo{" "}
+                <input
+                  type="text"
+                  name="title"
+                  value={input.title}
+                  onChange={handleChange}
+                  placeholder="Titulo"
+                  className={style.inputText}
+                />
+              </label>
+
+              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+            </div>
+            <div className={style.divInput}>
+              <label>
+                Descripción{" "}
+                <textarea
+                  name="description"
+                  value={input.description}
+                  onChange={handleChange}
+                  placeholder="Descripción"
+                  className={style.inputDescription}
+                />
+              </label>
+
+              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+            </div>
+
+            <div className={style.divInput}>
+              <label>
+                Elegir el tipo de publicación
+                <select name="type" value={input.type} onChange={handleChange}>
+                  {allTypes?.map((type, index) => {
+                    return <option key={index}>{type}</option>;
+                  })}
+                </select>
+              </label>
+            </div>
+
+            <div className={style.divInput}>
+              <label className={style.isEventLabel}>
+                Marcar si es un Evento
+                <input type="checkbox" name="isEvent" checked={input.isEvent} className={style.inputCheckbox} onChange={handleChange} />
+              </label>
+            </div>
+
+            {input.isEvent && (
+              <div className={style.divInput}>
+                {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+                <label>Seleccione fecha del evento</label>
+                <DayPicker
+                  mode="single"
+                  locale={es}
+                  onDayClick={handleChange}
+                  defaultMonth={input.eventDate}
+                  selected={input.eventDate}
+                  footer={footer}
+                  className={style.dayPicker}
+                  fromDate={new Date()}
+                />
+              </div>
+            )}
+
+            <div className={style.divInput}>
+              {input.type === "Concejo" ? (
+                <label>
+                  Click para subir Archivo PDF
+                  <input type="file" className={style.inputFile} onChange={handleChange} />
+                  <FaUpload className={style.icon}/>
+                </label>
+              ) : (
+                <>
+                  <label>
+                    Click para subir Imágenes
+                    <input type="file" multiple className={style.inputFile} onChange={handleChange} />
+                    <FaUpload className={style.icon}/>
+                  </label>
+                  {input.imagesPreviews && (
+                    <div className={style.gridImages}>
+                      {input.imagesPreviews.map((link, index) => (
+                        <div key={index} className={style.divImage}>
+                          <img src={link} alt={`imagen ${index}`} />
+                          <div className={style.buttonsImage}>
+                            <button type="button" className={style.btnDelete} onClick={() => removePhoto(index)}>
+                              eliminar
+                            </button>
+                            {index !== 0 && (
+                              <button type="button" className={style.btn} onClick={() => selectAsMainPhoto(index)}>
+                                hacer principal
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+
+            <button type="submit" className={style.btn}>
+              CREAR
+            </button>
           </form>
         </div>
       )}

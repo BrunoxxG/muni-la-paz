@@ -13,8 +13,8 @@ main {
   display: flex;
   justify-content: space-between;
   & .buttonNavCenter {
-    background-color: rgb(117, 170, 219);
-    color: white;
+    background-color: white;
+    color: var(--main-color);
     font-size: 20px;
     width: calc(100% / 7);
     height: 200px;
@@ -26,17 +26,17 @@ main {
     transition: 0.4s ease-in-out;
     & span {
       font-weight: 500;
-      color: white;
+      color: black;
       transition: 0.4s ease-in-out;
     }
     &:hover {
-      background-color: white;
-      color: rgb(117, 170, 219);
+      background-color: var(--main-color);
+      color: white;
       transform: translate3d(0px, -24px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg)
         skew(0deg, 0deg);
       transform-style: preserve-3d;
       & span {
-        color: rgb(117, 170, 219);
+        color: white;
       }
     }
   }

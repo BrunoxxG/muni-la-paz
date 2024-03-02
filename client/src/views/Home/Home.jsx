@@ -7,14 +7,20 @@ import { format, setDefaultOptions } from "date-fns";
 import { es } from "date-fns/locale";
 setDefaultOptions({ locale: es });
 
-
 import style from "./Home.module.css";
 import { URL_BASE } from "../../utils/const";
 
-export default function Home({publications, complexes}) {
-  const filteredPublications = publications.filter((publication) => publication.check && publication.type !== "Eventos").slice(0, 4);
+export default function Home({ publications, complexes }) {
+  const filteredPublications = publications
+    .filter((publication) => publication.check && !publication.isEvent)
+    .slice(0, 4);
   const filteredComplexes = complexes.filter((complexes) => complexes.check).slice(0, 3);
-  const events = publications.filter((publication) => publication.check && publication.type === "Deportes").slice(0, 4);
+  const events = publications
+    .filter(
+      (publication) =>
+        publication.check && publication.isEvent && new Date(publication.eventDate) > new Date()
+    )
+    .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
 
   return (
     <main>
@@ -38,7 +44,7 @@ export default function Home({publications, complexes}) {
           <MdSportsSoccer size={70} />
           <span>Deportes</span>
         </Link>
-        <Link to='/noticias' className={style.buttonNavCenter}>
+        <Link to="/noticias" className={style.buttonNavCenter}>
           <MdOutlineLibraryBooks size={70} />
           <span>Noticias</span>
         </Link>
@@ -57,9 +63,9 @@ export default function Home({publications, complexes}) {
             Más noticias <FaArrowRight size={25} />
           </Link>
         </div>
-        <div className={style.firstNotice}>
+        <Link to={`/noticia/${filteredPublications[0]?.id}`} className={style.firstNotice}>
           <div className={style.firstNoticeImg}>
-            <img src={ URL_BASE + filteredPublications[0]?.images[0]} alt={filteredPublications[0]?.id} />
+            <img src={URL_BASE + filteredPublications[0]?.images[0]} alt={filteredPublications[0]?.id} />
           </div>
           <div className={style.firstNoticeText}>
             <div className={style.firstNoticeTextTop}>
@@ -73,9 +79,12 @@ export default function Home({publications, complexes}) {
               <label>LEER MÁS</label>
             </Link>
           </div>
-        </div>
+        </Link>
         <div className={style.publications}>
-          {filteredPublications?.map((publication, index) => index > 0 && <Publication key={index} publication={publication} isDetailPage={false} />)}
+          {filteredPublications?.map(
+            (publication, index) =>
+              index > 0 && <Publication key={index} publication={publication} isDetailPage={false} />
+          )}
         </div>
       </section>
       <section className={style.events}>
@@ -95,13 +104,13 @@ export default function Home({publications, complexes}) {
               <FaArrowRight size={30} />
             </Link>
             <div className={style.cardEvents}>
-              {events?.map((event, index) => 
+              {events?.map((event, index) => (
                 <Link to={`/noticia/${event?.id}`} key={index} className={style.eventCard}>
-                  <small>{format(event.date, "PP")}</small>
+                  <small>{format(event.eventDate, "PP")}</small>
                   <h3>{event.title}</h3>
                   <img src={URL_BASE + event.images[0]} alt={event.title} />
                 </Link>
-              )}
+              ))}
             </div>
           </div>
         </div>
@@ -112,12 +121,15 @@ export default function Home({publications, complexes}) {
             Alojamientos<br></br>
             <span>En La Pedania</span>
           </h2>
-          <Link to="/alojamientos" >
-            Más alojamientos<FaArrowRight size={25} />
+          <Link to="/alojamientos">
+            Más alojamientos
+            <FaArrowRight size={25} />
           </Link>
         </div>
         <div className={style.publications}>
-          {filteredComplexes?.map((complex, index) => <Publication key={index} complex={complex} isDetailPage={false} />)}
+          {filteredComplexes?.map((complex, index) => (
+            <Publication key={index} complex={complex} isDetailPage={false} />
+          ))}
         </div>
       </section>
     </main>

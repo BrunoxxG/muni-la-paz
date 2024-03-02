@@ -37,12 +37,12 @@ export default function Panel({ authUser, notifications, publications, complexes
   if (viewForm.visible) {
     return (
       <div>
+        <button className={style.btn} name="cancel" onClick={handleForm}>
+          CANCELAR
+        </button>
         {viewForm.form === "publication" && <PublicationForm publication={viewForm.data} authUser={authUser} />}
         {viewForm.form === "complex" && <ComplexForm complex={viewForm.data} authUser={authUser} />}
         {viewForm.form === "user" && <UserForm user={viewForm.data} authUser={authUser} />}
-        <button className={style.btnAccess} name="cancel" onClick={handleForm}>
-          <p>CANCELAR</p>
-        </button>
       </div>
     );
   }
@@ -67,7 +67,27 @@ export default function Panel({ authUser, notifications, publications, complexes
         </div>
       </div>
       <div className={style.panelSection}>
-        <div className={style.leftDiv}>
+      <div className={style.topDiv}>
+          <div className={style.heading}>
+            <h3>Accesos Rápidos</h3>
+          </div>
+          <div className={style.buttonsAccess}>
+            <button className={style.btnAccess} name="publication" onClick={handleForm}>
+            <IoIosAddCircle className={style.icon} /><p>CREAR PUBLICACION</p>
+            </button>
+
+            <button className={style.btnAccess} name="complex" onClick={handleForm}>
+            <IoIosAddCircle className={style.icon} /><p>CREAR ALOJAMIENTO</p>
+            </button>
+
+            {authUser.rol && (
+              <button className={style.btnAccess} name="user" onClick={handleForm}>
+                <IoIosAddCircle className={style.icon} /><p>CREAR USUARIO</p>
+              </button>
+            )}
+          </div>
+        </div>
+        <div className={style.bottomDiv}>
           <div className={style.listDiv}>
             <div className={style.heading}>
               <h3>Publicaciones en revisión</h3>
@@ -115,26 +135,6 @@ export default function Panel({ authUser, notifications, publications, complexes
               )}
             </div>
           )}
-        </div>
-        <div className={style.rightDiv}>
-          <div className={style.heading}>
-            <h3>Accesos Rápidos</h3>
-          </div>
-          <div className={style.buttonsAccess}>
-            <button className={style.btnAccess} name="publication" onClick={handleForm}>
-              <p>CREAR PUBLICACION</p> <IoIosAddCircle className={style.icon} />
-            </button>
-
-            <button className={style.btnAccess} name="complex" onClick={handleForm}>
-              <p>CREAR ALOJAMIENTO</p> <IoIosAddCircle className={style.icon} />
-            </button>
-
-            {authUser.rol && (
-              <button className={style.btnAccess} name="user" onClick={handleForm}>
-                <p>CREAR USUARIO</p> <IoIosAddCircle className={style.icon} />
-              </button>
-            )}
-          </div>
         </div>
       </div>
     </div>

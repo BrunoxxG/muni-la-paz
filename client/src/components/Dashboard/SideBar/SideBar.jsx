@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
 import { FaUsers, FaUser } from "react-icons/fa";
+import { VscChromeClose } from "react-icons/vsc";
 import { MdDashboardCustomize, MdCabin, MdOutlineLibraryBooks } from "react-icons/md";
 import logo from "../../../assets/logo.png";
 import style from "./SideBar.module.css";
 
 export default function SideBar({ user, signOut, onLinkClick }) {
-  const [activeLink, setActiveLink] = useState('');
+  const [activeLink, setActiveLink] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleLinkClick = (link) => {
     if (onLinkClick) {
@@ -65,16 +67,24 @@ export default function SideBar({ user, signOut, onLinkClick }) {
         </ul>
       </div>
       <div className={style.sideBarCard}>
-        <div className={style.circle}></div>
         <FaUser className={style.icon} />
-        <div className={style.cardContent}>
-          <h3>{user.name}</h3>
-          {user.rol && <h4>{user.rol}</h4>}
-          <p>{user.email}</p>
-          <button onClick={signOut} className={style.btn}>
-            Salir
-          </button>
-        </div>
+        <h3>{user.name}</h3>
+        {user.rol && <h4>{user.rol}</h4>}
+        <button onClick={signOut} className={style.btn}>
+          Salir
+        </button>
+      </div>
+      <button className={`${style.userButton} ${isOpen && style.open}`} onClick={() => setIsOpen(!isOpen)}>
+        <FaUser className={`${style.icon} ${style.userIcon} ${isOpen && style.open}`} />
+        <VscChromeClose className={`${style.icon} ${style.closeIcon} ${isOpen && style.open}`} />
+      </button>
+      <div className={`${style.sideBarCardMobile} ${isOpen && style.open}`}>
+        <FaUser className={style.icon} />
+        <h3>{user.name}</h3>
+        {user.rol && <h4>{user.rol}</h4>}
+        <button onClick={signOut} className={style.btn}>
+          Salir
+        </button>
       </div>
     </div>
   );

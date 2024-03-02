@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: center;
   margin: auto;
-  padding: 1rem;
 }
 
 .container {
@@ -94,4 +93,20 @@
 /* OCULTAR SCROLLBAR */
 ::-webkit-scrollbar {
   display: none;
+}
+
+
+/*---MEDIA QUERIES---*/
+@media screen and (max-width: 1000px) {
+  
+  
+  
+}
+
+@media screen and (max-width: 500px) {
+  .mainContent {
+    padding: 0.5rem;
+  }
+  
+  
 }
