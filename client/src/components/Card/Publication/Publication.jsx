@@ -11,8 +11,7 @@ import { format, setDefaultOptions } from "date-fns";
 import { es } from "date-fns/locale";
 setDefaultOptions({ locale: es });
 
-export default function Publication({ publication, complex, authUser, handleForm, isDetailPage }) {
-
+export default function Publication({ publication, complex, authUser, handleForm }) {
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -107,13 +106,20 @@ export default function Publication({ publication, complex, authUser, handleForm
           <p>{publication.description}</p>
         </div>
         <div className={style.cardFooter}>
-          <span>{publication.type}</span>
+          <div className={style.types}>
+              <span >{publication.type}</span>
+              {publication.isEvent && <span>EVENTO</span>}
+          </div>
           <p>LEER MÁS</p>
         </div>
       </Link>
       {authUser && (
         <div className={style.buttons}>
-          <button className={`${style.btn} ${style.edit}`} name="publication" onClick={(event) => handleForm(event, publication)}>
+          <button
+            className={`${style.btn} ${style.edit}`}
+            name="publication"
+            onClick={(event) => handleForm(event, publication)}
+          >
             <MdEdit />
           </button>
 
@@ -155,7 +161,11 @@ export default function Publication({ publication, complex, authUser, handleForm
       </Link>
       {authUser && (
         <div className={style.buttons}>
-          <button className={`${style.btn} ${style.edit}`} name="complex" onClick={(event) => handleForm(event, complex)}>
+          <button
+            className={`${style.btn} ${style.edit}`}
+            name="complex"
+            onClick={(event) => handleForm(event, complex)}
+          >
             <MdEdit />
           </button>
 

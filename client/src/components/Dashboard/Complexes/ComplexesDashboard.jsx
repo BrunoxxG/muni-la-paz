@@ -40,10 +40,10 @@ export default function ComplexesDashboard({complexes, authUser}) {
   if (viewForm.visible) {
     return (
       <div>
-        <ComplexForm publication={viewForm.data} authUser={authUser} />
-        <button className={style.btnAccess} name="cancel" onClick={handleForm}>
-          <p>CANCELAR</p>
+        <button className={style.btn} name="cancel" onClick={handleForm}>
+          CANCELAR
         </button>
+        <ComplexForm complex={viewForm.data} authUser={authUser} />
       </div>
     );
   }

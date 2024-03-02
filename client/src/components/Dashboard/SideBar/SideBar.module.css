@@ -11,7 +11,7 @@
   .logoDiv {
     text-align: center;
     color: var(--main-color);
-    padding: 1.5rem 1.5rem 0;
+    padding: 0.5rem 0.5rem 0;
     cursor: pointer;
     img {
       max-width: 100px;
@@ -33,12 +33,12 @@
       gap: 1.5rem;
       .listItem {
         cursor: pointer;
-        padding: .2rem 1.5rem;
+        padding: 0 1rem;
         width: 100%;
         position: relative;
         &::before {
           position: absolute;
-          content: '';
+          content: "";
           height: 0%;
           left: 0;
           width: 5px;
@@ -49,7 +49,7 @@
         }
         &.active::before {
           height: 100%;
-          transition: .3s ease;
+          transition: 0.3s ease;
         }
         &.active .menuLink {
           color: var(--main-color);
@@ -59,85 +59,68 @@
           align-items: center;
           color: rgb(190, 190, 190);
           font-weight: 500;
-          transition: .3s ease;
-          .icon {
-            margin-right: .5rem;
+          transition: 0.3s ease;
+          span {
+            margin-left: 0.5rem;
           }
         }
         &:hover .menuLink {
           color: var(--main-color);
-          transition: .3 ease;
+          transition: 0.3 ease;
         }
         &:hover::before {
           height: 100%;
-          transition: .3s ease;
+          transition: 0.3s ease;
         }
       }
     }
   }
 
-  .sideBarCard {
-    width: 100%;
-    padding: 1rem;
+  .sideBarCard,
+  .sideBarCardMobile {
     text-align: center;
-    position: relative;
+    margin: 1rem;
+    padding: 1rem;
     margin-top: auto;
     color: white;
-    .circle {
-      position: absolute;
-      background: var(--main-color);
-      border: 10px solid white;
-      height: 68px;
-      width: 68px;
-      border-radius: 50%;
-      top: -25px;
-      right: 50%;
-      transform: translateX(50%);
-      z-index: 100;
-    }
+    background: var(--main-color);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
     .icon {
-      position: absolute;
-      background: transparent;
-      font-size: 2rem;
-      border-radius: 50%;
-      top: -8px;
-      right: 50%;
-      transform: translateX(50%);
-      z-index: 101;
+      font-size: 1.75rem;
     }
 
-    .cardContent {
-      position: relative;
-      padding: 1rem;
-      background: var(--main-color);
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      h3{
-        margin-top: 2rem;
-        font-size: 1.5rem;
-        font-weight: 800;
-      }
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
     }
 
     .btn {
       font-weight: 700;
-      &:hover{
+      &:hover {
         color: white;
         background-color: red;
       }
     }
+  }
 
+  .userButton {
+    display: none;
+
+    .closeIcon {
+      display: none;
+    }
+  }
+
+  .sideBarCardMobile {
+    display: none;
   }
 }
-
-
-
-
-
 
 /*---DEFAULT SYLES---*/
 
@@ -169,6 +152,108 @@ img {
   cursor: pointer;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgb(190, 190, 190);
-  padding: .8rem 1rem;
+  padding: 0.8rem 1rem;
   color: black;
+}
+
+/*---MEDIA QUERIES---*/
+@media screen and (max-width: 1280px) {
+  .sideBar {
+    .sideBarCard {
+      display: none;
+    }
+
+    .userButton {
+      margin: auto auto 1rem auto;
+      display: flex;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background-color: var(--main-color);
+      color: white;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+
+
+      .userIcon.open{
+        display: none;
+      }
+
+      .closeIcon.open {
+        display: flex;
+      }
+    }
+    .userButton:hover {
+      background-color: white;
+      color: var(--main-color);
+      border: 1px solid var(--main-color);
+    }
+
+    .sideBarCardMobile {
+        z-index: 10;
+        width: auto;
+        border: 1px solid rgba(242, 242, 242, 0.1);
+        display: none;
+        position: fixed;
+        top: auto;
+        bottom: 1rem;
+        left: 20%;
+        right: auto;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    .sideBarCardMobile.open {
+      display: flex;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .sideBar {
+    .logoDiv {
+      h2 {
+        font-size: 1rem;
+      }
+    }
+
+    .menuDiv {
+      text-align: center;
+      .menuList {
+        .listItem {
+          .menuLink {
+            justify-content: center;
+            span {
+              display: none;
+            }
+            .icon {
+              font-size: 1.75rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sideBar {
+    .logoDiv {
+      h2 {
+        display: none;
+      }
+    }
+
+    .menuDiv {
+      .divTitle {
+        display: none;
+      }
+    }
+
+    .userButton {
+      width: 40px;
+      height: 40px;
+    }
+  }
 }

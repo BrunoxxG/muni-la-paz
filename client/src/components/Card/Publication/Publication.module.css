@@ -12,9 +12,9 @@
     flex-direction: column;
 
     & img {
-      /* max-width: 300px; */
+      width: auto;
       height: 100%;
-      max-height: 250px;
+      height: 262.5px;
       object-fit: cover;
       aspect-ratio: 1 / 1;
     }
@@ -64,6 +64,11 @@
       align-items: center;
       padding: 0.5rem 1rem;
       border-top: 2px solid var(--main-bg-color);
+
+      .types {
+        display: flex;
+        gap: 1rem;
+      }
 
       p {
         background-color: var(--button-bg-color);
@@ -131,4 +136,36 @@
     background: rgba(0, 128, 0, 0.5);
     color: black;
   }
+}
+
+
+
+/*---MEDIA QUERIES---*/
+@media screen and (max-width: 600px){
+  .card {
+    .data {
+      & img {
+        height: 210px;
+      }
+
+      .cardText {
+        padding: 15px;
+  
+        & h3 {
+          font-size: 20px;
+        }
+  
+        & p {
+          font-size: 14px;
+          margin-bottom: 0;
+        }
+      }
+  
+      .cardFooter {
+        font-size: 12px;
+        padding: 0.25rem 0.5rem;
+      }
+    }
+  }
+  
 }

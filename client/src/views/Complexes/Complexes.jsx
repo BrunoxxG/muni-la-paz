@@ -1,20 +1,15 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaCircleArrowLeft } from "react-icons/fa6";
 
 import style from "./Complexes.module.css";
-import { getComplexes, getComplexesByName } from "../../redux/actions";
+import { getComplexesByName } from "../../redux/actions";
 import { Publication, SearchBar } from "../../components";
 
-export default function Complexes() {
+export default function Complexes({complexes}) {
 
   const dispatch = useDispatch();
-  const allComplexes = useSelector((state) => state.complexes);
-
-  useEffect(() => {
-    dispatch(getComplexes());
-  }, []);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -29,7 +24,7 @@ export default function Complexes() {
         <span><FaCircleArrowLeft size={30}/></span>
       </Link>
       <div className={style.grid}>
-        {allComplexes?.map((complex, index) => (
+        {complexes?.map((complex, index) => (
           <Publication key={index} complex={complex} />
         ))}
       </div>

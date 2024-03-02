@@ -40,10 +40,10 @@ export default function UsersDashboard({ users, authUser }) {
   if (viewForm.visible) {
     return (
       <div>
-        <UserForm publication={viewForm.data} authUser={authUser} />
-        <button className={style.btnAccess} name="cancel" onClick={handleForm}>
-          <p>CANCELAR</p>
+        <button className={style.btn} name="cancel" onClick={handleForm}>
+          CANCELAR
         </button>
+        <UserForm user={viewForm.data} authUser={authUser} />
       </div>
     );
   }

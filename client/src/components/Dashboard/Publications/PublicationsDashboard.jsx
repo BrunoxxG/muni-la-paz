@@ -40,10 +40,10 @@ export default function PublicationsDasboard({ publications, authUser }) {
   if (viewForm.visible) {
     return (
       <div>
-        <PublicationForm publication={viewForm.data} authUser={authUser} />
-        <button className={style.btnAccess} name="cancel" onClick={handleForm}>
-          <p>CANCELAR</p>
+        <button className={style.btn} name="cancel" onClick={handleForm}>
+          CANCELAR
         </button>
+        <PublicationForm publication={viewForm.data} authUser={authUser} />
       </div>
     );
   }

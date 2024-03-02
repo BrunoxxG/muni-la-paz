@@ -25,6 +25,7 @@ function App() {
   const institutional = allPublications.filter((publication) => publication.type === 'Institucional' && publication.check);
   const advice = allPublications.filter((publication) => publication.type === 'Concejo' && publication.check);
 
+  const complexes = allComplexes.filter((complex) => complex.check);
   
   useEffect(() => {
     dispatch(getComplexes()).then(() => dispatch(getPublications()));
@@ -37,7 +38,7 @@ function App() {
         <Route exact path="/" element={<Home publications={allPublications} complexes={allComplexes}/>} />
         <Route exact path="/contacto" element={<Contacts />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/alojamientos" element={<Complexes complexes={allComplexes}/>} />
+        <Route exact path="/alojamientos" element={<Complexes complexes={complexes}/>} />
         <Route exact path="/alojamientos/:id" element={<ComplexDetail />} />
         <Route exact path="/noticia/:id" element={<PublicationDetail />} />
         <Route exact path="/cultura" element={<Publications publications={culture}/>} />

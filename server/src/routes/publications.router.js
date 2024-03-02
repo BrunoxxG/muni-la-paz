@@ -8,7 +8,7 @@ router.get('/', getPublicationsHandler);
 router.get('/title', getPublicationsByTitleHandler);
 router.get('/:id', getPublicationByIdHandler);
 router.post('/', verifyToken, upload, postPublicationHandler);
-router.patch('/:id', verifyToken, updatePublicationHandler);
+router.patch('/:id', verifyToken, upload, updatePublicationHandler);
 router.delete('/:id', verifyToken, deletePublicationHandler);
 
 module.exports = router;

@@ -8,7 +8,7 @@ module.exports = async (name) => {
         [Op.iLike]: `%${name}%`,
       },
     },
-    order: [['id', 'ASC']],
+    order: [['id', 'DESC']],
   });
 
   if (complexes.length === 0) throw new Error('There is no complexes with that name');
