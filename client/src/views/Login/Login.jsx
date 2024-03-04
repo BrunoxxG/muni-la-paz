@@ -3,7 +3,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
-import { URL_BASE } from "../../utils/const";
+import { VITE_BACKEND_URL } from "../../utils/const";
 import Swal from "sweetalert2";
 import { FaUserShield } from "react-icons/fa";
 import { BsFillShieldLockFill } from "react-icons/bs";
@@ -32,7 +32,7 @@ export default function Login() {
   const handleLogIn = async function (event) {
     event.preventDefault();
     try {
-      const response = await axios.post(`${URL_BASE}/users/login`, input);
+      const response = await axios.post(`${VITE_BACKEND_URL}/users/login`, input);
       if (response.status === 200) {
         const userState = {
           email: input.email,

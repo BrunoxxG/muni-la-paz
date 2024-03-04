@@ -26,7 +26,7 @@ export default function Register() {
   const handleLogIn = async function (event) {
     // event.preventDefault();
     // try {
-    //   const response = await axios.post(`${URL_BASE}/login`, input);
+    //   const response = await axios.post(`${VITE_BACKEND_URL}/login`, input);
     //   if (response.status === 200) {
     //     console.log(response.data);
     //     Cookies.set("accessTrue", response.data.token, {

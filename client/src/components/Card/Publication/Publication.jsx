@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { URL_BASE } from "../../../utils/const";
+const { VITE_BACKEND_URL } = import.meta.env;
 import { MdEdit, MdDelete, MdCheck } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import style from "./Publication.module.css";
@@ -27,7 +27,7 @@ export default function Publication({ publication, complex, authUser, handleForm
       if (result.isConfirmed) {
         if (type === "publication") {
           try {
-            const response = await axios.delete(`${URL_BASE}/publications/${publication.id}`, {
+            const response = await axios.delete(`${VITE_BACKEND_URL}/publications/${publication.id}`, {
               headers: { Authorization: authUser.token },
             });
             if (response.status === 200) {
@@ -38,7 +38,7 @@ export default function Publication({ publication, complex, authUser, handleForm
           }
         } else {
           try {
-            const response = await axios.delete(`${URL_BASE}/complexes/${complex.id}`, {
+            const response = await axios.delete(`${VITE_BACKEND_URL}/complexes/${complex.id}`, {
               headers: { Authorization: authUser.token },
             });
             if (response.status === 200) {
@@ -68,7 +68,7 @@ export default function Publication({ publication, complex, authUser, handleForm
         };
         if (type === "publication") {
           try {
-            const response = await axios.patch(`${URL_BASE}/publications/${publication.id}`, updateCheck, {
+            const response = await axios.patch(`${VITE_BACKEND_URL}/publications/${publication.id}`, updateCheck, {
               headers: { Authorization: authUser.token },
             });
             if (response.status === 200) {
@@ -79,7 +79,7 @@ export default function Publication({ publication, complex, authUser, handleForm
           }
         } else {
           try {
-            const response = await axios.patch(`${URL_BASE}/complexes/${complex.id}`, updateCheck, {
+            const response = await axios.patch(`${VITE_BACKEND_URL}/complexes/${complex.id}`, updateCheck, {
               headers: { Authorization: authUser.token },
             });
             if (response.status === 200) {
@@ -99,7 +99,7 @@ export default function Publication({ publication, complex, authUser, handleForm
         target={location.pathname === "/dashboard" ? "_blank" : "_self"}
         className={style.data}
       >
-        <img src={URL_BASE + publication.images[0]} alt={publication.title} />
+        <img src={VITE_BACKEND_URL + publication.images[0]} alt={publication.title} />
         <div className={style.cardText}>
           <small>{format(publication.date, "PP")}</small>
           <h3>{publication.title}</h3>
@@ -149,7 +149,7 @@ export default function Publication({ publication, complex, authUser, handleForm
         target={location.pathname === "/dashboard" ? "_blank" : "_self"}
         className={style.data}
       >
-        <img src={URL_BASE + complex.images[0]} alt={complex.name} />
+        <img src={VITE_BACKEND_URL + complex.images[0]} alt={complex.name} />
         <div className={style.cardText}>
           <h3>{complex.name}</h3>
           <p>{complex.address}</p>
