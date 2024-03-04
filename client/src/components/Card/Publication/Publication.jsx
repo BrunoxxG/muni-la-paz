@@ -108,7 +108,7 @@ export default function Publication({ publication, complex, authUser, handleForm
         <div className={style.cardFooter}>
           <div className={style.types}>
               <span >{publication.type}</span>
-              {publication.isEvent && <span>EVENTO</span>}
+              {publication.isEvent && <span>&nbsp;/ EVENTO</span>}
           </div>
           <p>LEER MÁS</p>
         </div>

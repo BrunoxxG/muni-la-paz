@@ -44,7 +44,7 @@ function App() {
         <Route exact path="/cultura" element={<Publications publications={culture}/>} />
         <Route exact path="/salud" element={<Publications publications={health}/>} />
         <Route exact path="/deportes" element={<Publications publications={deportes}/>} />
-        <Route exact path="/noticias" element={<Publications publications={general}/>} />
+        <Route exact path="/noticias" element={<Publications />} />
         <Route exact path="/eventos" element={<Publications publications={events} />} />
         <Route exact path="/servicios" element={<Publications publications={services} />} />
         <Route exact path="/turismo" element={<Publications publications={tourism} />} />

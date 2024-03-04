@@ -6,7 +6,7 @@ import style from "./SearchBar.module.css";
 export default function SearchBar({ handleChange }) {
   return (
     <div className={style.searchBar}>
-      <input type="search" onChange={handleChange} placeholder="Buscar" />
+      <input type="search" name="search" onChange={handleChange} placeholder="BUSCAR POR PALABRA CLAVE" />
       <BiSearchAlt className={style.icon} />
     </div>
   );

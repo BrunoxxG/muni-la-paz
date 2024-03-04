@@ -20,6 +20,11 @@ export default function NavBar() {
           </Link>
         </div>
         <div className={style.centerNav}>
+          <div className={style.buttonLinkMobile} onClick={() => setIsOpenMenu(!isOpenMenu)}>
+            <HiOutlineMenu className={`${style.menuOpen} ${isOpenMenu && style.open}`} />
+            <VscChromeClose className={`${style.menuClose} ${isOpenMenu && style.open}`} />
+          </div>
+
           <div className={style.links}>
             <Link to="/" className={style.border}>
               Inicio
@@ -52,12 +57,8 @@ export default function NavBar() {
             </a>
           </div>
 
-          <div className={style.buttonLinkMobile} onClick={() => setIsOpenMenu(!isOpenMenu)}>
-            <HiOutlineMenu className={`${style.menuOpen} ${isOpenMenu && style.open}`}/>
-            <VscChromeClose className={`${style.menuClose} ${isOpenMenu && style.open}`} />
-          </div>
-          <div className={style.buttonLinkMobile} onClick={() => setIsOpenSocial(!isOpenSocial)}>
-            <FaLink className={`${style.menuOpen} ${isOpenSocial && style.open}`}/>
+          <div className={style.buttonSocialMobile} onClick={() => setIsOpenSocial(!isOpenSocial)}>
+            <FaLink className={`${style.menuOpen} ${isOpenSocial && style.open}`} />
             <VscChromeClose className={`${style.menuClose} ${isOpenSocial && style.open}`} />
           </div>
 

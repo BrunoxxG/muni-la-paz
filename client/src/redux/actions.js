@@ -10,6 +10,8 @@ export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const GET_PUBLICATIONS_BY_TITLE = "GET_PUBLICATIONS_BY_TITLTE";
 export const GET_COMPLEXES_BY_NAME = "GET_COMPLEXES_BY_NAME";
 export const GET_USERS_BY_NAME = "GET_USERS_BY_NAME";
+export const FILTERED_PUBLICATIONS = "FILTERED_PUBLICATIONS";
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
 export const getComplexes = () => {
     return async (dispatch) => {
@@ -162,3 +164,14 @@ export const getUsersByName = (name, token) => {
         // }
     };
 };
+
+export const filteredPublications = (filters) => {
+    return {
+        type: FILTERED_PUBLICATIONS,
+        payload: filters,
+    };
+};
+
+export const setCurrentPage = (page) => {
+    return { type: SET_CURRENT_PAGE, payload: page };
+  };

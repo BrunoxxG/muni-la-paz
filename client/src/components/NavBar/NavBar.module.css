@@ -89,7 +89,7 @@ header {
   display: none;
 }
 
-.buttonLinkMobile {
+.buttonLinkMobile, .buttonSocialMobile {
   display: none;
   align-items: center;
   justify-content: center;
@@ -102,7 +102,7 @@ header {
   transition: all .4s ease;
   cursor: pointer;
 }
-.buttonLinkMobile:hover {
+.buttonLinkMobile:hover, .buttonSocialMobile:hover {
     transform: scale(1.1);
 }
 
@@ -115,25 +115,6 @@ header {
 @media screen and (max-width: 1400px) {
   .links {
     display: none;
-  }
-}
-
-@media screen and (max-width: 600px) {
-
-  header {
-    height: 70px;
-  }
-
-  .social {
-    display: none;
-  }
-
-  .logo {
-    width: 100px;
-  }
-  
-  .logo2 {
-    width: 55px;
   }
 
   .buttonLinkMobile {
@@ -149,7 +130,7 @@ header {
     font-size: 20px;
     font-weight: 500;
     position: fixed;
-    top: 80px;
+    top: 110px;
     left: 10px;
     padding: 1rem;
     border-radius: 10px;
@@ -174,6 +155,33 @@ header {
   }
 
   .linksMobile.open{
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  header {
+    height: 70px;
+  }
+
+  .social {
+    display: none;
+  }
+
+  .logo {
+    width: 100px;
+  }
+  
+  .logo2 {
+    width: 55px;
+  }
+
+  .linksMobile {
+    top: 80px;
+  }
+
+  .buttonSocialMobile {
     display: flex;
   }
 

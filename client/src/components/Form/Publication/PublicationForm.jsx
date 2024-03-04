@@ -7,13 +7,11 @@ import Swal from "sweetalert2";
 import style from "./PublicationForm.module.css";
 import "react-day-picker/dist/style.css";
 import axios from "axios";
-import { getPublications } from "../../../redux/actions";
 const { VITE_BACKEND_URL } = import.meta.env;
 import { useDispatch } from "react-redux";
 import { FaUpload } from "react-icons/fa";
 
 export default function PublicationForm({ publication, authUser }) {
-  const dispatch = useDispatch();
 
   const allTypes = ["General", "Salud", "Institucional", "Deporte", "Concejo", "Servicio"];
   const [input, setInput] = useState({
