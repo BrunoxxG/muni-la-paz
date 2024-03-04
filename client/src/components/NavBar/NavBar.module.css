@@ -19,20 +19,21 @@ header {
 }
 
 .logo {
-  width: 130px;
+  width: 120px;
   img {
     width: 100%;
   }
 }
 
 .logo2 {
-  width: 60px;
+  width: 70px;
   img {
     width: 100%;
   }
 }
 
 .centerNav {
+  position: relative;
   display: flex;
   justify-content: space-evenly;
   width: 100%;
@@ -47,6 +48,11 @@ header {
   a {
     color: white;
   }
+  white-space: nowrap;
+}
+
+.linksMobile {
+  display: none;
 }
 
 .border {
@@ -58,7 +64,7 @@ header {
   padding: 0 0 0 1.5rem;
 }
 
-.social{
+.social {
   display: flex;
   gap: 1rem;
   padding: 0 1.5rem 0 1.5rem;
@@ -77,4 +83,137 @@ header {
 }
 .social a:hover {
     transform: scale(1.1);
+}
+
+.socialMobile {
+  display: none;
+}
+
+.buttonLinkMobile {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 20px;
+  background-color: white;
+  border-radius: 50%;
+  color: var(--main-color);
+  transition: all .4s ease;
+  cursor: pointer;
+}
+.buttonLinkMobile:hover {
+    transform: scale(1.1);
+}
+
+.menuClose {
+  display: none;
+}
+
+
+/*---MEDIIA QUERIES---*/
+@media screen and (max-width: 1400px) {
+  .links {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  header {
+    height: 70px;
+  }
+
+  .social {
+    display: none;
+  }
+
+  .logo {
+    width: 100px;
+  }
+  
+  .logo2 {
+    width: 55px;
+  }
+
+  .buttonLinkMobile {
+    display: flex;
+  }
+
+  .linksMobile {
+    background: var(--main-color);
+    font-family: var(--font-title);
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 20px;
+    font-weight: 500;
+    position: fixed;
+    top: 80px;
+    left: 10px;
+    padding: 1rem;
+    border-radius: 10px;
+    a {
+      color: white;
+      &:hover:after {
+        width: 100%;
+        background: white;
+      }
+      &:after {
+        content: "";
+        display: block;
+        margin: auto;
+        margin-top: 0.25rem;
+        height: 3px;
+        width: 0;
+        background: transparent;
+        transition: width 0.5s ease, background-color 0.5s ease;
+      }
+    }
+    white-space: nowrap;
+  }
+
+  .linksMobile.open{
+    display: flex;
+  }
+
+  .socialMobile{
+    display: none;
+    gap: 1rem;
+    padding: 0 1.5rem 0 1.5rem;
+    position: fixed;
+    top: 80px;
+    right: 10px;
+    background: var(--main-color);
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  .socialMobile a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    font-size: 30px;
+    background-color: white;
+    border-radius: 50%;
+    color: var(--main-color);
+    transition: all .4s ease;
+  }
+  .socialMobile a:hover {
+      transform: scale(1.1);
+  }
+
+  .socialMobile.open {
+    display: flex;
+  }
+
+  .menuOpen.open {
+    display: none;
+  }
+
+  .menuClose.open {
+    display: flex;
+  }
+
 }

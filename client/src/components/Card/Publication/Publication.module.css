@@ -1,6 +1,4 @@
 .card {
-  /* width: 400px;
-  height: 480px; */
   background-color: var(--card-bg-color);
   position: relative;
   overflow: hidden;
@@ -14,19 +12,19 @@
     & img {
       width: auto;
       height: 100%;
-      height: 262.5px;
+      height: 300px;
       object-fit: cover;
       aspect-ratio: 1 / 1;
     }
 
     .cardText {
+      min-height: 200px;
       padding: 15px;
 
       & small {
         color: var(--card-link-hover-color);
         font-size: 0.7rem;
         font-weight: 700;
-        margin-bottom: 0.5rem;
       }
 
       & h3 {
@@ -34,15 +32,14 @@
         color: var(--card-title-color);
         font-size: 24px;
         line-height: 1.2;
-        margin-bottom: 0.5rem;
+        margin: 0.5rem 0;
         transition: 0.3s;
       }
 
       & p {
         font-family: var(--font-description);
         color: var(--card-description-color);
-        font-size: 18px;
-        margin-bottom: 1rem;
+        font-size: 16px;
         max-height: 4rem;
         overflow: hidden;
         display: -webkit-box;

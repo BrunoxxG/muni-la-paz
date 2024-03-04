@@ -20,7 +20,7 @@ export default function Footer() {
           <span>100</span>
           <p>bomberos</p>
         </a>
-        <Link to='/login' className={style.contact}>
+        <Link to='/login' className={`${style.contact} ${style.login}`}>
           <span><BiSolidLock size={40}/></span>
           <p>personal municipal</p>
         </Link>

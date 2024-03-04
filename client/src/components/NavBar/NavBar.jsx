@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaWhatsapp, FaLink } from "react-icons/fa";
+import { HiOutlineMenu } from "react-icons/hi";
+import { VscChromeClose } from "react-icons/vsc";
 import Logo1 from "../../assets/logo3.png";
 import Logo2 from "../../assets/logo2.png";
 import style from "./NavBar.module.css";
+import { useState } from "react";
 
 export default function NavBar() {
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isOpenSocial, setIsOpenSocial] = useState(false);
+
   return (
     <header>
       <nav className={style.navBar}>
@@ -35,6 +41,47 @@ export default function NavBar() {
             </Link>
           </div>
           <div className={style.social}>
+            <a href="https://www.facebook.com/p/Municipalidad-de-La-Paz-100064654033886/" target="_blank">
+              <FaFacebookF />
+            </a>
+            <a href="https://www.instagram.com/muni.lapaz?igsh=eDk1Y3g3b2tlODhz" target="_blank">
+              <FaInstagram />
+            </a>
+            <a href="https://whatsapp.com/channel/0029VaRJQrD3LdQZxLoDNB1X" target="_blank">
+              <FaWhatsapp />
+            </a>
+          </div>
+
+          <div className={style.buttonLinkMobile} onClick={() => setIsOpenMenu(!isOpenMenu)}>
+            <HiOutlineMenu className={`${style.menuOpen} ${isOpenMenu && style.open}`}/>
+            <VscChromeClose className={`${style.menuClose} ${isOpenMenu && style.open}`} />
+          </div>
+          <div className={style.buttonLinkMobile} onClick={() => setIsOpenSocial(!isOpenSocial)}>
+            <FaLink className={`${style.menuOpen} ${isOpenSocial && style.open}`}/>
+            <VscChromeClose className={`${style.menuClose} ${isOpenSocial && style.open}`} />
+          </div>
+
+          <div className={`${style.linksMobile} ${isOpenMenu && style.open}`}>
+            <Link to="/" onClick={() => setIsOpenMenu(!isOpenMenu)}>
+              Inicio
+            </Link>
+            <Link to="/servicios" onClick={() => setIsOpenMenu(!isOpenMenu)}>
+              Servicios
+            </Link>
+            <Link to="/turismo" onClick={() => setIsOpenMenu(!isOpenMenu)}>
+              Turismo
+            </Link>
+            <Link to="/institucional" onClick={() => setIsOpenMenu(!isOpenMenu)}>
+              Institucional
+            </Link>
+            <Link to="/concejo" onClick={() => setIsOpenMenu(!isOpenMenu)}>
+              Concejo Deliberante
+            </Link>
+            <Link to="/contacto" onClick={() => setIsOpenMenu(!isOpenMenu)}>
+              Contacto
+            </Link>
+          </div>
+          <div className={`${style.socialMobile} ${isOpenSocial && style.open}`}>
             <a href="https://www.facebook.com/p/Municipalidad-de-La-Paz-100064654033886/" target="_blank">
               <FaFacebookF />
             </a>

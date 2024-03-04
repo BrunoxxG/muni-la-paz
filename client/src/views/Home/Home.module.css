@@ -12,11 +12,12 @@ main {
   z-index: 3;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
   & .buttonNavCenter {
     background-color: white;
     color: var(--main-color);
-    font-size: 20px;
-    width: calc(100% / 7);
+    width: 200px;
     height: 200px;
     display: flex;
     flex-direction: column;
@@ -24,7 +25,11 @@ main {
     justify-content: center;
     gap: 1.5rem;
     transition: 0.4s ease-in-out;
+    & .icon {
+      font-size: 4rem;
+    }
     & span {
+      font-size: 20px;
       font-weight: 500;
       color: black;
       transition: 0.4s ease-in-out;
@@ -74,6 +79,19 @@ main {
   }
 }
 
+.linkMobile {
+    color: var(--main-text-color);
+    font-size: 20px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    &:hover {
+      color: var(--card-link-hover-color);
+    }
+}
+
 .firstNotice {
   max-height: 350px;
   background-color: white;
@@ -86,6 +104,7 @@ main {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      aspect-ratio: 1/1;
     }
   }
   & .firstNoticeText {
@@ -97,6 +116,7 @@ main {
     & .firstNoticeTextTop {
       & small {
         color: var(--card-link-hover-color);
+        font-weight: 600;
       }
       & h3 {
         font-size: 30px;
@@ -135,7 +155,6 @@ main {
   margin-top: 3rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 400px));
-  grid-auto-rows: 480px;
   justify-content: space-between;
   gap: 1rem;
   
@@ -144,12 +163,12 @@ main {
 /*---------------------------------*/
 /*SECTION EVENTS*/
 .events {
-  height: 350px;
   background-color: var(--bg-green-opacity);
   color: var(--secondary-color);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding: 1rem 0;
 }
 
 .contentEvents {
@@ -170,17 +189,6 @@ main {
   & span {
     font-size: 30px;
     font-weight: 400;
-  }
-  & a {
-    margin-left: auto;
-    color: var(--main-text-color);
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    &:hover {
-      color: var(--card-link-hover-color);
-    }
   }
 }
 
@@ -241,6 +249,132 @@ main {
 /*SECTION TOURISM*/
 .tourism {
   width: 70%;
-  margin: 0 auto;
-  padding: 4rem 0;
+  margin: 4rem auto;
+}
+
+
+
+
+/*---MEDIIA QUERIES---*/
+
+@media screen and (max-width: 1400px) {
+  .links {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1165px) {
+  .publications {
+    justify-content: center;
+  }
+
+  .contentEvents {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .titleEvents {
+    width: 100%;
+  }
+  
+  .nextEvents {
+    width: 100%;
+  }
+
+}
+
+
+@media screen and (max-width: 600px) {
+  main {
+    margin-top: 70px;
+  }
+
+  .navCenter {
+    width: 90%;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: -1rem;
+    .buttonNavCenter {
+      width: 120px;
+      height: 120px;
+      gap: 1rem;
+      .icon {
+        font-size: 2.5rem;
+      }
+      span {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .notices {
+    width: 80%;
+    margin: 2rem auto;
+  }
+
+  .firstNotice {
+    display: none;
+  }
+
+  .titlePublications {
+    & h2 {
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+    & span {
+      font-size: 22px;
+    }
+    & a {
+      display: none;
+    }
+  }
+
+  .linkMobile {
+    display: flex;
+  }
+
+  .publications {
+    margin-top: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 280px));
+  }
+
+  .contentEvents {
+    width: 80%;
+  }
+
+  .titleEvents {
+    & h2 {
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 30px;
+    }
+    & span {
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+  
+  .nextEvents {
+    & .topNextEvents {
+      font-size: 16px;
+    }
+    & .cardEvents {
+      height: 200px;
+      .eventCard {
+        & small {
+          white-space: nowrap;
+          font-size: 10px;
+        }
+        h3 {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .tourism {
+    width: 80%;
+    margin: 2rem auto;
+  }
 }

@@ -3,7 +3,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
-import { VITE_BACKEND_URL } from "../../utils/const";
+const { VITE_BACKEND_URL } = import.meta.env;
 import Swal from "sweetalert2";
 import { FaUserShield } from "react-icons/fa";
 import { BsFillShieldLockFill } from "react-icons/bs";

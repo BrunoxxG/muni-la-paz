@@ -8,7 +8,8 @@ footer {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 3rem;
+  column-gap: 3rem;
+  flex-wrap: wrap;
   & .contact {
     color: var(--secondary-color);
     align-items: center;
@@ -46,14 +47,54 @@ footer {
     margin: auto;
     display: flex;
     justify-content: space-between;
-    font-size: 1.5rem;
+    align-items: center;
     color: white;
     padding: 0.5rem 0;
     & a {
+      font-size: 22px;
       color: white;
     }
     & span {
+      font-size: 20px;
       font-weight: 400;
     }
   }
+}
+
+
+
+/*---MEDIIA QUERIES---*/
+@media screen and (max-width: 600px) {
+  .topFooter {
+    column-gap: 2rem;
+    & .contact {
+      margin: .5rem 0;
+      & span {
+        font-size: 16px;
+        font-weight: 700;
+      }
+      & p {
+        font-size: 14px;
+      }
+    }
+    & .login {
+      margin-top: 0;
+    }
+  }
+  
+  .bottomFooter {
+    & .contentBottomFooter {
+      width: 80%;
+      flex-direction: column;
+      justify-content: center;
+      gap: .5rem;
+      & a {
+        font-size: 20px;
+      }
+      & span {
+        font-size: 14px;
+      }
+    }
+  }
+  
 }

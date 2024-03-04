@@ -10,7 +10,7 @@ import style from "./Dashboard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getComplexes, getPublications, getUsers } from "../../redux/actions";
 import axios from "axios";
-import { VITE_BACKEND_URL } from "../../utils/const";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 export default function Dashboard() {
   const [activeComponent, setActiveComponent] = useState("");

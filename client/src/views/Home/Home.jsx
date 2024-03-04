@@ -8,7 +8,7 @@ import { es } from "date-fns/locale";
 setDefaultOptions({ locale: es });
 
 import style from "./Home.module.css";
-import { VITE_BACKEND_URL } from "../../utils/const";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 export default function Home({ publications, complexes }) {
   const filteredPublications = publications
@@ -16,10 +16,7 @@ export default function Home({ publications, complexes }) {
     .slice(0, 4);
   const filteredComplexes = complexes.filter((complexes) => complexes.check).slice(0, 3);
   const events = publications
-    .filter(
-      (publication) =>
-        publication.check && publication.isEvent && new Date(publication.eventDate) > new Date()
-    )
+    .filter((publication) => publication.check && publication.isEvent && new Date(publication.eventDate) > new Date())
     .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
 
   return (
@@ -29,27 +26,27 @@ export default function Home({ publications, complexes }) {
       </div>
       <div className={style.navCenter}>
         <Link to="/alojamientos" className={style.buttonNavCenter}>
-          <MdCabin size={70} />
+          <MdCabin className={style.icon} />
           <span>Alojamientos</span>
         </Link>
         <Link to="/cultura" className={style.buttonNavCenter}>
-          <FaBook size={70} />
+          <FaBook className={style.icon} />
           <span>Cultura</span>
         </Link>
         <Link to="/salud" className={style.buttonNavCenter}>
-          <FaHeartbeat size={70} />
+          <FaHeartbeat className={style.icon} />
           <span>Salud</span>
         </Link>
         <Link to="/deportes" className={style.buttonNavCenter}>
-          <MdSportsSoccer size={70} />
+          <MdSportsSoccer className={style.icon} />
           <span>Deportes</span>
         </Link>
         <Link to="/noticias" className={style.buttonNavCenter}>
-          <MdOutlineLibraryBooks size={70} />
+          <MdOutlineLibraryBooks className={style.icon} />
           <span>Noticias</span>
         </Link>
         <Link to="/eventos" className={style.buttonNavCenter}>
-          <MdEvent size={70} />
+          <MdEvent className={style.icon} />
           <span>Eventos</span>
         </Link>
       </div>
@@ -69,15 +66,13 @@ export default function Home({ publications, complexes }) {
           </div>
           <div className={style.firstNoticeText}>
             <div className={style.firstNoticeTextTop}>
-              <small>{filteredPublications[0]?.date}</small>
-              <Link to={`/detail/${filteredPublications[0]?.id}`} className={style.link}>
-                <h3>{filteredPublications[0]?.title}</h3>
-              </Link>
+              {filteredPublications[0]?.date && <small>{format(filteredPublications[0].date, "PP")}</small>}
+              <h3>{filteredPublications[0]?.title}</h3>
               <p>{filteredPublications[0]?.description}</p>
             </div>
-            <Link to={`/noticia/${filteredPublications[0]?.id}`} className={style.link}>
+            <div>
               <label>LEER MÁS</label>
-            </Link>
+            </div>
           </div>
         </Link>
         <div className={style.publications}>
@@ -86,6 +81,9 @@ export default function Home({ publications, complexes }) {
               index > 0 && <Publication key={index} publication={publication} isDetailPage={false} />
           )}
         </div>
+        <Link to="/noticias" className={style.linkMobile}>
+          Más noticias <FaArrowRight size={25} />
+        </Link>
       </section>
       <section className={style.events}>
         <div className={style.contentEvents}>
@@ -131,6 +129,10 @@ export default function Home({ publications, complexes }) {
             <Publication key={index} complex={complex} isDetailPage={false} />
           ))}
         </div>
+        <Link to="/alojamientos" className={style.linkMobile}>
+          Más alojamientos
+          <FaArrowRight size={25} />
+        </Link>
       </section>
     </main>
   );
