@@ -10,7 +10,7 @@ import style from "./Dashboard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getComplexes, getPublications, getUsers } from "../../redux/actions";
 import axios from "axios";
-import { URL_BASE } from "../../utils/const";
+import { VITE_BACKEND_URL } from "../../utils/const";
 
 export default function Dashboard() {
   const [activeComponent, setActiveComponent] = useState("");
@@ -69,7 +69,7 @@ export default function Dashboard() {
       updatePassword: true,
     };
     try {
-      const response = await axios.patch(`${URL_BASE}/users`, formatedInput, {
+      const response = await axios.patch(`${VITE_BACKEND_URL}/users`, formatedInput, {
         headers: { Authorization: authUser.token },
       });
       if (response.status === 200) {

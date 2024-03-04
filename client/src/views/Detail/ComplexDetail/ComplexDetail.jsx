@@ -3,7 +3,7 @@ import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
 import useComplex from "../../../hooks/useComplex";
 import style from "./ComplexDetail.module.css";
 import { useLocation } from "react-router-dom";
-import { URL_BASE } from "../../../utils/const";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 const ComplexDetail = () => {
   const complex = useComplex();
@@ -26,14 +26,14 @@ const ComplexDetail = () => {
   };
 
   const handleArrowClick = (direction) => {
-    const currentIndex = complex.images.indexOf(selectedImage.replace(URL_BASE, ""));
+    const currentIndex = complex.images.indexOf(selectedImage.replace(VITE_BACKEND_URL, ""));
     let newIndex;
     if (direction === "left") {
       newIndex = currentIndex === 0 ? complex.images.length - 1 : currentIndex - 1;
     } else {
       newIndex = currentIndex === complex.images.length - 1 ? 0 : currentIndex + 1;
     }
-    setSelectedImage(URL_BASE + complex.images[newIndex]);
+    setSelectedImage(VITE_BACKEND_URL + complex.images[newIndex]);
   };
 
   return (
@@ -48,16 +48,16 @@ const ComplexDetail = () => {
         <div className={style.images}>
           {complex?.images && complex.images.length > 0 && (
             <div className={style.imagesContainer}>
-              <img onClick={() => handleImageClick(image)} src={URL_BASE + complex.images[0]} alt={complex.name} />
+              <img onClick={() => handleImageClick(image)} src={VITE_BACKEND_URL + complex.images[0]} alt={complex.name} />
               <div className={style.imgDiv}>
                 {complex.images.map(
                   (image, index) =>
                     index !== 0 && (
                       <img
                         key={index}
-                        src={URL_BASE + image}
+                        src={VITE_BACKEND_URL + image}
                         alt={`Image ${index + 1}`}
-                        onClick={() => handleImageClick(URL_BASE + image)}
+                        onClick={() => handleImageClick(VITE_BACKEND_URL + image)}
                       />
                     )
                 )}

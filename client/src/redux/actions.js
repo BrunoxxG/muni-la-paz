@@ -1,5 +1,5 @@
 import axios from "axios";
-import { URL_BASE } from "../utils/const";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 export const GET_COMPLEXES = "GET_COMPLEXES";
 export const GET_PUBLICATIONS = "GET_PUBLICATIONS";
@@ -14,7 +14,7 @@ export const GET_USERS_BY_NAME = "GET_USERS_BY_NAME";
 export const getComplexes = () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${URL_BASE}/complexes`);
+            const { data } = await axios.get(`${VITE_BACKEND_URL}/complexes`);
             return dispatch({
                 type: GET_COMPLEXES,
                 payload: data,
@@ -29,7 +29,7 @@ export const getComplexes = () => {
 export const getPublications = () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${URL_BASE}/publications`);
+            const { data } = await axios.get(`${VITE_BACKEND_URL}/publications`);
             return dispatch({
                 type: GET_PUBLICATIONS,
                 payload: data,
@@ -44,7 +44,7 @@ export const getPublications = () => {
 export const getUsers = (token) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${URL_BASE}/users`, { headers: { Authorization: token } });
+            const { data } = await axios.get(`${VITE_BACKEND_URL}/users`, { headers: { Authorization: token } });
             return dispatch({
                 type: GET_USERS,
                 payload: data,
@@ -59,7 +59,7 @@ export const getUsers = (token) => {
 export const getComplexDetail = (id) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${URL_BASE}/complexes/${id}`);
+            const { data } = await axios.get(`${VITE_BACKEND_URL}/complexes/${id}`);
             return dispatch({
                 type: GET_COMPLEX_DETAIL,
                 payload: data,
@@ -76,7 +76,7 @@ export const getComplexDetail = (id) => {
 export const getPublicationDetail = (id) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${URL_BASE}/publications/${id}`);
+            const { data } = await axios.get(`${VITE_BACKEND_URL}/publications/${id}`);
             return dispatch({
                 type: GET_PUBLICATION_DETAIL,
                 payload: data,
@@ -99,7 +99,7 @@ export const getPublicationsByTitle = (title) => {
         try {
             // dispatch(setLoader({show: true, message: "Loading"}));
             const { data } = await axios.get(
-                `${URL_BASE}/publications/title?title=${title.trim()}`
+                `${VITE_BACKEND_URL}/publications/title?title=${title.trim()}`
             );
             return dispatch({
                 type: GET_PUBLICATIONS_BY_TITLE,
@@ -122,7 +122,7 @@ export const getComplexesByName = (name) => {
         try {
             // dispatch(setLoader({show: true, message: "Loading"}));
             const { data } = await axios.get(
-                `${URL_BASE}/complexes/name?name=${name.trim()}`
+                `${VITE_BACKEND_URL}/complexes/name?name=${name.trim()}`
             );
             return dispatch({
                 type: GET_COMPLEXES_BY_NAME,
@@ -145,7 +145,7 @@ export const getUsersByName = (name, token) => {
         try {
             // dispatch(setLoader({show: true, message: "Loading"}));
             const { data } = await axios.get(
-                `${URL_BASE}/users/name?name=${name.trim()}`, { headers: { Authorization: token } }
+                `${VITE_BACKEND_URL}/users/name?name=${name.trim()}`, { headers: { Authorization: token } }
             );
             return dispatch({
                 type: GET_USERS_BY_NAME,

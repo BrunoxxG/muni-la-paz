@@ -3,7 +3,7 @@ import { MdEdit, MdDelete, MdCheck } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { URL_BASE } from "../../../utils/const";
+const { VITE_BACKEND_URL } = import.meta.env;
 import { getUsers } from "../../../redux/actions";
 
 import style from "./User.module.css";
@@ -28,7 +28,7 @@ const User = ({ user, authUser, handleForm }) => {
           active: value,
         };
         try {
-          const response = await axios.patch(`${URL_BASE}/users/${user.id}`, updateActive, {
+          const response = await axios.patch(`${VITE_BACKEND_URL}/users/${user.id}`, updateActive, {
             headers: { Authorization: authUser.token },
           });
           if (response.status === 200) {
@@ -52,7 +52,7 @@ const User = ({ user, authUser, handleForm }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`${URL_BASE}/users/${user.id}`, {
+          const response = await axios.delete(`${VITE_BACKEND_URL}/users/${user.id}`, {
             headers: { Authorization: authUser.token },
           });
           if (response.status === 200) {

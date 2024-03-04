@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { URL_BASE } from "../../../utils/const";
+const { VITE_BACKEND_URL } = import.meta.env;
 import axios from "axios";
 import Swal from "sweetalert2";
 import style from "./UserForm.module.css";
@@ -34,7 +34,7 @@ export default function UserForm({ user, authUser }) {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.post(`${URL_BASE}/users`, input, {
+          const response = await axios.post(`${VITE_BACKEND_URL}/users`, input, {
             headers: { Authorization: authUser.token },
           });
           if (response.status === 200) {
@@ -77,7 +77,7 @@ export default function UserForm({ user, authUser }) {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.patch(`${URL_BASE}/users/${user.id}`, input, {
+          const response = await axios.patch(`${VITE_BACKEND_URL}/users/${user.id}`, input, {
             headers: { Authorization: authUser.token },
           });
           if (response.status === 200) {

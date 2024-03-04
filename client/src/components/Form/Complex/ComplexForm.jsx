@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { URL_BASE } from "../../../utils/const";
+const { VITE_BACKEND_URL } = import.meta.env;
 import { FaUpload } from "react-icons/fa";
 import style from "./ComplexForm.module.css";
 
@@ -105,7 +105,7 @@ export default function ComplexForm({ complex, authUser }) {
           formData.append(`images`, image);
         });
         try {
-          const response = await axios.post(`${URL_BASE}/complexes`, formData, {
+          const response = await axios.post(`${VITE_BACKEND_URL}/complexes`, formData, {
             headers: { Authorization: authUser.token },
           });
           if (response.status === 200) {
@@ -162,7 +162,7 @@ export default function ComplexForm({ complex, authUser }) {
           });
         }
         try {
-          const response = await axios.patch(`${URL_BASE}/complexes/${complex.id}`, formData, {
+          const response = await axios.patch(`${VITE_BACKEND_URL}/complexes/${complex.id}`, formData, {
             headers: { Authorization: authUser.token },
           });
           if (response.status === 200) {

@@ -8,7 +8,7 @@ import { es } from "date-fns/locale";
 setDefaultOptions({ locale: es });
 
 import style from "./Home.module.css";
-import { URL_BASE } from "../../utils/const";
+import { VITE_BACKEND_URL } from "../../utils/const";
 
 export default function Home({ publications, complexes }) {
   const filteredPublications = publications
@@ -65,7 +65,7 @@ export default function Home({ publications, complexes }) {
         </div>
         <Link to={`/noticia/${filteredPublications[0]?.id}`} className={style.firstNotice}>
           <div className={style.firstNoticeImg}>
-            <img src={URL_BASE + filteredPublications[0]?.images[0]} alt={filteredPublications[0]?.id} />
+            <img src={VITE_BACKEND_URL + filteredPublications[0]?.images[0]} alt={filteredPublications[0]?.id} />
           </div>
           <div className={style.firstNoticeText}>
             <div className={style.firstNoticeTextTop}>
@@ -108,7 +108,7 @@ export default function Home({ publications, complexes }) {
                 <Link to={`/noticia/${event?.id}`} key={index} className={style.eventCard}>
                   <small>{format(event.eventDate, "PP")}</small>
                   <h3>{event.title}</h3>
-                  <img src={URL_BASE + event.images[0]} alt={event.title} />
+                  <img src={VITE_BACKEND_URL + event.images[0]} alt={event.title} />
                 </Link>
               ))}
             </div>

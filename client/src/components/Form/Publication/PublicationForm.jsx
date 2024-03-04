@@ -8,7 +8,7 @@ import style from "./PublicationForm.module.css";
 import "react-day-picker/dist/style.css";
 import axios from "axios";
 import { getPublications } from "../../../redux/actions";
-import { URL_BASE } from "../../../utils/const";
+const { VITE_BACKEND_URL } = import.meta.env;
 import { useDispatch } from "react-redux";
 import { FaUpload } from "react-icons/fa";
 
@@ -138,7 +138,7 @@ export default function PublicationForm({ publication, authUser }) {
           formData.append(`images`, image);
         });
         try {
-          const response = await axios.post(`${URL_BASE}/publications`, formData, {
+          const response = await axios.post(`${VITE_BACKEND_URL}/publications`, formData, {
             headers: { Authorization: authUser.token },
           });
           if (response.status === 200) {
@@ -199,7 +199,7 @@ export default function PublicationForm({ publication, authUser }) {
           });
         }
         try {
-          const response = await axios.patch(`${URL_BASE}/publications/${publication.id}`, formData, {
+          const response = await axios.patch(`${VITE_BACKEND_URL}/publications/${publication.id}`, formData, {
             headers: { Authorization: authUser.token },
           });
           if (response.status === 200) {

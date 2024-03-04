@@ -4,7 +4,7 @@ import { FaCircleArrowLeft } from "react-icons/fa6";
 import { format as dateformat } from "date-fns";
 import usePublication from "../../../hooks/usePublication";
 import style from "./PublicationDetail.module.css";
-import { URL_BASE } from "../../../utils/const";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 export default function PublicationDetail() {
   const publication = usePublication();
@@ -26,14 +26,14 @@ export default function PublicationDetail() {
   };
 
   const handleArrowClick = (direction) => {
-    const currentIndex = publication.images.indexOf(selectedImage.replace(URL_BASE, ""));
+    const currentIndex = publication.images.indexOf(selectedImage.replace(VITE_BACKEND_URL, ""));
     let newIndex;
     if (direction === "left") {
       newIndex = currentIndex === 0 ? publication.images.length - 1 : currentIndex - 1;
     } else {
       newIndex = currentIndex === publication.images.length - 1 ? 0 : currentIndex + 1;
     }
-    setSelectedImage(URL_BASE + publication.images[newIndex]);
+    setSelectedImage(VITE_BACKEND_URL + publication.images[newIndex]);
   };
 
   return (
@@ -49,8 +49,8 @@ export default function PublicationDetail() {
           {publication?.images && publication.images.length > 0 && (
             <div className={style.imagesContainer}>
               <img
-                onClick={() => handleImageClick(URL_BASE + publication.images[0])}
-                src={URL_BASE + publication.images[0]}
+                onClick={() => handleImageClick(VITE_BACKEND_URL + publication.images[0])}
+                src={VITE_BACKEND_URL + publication.images[0]}
                 alt={publication.title}
               />
               <div className={style.imgDiv}>
@@ -59,9 +59,9 @@ export default function PublicationDetail() {
                     index !== 0 && (
                       <img
                         key={index}
-                        src={URL_BASE + image}
+                        src={VITE_BACKEND_URL + image}
                         alt={`Image ${index + 1}`}
-                        onClick={() => handleImageClick(URL_BASE + image)}
+                        onClick={() => handleImageClick(VITE_BACKEND_URL + image)}
                       />
                     )
                 )}
