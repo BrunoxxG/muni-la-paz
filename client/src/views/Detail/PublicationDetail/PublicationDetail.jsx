@@ -26,12 +26,16 @@ export default function PublicationDetail() {
   };
 
   const handleArrowClick = (direction) => {
-    const currentIndex = publication.images.indexOf(selectedImage.replace(URL_BASE, ""));
+    const currentIndex = publication.images.indexOf(
+      selectedImage.replace(URL_BASE, "")
+    );
     let newIndex;
     if (direction === "left") {
-      newIndex = currentIndex === 0 ? publication.images.length - 1 : currentIndex - 1;
+      newIndex =
+        currentIndex === 0 ? publication.images.length - 1 : currentIndex - 1;
     } else {
-      newIndex = currentIndex === publication.images.length - 1 ? 0 : currentIndex + 1;
+      newIndex =
+        currentIndex === publication.images.length - 1 ? 0 : currentIndex + 1;
     }
     setSelectedImage(URL_BASE + publication.images[newIndex]);
   };
@@ -70,8 +74,16 @@ export default function PublicationDetail() {
           )}
         </div>
         <p>Descripcion: {publication?.description}</p>
-        <span>Fecha: {publication ? dateformat(publication.date, "PP") : "Sin fecha"}</span>
+        <span>
+          Fecha:{" "}
+          {publication ? dateformat(publication.date, "PP") : "Sin fecha"}
+        </span>
         <p> {publication?.type}</p>
+        <div style={{ textAlign: "center" }}>
+          <a href="/pdf" target="_blank">
+            <button>Ir a PDF</button>
+          </a>
+        </div>
       </div>
       {showPopup && (
         <div className={style.popup}>
@@ -82,7 +94,13 @@ export default function PublicationDetail() {
             >
               <FaArrowCircleLeft />
             </button>
-            {selectedImage && <img src={selectedImage} alt="Popup" className={style.popupImage} />}
+            {selectedImage && (
+              <img
+                src={selectedImage}
+                alt="Popup"
+                className={style.popupImage}
+              />
+            )}
             <button
               className={`${style.carouselControl} ${style.carouselControlRight}`}
               onClick={() => handleArrowClick("right")}
