@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getComplexes, getPublications } from "./redux/actions";
 import RequireAuth from "@auth-kit/react-router/RequireAuth";
+import PdfComponent  from "./components/Pdf/PdfComponent";
 
 import "./App.css";
 
@@ -49,6 +50,7 @@ function App() {
         <Route exact path="/turismo" element={<Publications items={tourism}/>} />
         <Route exact path="/institucional" element={<Publications items={institutional}/>} />
         <Route exact path="/concejo" element={<Publications items={advice}/>} />
+        <Route exact path="/pdf" element={<PdfComponent />} />
         <Route
           exact
           path="/dashboard/*"
