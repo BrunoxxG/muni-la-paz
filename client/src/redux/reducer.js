@@ -99,6 +99,9 @@ const rootReducer = (state = initialState, action) => {
       if (action.payload.search !== "") {
         publicationsByFilters = publicationsByFilters.filter((publication) => publication.title.toLowerCase().includes(action.payload.search.toLowerCase()));
       }
+      if (action.payload.isEvent) {
+        publicationsByFilters = publicationsByFilters.filter((publication) => publication.isEvent);
+      }
       return {
         ...state,
         filteredPublications: publicationsByFilters,

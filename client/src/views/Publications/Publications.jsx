@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import style from "./Publications.module.css";
 import { Pagination, Publication, SearchBar } from "../../components";
 import { filteredPublications, setCurrentPage } from "../../redux/actions";
 import usePaginate from "../../hooks/usePaginate";
+import { useLocation } from "react-router-dom";
 
-export default function Publications() {
-  const { publications } = usePaginate();
+export default function Publications({ items }) {
+  const { currentView, currentViewItems } = usePaginate(items);
+
+  const publications =  currentView || currentViewItems;
+
+  const location = useLocation();
 
   const [filters, setFilters] = useState({
     type: "TODAS LAS CATEGORIAS",
@@ -24,6 +29,7 @@ export default function Publications() {
     "Concejo",
     "Cultura",
     "Servicio",
+    "Turismo",
   ];
   const allDates = ["TODAS", "HOY", "ULTIMOS 3 DIAS", "ULTIMA SEMANA", "ULTIMO MES"];
 
@@ -58,41 +64,45 @@ export default function Publications() {
 
   return (
     <div className={style.container}>
-      <div className={style.title}>
-        <h2>
-          Todas<br></br>
-          <span>Las Noticias</span>
-        </h2>
-      </div>
-      <div className={style.filters}>
-        <div className={style.divInput}>
-          <label>
-            <select name="date" value={filters.date} onChange={handleChangeInput}>
-              {allDates?.map((date, index) => {
-                return <option key={index}>{date}</option>;
-              })}
-            </select>
-          </label>
-        </div>
-        <div className={style.divInput}>
-          <label>
-            <select name="type" value={filters.type} onChange={handleChangeInput}>
-              {allTypes?.map((type, index) => {
-                return <option key={index}>{type}</option>;
-              })}
-            </select>
-          </label>
-        </div>
-        <div className={style.search}>
-          <SearchBar handleChange={handleChange} />
-        </div>
-      </div>
+      {location.pathname === "/noticias" && (
+        <>
+          <div className={style.title}>
+            <h2>
+              Todas<br></br>
+              <span>Las Noticias</span>
+            </h2>
+          </div>
+          <div className={style.filters}>
+            <div className={style.divInput}>
+              <label>
+                <select name="date" value={filters.date} onChange={handleChangeInput}>
+                  {allDates?.map((date, index) => {
+                    return <option key={index}>{date}</option>;
+                  })}
+                </select>
+              </label>
+            </div>
+            <div className={style.divInput}>
+              <label>
+                <select name="type" value={filters.type} onChange={handleChangeInput}>
+                  {allTypes?.map((type, index) => {
+                    return <option key={index}>{type}</option>;
+                  })}
+                </select>
+              </label>
+            </div>
+            <div className={style.search}>
+              <SearchBar handleChange={handleChange} />
+            </div>
+          </div>
+        </>
+      )}
       <div className={style.grid}>
         {publications?.map((publication, index) => (
           <Publication key={index} publication={publication} />
         ))}
       </div>
-      <Pagination />
+      <Pagination items={items}/>
     </div>
   );
 }

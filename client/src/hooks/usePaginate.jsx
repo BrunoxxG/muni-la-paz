@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage } from "../redux/actions";
 
-export default function usePaginate() {
+export default function usePaginate(items) {
   const dispatch = useDispatch();
   const filteredItems = useSelector((state) => state.filteredPublications);
   const currentPage = useSelector((state) => state.currentPage);
@@ -9,11 +9,15 @@ export default function usePaginate() {
   const itemsPerPage = 9;
   const maxIndex = currentPage * itemsPerPage;
   const minIndex = maxIndex - itemsPerPage;
-  const publications = filteredItems?.filter((item) => item.check).slice(minIndex, maxIndex); // se envia a GRID
-  const numberOfPages = Math.ceil(filteredItems?.length / itemsPerPage) || 1; // para asegurarnos de que el number of pages no sea nunca 0
+
+  const itemsToPaginate = items || filteredItems;
+
+  const filterPublicationsCheck = itemsToPaginate?.filter((publication) => publication.check);
+  const currentView = filterPublicationsCheck.slice(minIndex, maxIndex);
+  const numberOfPages = Math.ceil(filterPublicationsCheck?.length / itemsPerPage) || 1;
 
   function handleOnClick(e) {
-    const button = e.target.closest('button');
+    const button = e.target.closest("button");
     if (button) {
       if (button.name === "previous" && currentPage > 1) {
         dispatch(setCurrentPage(currentPage - 1));
@@ -29,7 +33,7 @@ export default function usePaginate() {
   }
 
   return {
-    publications,
+    currentView,
     handleOnClick,
     numberOfPages,
     currentPage,
