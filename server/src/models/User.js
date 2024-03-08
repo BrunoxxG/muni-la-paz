@@ -29,5 +29,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: false,
     },
+    passwordChanged: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   }, { timestamps: false });
 };

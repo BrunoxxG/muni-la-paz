@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       autoIncrement: true,
     },
     type: {
-      type: DataTypes.ENUM("Notice", "Event", "Health", "Institutional", "Sports", "Council"),
+      type: DataTypes.ENUM("General", "Evento", "Salud", "Institucional", "Deporte", "Concejo", "Servicio", "Turismo", "Cultura"),
       allowNull: false,
     },
     title: {
@@ -17,12 +17,23 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1000),
       allowNull: false,
     },
     date: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
       allowNull: false,
+    },
+    isEvent: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    eventDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    images: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
     check: {
       type: DataTypes.BOOLEAN,

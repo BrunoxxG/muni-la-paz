@@ -1,9 +1,8 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
-const UserModel = require("../models/User");
-const PublicationModel = require("../models/Publication");
-const RoomModel = require("../models/Room");
-const ComplexModel = require("../models/Complex");
+const { UserModel, PublicationModel, ComplexModel } = require('../models');
+
+const { loadData } = require('../seeder/loadData');
 
 const sequelize = new Sequelize(process.env.DB, {
   logging: false,
@@ -13,20 +12,18 @@ const sequelize = new Sequelize(process.env.DB, {
 
 UserModel(sequelize);
 PublicationModel(sequelize);
-RoomModel(sequelize);
 ComplexModel(sequelize);
 
-const { User, Publication, Room, Complex } = sequelize.models;
+const { User, Publication, Complex } = sequelize.models;
 
-User.belongsToMany(Publication, { through: "user_publication", timestamps: false, tableName: 'users' });
-Publication.belongsTo(User, { through: "user_publication", timestamps: false, tableName: 'publications' });
-Complex.belongsToMany(Room, { through: "complex_room", timestamps: false, tableName: 'complex' });
-Room.belongsTo(Complex, { through: "complex_room", timestamps: false, tableName: 'room' });
+Publication.belongsTo(User, { through: "user_publication", timestamps: false });
+Complex.belongsTo(User, { through: "user_complex", timestamps: false });
 
 const dbConnection = async () => {
   try {
-    await sequelize.sync({force: true});
+    await sequelize.sync({ force: true });
     console.log("DB Connect");
+    await loadData(User, Publication, Complex);
   } catch (error) {
     throw new Error("Fail DB Connect");
   }

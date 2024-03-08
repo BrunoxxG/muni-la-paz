@@ -20,6 +20,36 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    lat:{
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    lng:{
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    images: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true,
+    },   
+    tel:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    whatsapp:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: ""
+    },
+    web:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: ""
+    },
     check: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
