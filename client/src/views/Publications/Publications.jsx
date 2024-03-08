@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import style from "./Publications.module.css";
 import { Pagination, Publication, SearchBar } from "../../components";
 import { filteredPublications, setCurrentPage } from "../../redux/actions";
 import usePaginate from "../../hooks/usePaginate";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Publications({ items }) {
   const { currentView, currentViewItems } = usePaginate(items);
 
-  const publications =  currentView || currentViewItems;
+  const publications = currentView || currentViewItems;
 
   const location = useLocation();
 
@@ -64,8 +64,53 @@ export default function Publications({ items }) {
 
   return (
     <div className={style.container}>
+      {location.pathname === "/servicios" && (
+        <>
+          <div className={style.title}>
+            <h2>
+              Todas<br></br>
+              <span>Las Noticias</span>
+            </h2>
+          </div>
+        </>
+      )}
+      {location.pathname === "/eventos" && (
+        <>
+          <header className={style.imgHeader}>
+            <div className={style.titleHeader}>
+              <h2>
+                Agenda
+              </h2>
+            </div>
+          </header>
+          <nav className={style.navTitles}>
+            <Link to='/'>Home</Link>
+            <span>Eventos</span>
+          </nav>
+          <div className={style.title}>
+            <h2>
+              Próximos<br></br>
+              <span>Eventos</span>
+            </h2>
+          </div>
+        </>
+      )}
+      {location.pathname === "/turismo" && (
+        <>
+          <div className={style.title}>
+            <h2>
+              Todas<br></br>
+              <span>Las Noticias</span>
+            </h2>
+          </div>
+        </>
+      )}
       {location.pathname === "/noticias" && (
         <>
+          <nav className={style.navTitles}>
+            <Link to='/'>Home</Link>
+            <span>Noticias</span>
+          </nav>
           <div className={style.title}>
             <h2>
               Todas<br></br>
@@ -102,7 +147,7 @@ export default function Publications({ items }) {
           <Publication key={index} publication={publication} />
         ))}
       </div>
-      <Pagination items={items}/>
+      <Pagination items={items} />
     </div>
   );
 }

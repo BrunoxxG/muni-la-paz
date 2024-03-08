@@ -1,4 +1,4 @@
-header {
+.navHeader {
   position: fixed;
   top: 0;
   left: 0;
@@ -32,11 +32,28 @@ header {
   }
 }
 
+.logoMobile {
+  display: none;
+  width: 100px;
+  img {
+    width: 100%;
+  }
+}
+
+.logo2Mobile {
+  display: none;
+  width: 60px;
+  img {
+    width: 100%;
+  }
+}
+
 .centerNav {
   position: relative;
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+  align-items: center;
 }
 
 .links {
@@ -89,12 +106,20 @@ header {
   display: none;
 }
 
+.buttonSocial {
+  display: none;
+}
+
+.buttonLink {
+  display: none;
+}
+
 .buttonLinkMobile, .buttonSocialMobile {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   font-size: 20px;
   background-color: white;
   border-radius: 50%;
@@ -115,6 +140,30 @@ header {
 @media screen and (max-width: 1400px) {
   .links {
     display: none;
+  }
+
+  .social {
+    display: none;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .logo2 {
+    display: none;
+  }
+
+  .logoMobile {
+    display: flex;
+  }
+
+  .logo2Mobile {
+    display: flex;
+  }
+
+  .buttonLink {
+    display: flex;
   }
 
   .buttonLinkMobile {
@@ -157,28 +206,9 @@ header {
   .linksMobile.open{
     display: flex;
   }
-}
 
-@media screen and (max-width: 600px) {
-
-  header {
-    height: 70px;
-  }
-
-  .social {
-    display: none;
-  }
-
-  .logo {
-    width: 100px;
-  }
-  
-  .logo2 {
-    width: 55px;
-  }
-
-  .linksMobile {
-    top: 80px;
+  .buttonSocial {
+    display: flex;
   }
 
   .buttonSocialMobile {
@@ -190,7 +220,7 @@ header {
     gap: 1rem;
     padding: 0 1.5rem 0 1.5rem;
     position: fixed;
-    top: 80px;
+    top: 110px;
     right: 10px;
     background: var(--main-color);
     padding: 1rem;
@@ -214,6 +244,38 @@ header {
 
   .socialMobile.open {
     display: flex;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  .navHeader {
+    height: 70px;
+  }
+
+  .social {
+    display: none;
+  }
+
+  .logoMobile {
+    width: 75px;
+  }
+  
+  .logo2Mobile {
+    width: 45px;
+  }
+
+  .buttonLinkMobile, .buttonSocialMobile {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .linksMobile {
+    top: 80px;
+  }
+
+  .socialMobile{
+    top: 80px;
   }
 
   .menuOpen.open {

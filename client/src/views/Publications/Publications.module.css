@@ -6,11 +6,53 @@
   justify-content: center;
 }
 
+.imgHeader {
+  width: 100%;
+  min-height: 500px;
+  background-image: url("img/semanajuventud.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .titleHeader {
+    color: white;
+    filter: drop-shadow(0 0 5px black);
+    font-size: 2.5rem;
+  }
+}
+
+.navTitles {
+  margin-top: 1rem;
+  width: 80%;
+  display: flex;
+  align-items: start;
+  gap: .5rem;
+
+  a {
+    color: var(--main-text-color);
+  }
+  a:hover {
+    color: var(--main-color);
+  }
+
+  span {
+    color: var(--main-color);
+  }
+  span::before {
+    color: var(--main-text-color);
+    content: "/";
+    margin-right: .5rem;
+  }
+}
+
 .title {
   width: 80%;
   display: flex;
   flex-direction: column;
-  margin: 2rem 0;
+  margin: 1rem 0;
   align-items: start;
   & h2 {
     font-size: 38px;
@@ -21,17 +63,6 @@
     font-size: 30px;
     font-weight: 400;
   }
-  & a {
-    margin-left: auto;
-    color: var(--main-text-color);
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    &:hover {
-      color: var(--card-link-hover-color);
-    }
-  }
 }
 
 .filters {
@@ -41,6 +72,7 @@
   gap: 4rem;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2rem;
   .divInput {
     width: 100%;
   }
@@ -79,12 +111,11 @@
 
 .grid {
   width: 70%;
-  padding: 2rem 0;
+  padding-bottom: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 400px));
   justify-content: space-between;
   gap: 2rem;
-  overflow: hidden;
 }
 
 
@@ -99,11 +130,36 @@
   .grid {
     justify-content: center;
   }
+
+  .imgHeader {
+    min-height: 300px;
+  }
 }
 
 @media screen and (max-width: 600px) {
   .container {
     margin-top: 70px;
+  }
+
+  .imgHeader {
+    min-height: 200px;
+  
+    .titleHeader {
+      color: white;
+      filter: drop-shadow(0 0 5px black);
+      font-size: 2rem;
+    }
+  }
+
+  .title {
+    & h2 {
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+    & span {
+      font-size: 22px;
+    }
   }
 
   .filters {

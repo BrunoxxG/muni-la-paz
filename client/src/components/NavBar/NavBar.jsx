@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaWhatsapp, FaLink } from "react-icons/fa";
 import { HiOutlineMenu } from "react-icons/hi";
 import { VscChromeClose } from "react-icons/vsc";
-import Logo1 from "../../assets/logo3.png";
-import Logo2 from "../../assets/logo2.png";
+const logo = "/img/logo.webp";
+const logo2 = "/img/logo2.webp";
 import style from "./NavBar.module.css";
 import { useState } from "react";
 
@@ -12,19 +12,30 @@ export default function NavBar() {
   const [isOpenSocial, setIsOpenSocial] = useState(false);
 
   return (
-    <header>
+    <header className={style.navHeader}>
       <nav className={style.navBar}>
-        <div className={style.logo}>
-          <Link to="/">
-            <img src={Logo1} alt="Logo Municipalidad" />
-          </Link>
-        </div>
-        <div className={style.centerNav}>
+        <div className={style.buttonLink}>
           <div className={style.buttonLinkMobile} onClick={() => setIsOpenMenu(!isOpenMenu)}>
             <HiOutlineMenu className={`${style.menuOpen} ${isOpenMenu && style.open}`} />
             <VscChromeClose className={`${style.menuClose} ${isOpenMenu && style.open}`} />
           </div>
-
+        </div>
+        <div className={style.logo}>
+          <Link to="/">
+            <img src={logo} alt="Logo Municipalidad" />
+          </Link>
+        </div>
+        <div className={style.centerNav}>
+          <div className={style.logoMobile}>
+            <Link to="/">
+              <img src={logo} alt="Logo Municipalidad" />
+            </Link>
+          </div>
+          <div className={style.logo2Mobile}>
+            <Link to="/">
+              <img src={logo2} alt="Logo Municipalidad" />
+            </Link>
+          </div>
           <div className={style.links}>
             <Link to="/" className={style.border}>
               Inicio
@@ -55,11 +66,6 @@ export default function NavBar() {
             <a href="https://whatsapp.com/channel/0029VaRJQrD3LdQZxLoDNB1X" target="_blank">
               <FaWhatsapp />
             </a>
-          </div>
-
-          <div className={style.buttonSocialMobile} onClick={() => setIsOpenSocial(!isOpenSocial)}>
-            <FaLink className={`${style.menuOpen} ${isOpenSocial && style.open}`} />
-            <VscChromeClose className={`${style.menuClose} ${isOpenSocial && style.open}`} />
           </div>
 
           <div className={`${style.linksMobile} ${isOpenMenu && style.open}`}>
@@ -95,7 +101,15 @@ export default function NavBar() {
           </div>
         </div>
         <div className={style.logo2}>
-          <img src={Logo2} alt="Logo Municipalidad" />
+          <Link to="/">
+            <img src={logo2} alt="Logo Municipalidad" />
+          </Link>
+        </div>
+        <div className={style.buttonSocial}>
+          <div className={style.buttonSocialMobile} onClick={() => setIsOpenSocial(!isOpenSocial)}>
+            <FaLink className={`${style.menuOpen} ${isOpenSocial && style.open}`} />
+            <VscChromeClose className={`${style.menuClose} ${isOpenSocial && style.open}`} />
+          </div>
         </div>
       </nav>
     </header>

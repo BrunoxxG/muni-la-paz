@@ -1,23 +1,39 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
-const { VITE_BACKEND_URL } = import.meta.env;
+const { VITE_BACKEND_URL, VITE_GOOGLE_MAPS_API_KEY } = import.meta.env;
 import { FaUpload } from "react-icons/fa";
 import style from "./ComplexForm.module.css";
 
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+
 export default function ComplexForm({ complex, authUser }) {
+  
   const [input, setInput] = useState({
     name: complex?.name || "",
     description: complex?.description || "",
     address: complex?.address || "",
     images: [],
     imagesPreviews: [],
-    contact: complex?.contact || "",
+    tel: complex?.tel || "",
+    whatsapp: complex?.whatsapp || "",
+    email: complex?.email || "",
+    web: complex?.web || "",
+    lat: complex?.lat || -32.2172425800549,
+    lng: complex?.lng ||  -65.04836357980413
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e, source) => {
     setInput((prevInput) => {
-      if (e.target.type === "file") {
+      if (source === "map") {
+        const lat = e.latLng.lat();
+        const lng = e.latLng.lng();
+        return {
+          ...prevInput,
+          lat: lat,
+          lng: lng,
+        };
+      } else if (e.target.type === "file") {
         const selectedFiles = Array.from(e.target.files);
         return {
           ...prevInput,
@@ -99,7 +115,12 @@ export default function ComplexForm({ complex, authUser }) {
         formData.append("name", input.name);
         formData.append("description", input.description);
         formData.append("address", input.address);
-        formData.append("contact", input.contact);
+        formData.append("tel", input.tel);
+        formData.append("whatsapp", input.whatsapp);
+        formData.append("email", input.email);
+        formData.append("web", input.web);
+        formData.append("lat", input.lat);
+        formData.append("lng", input.lng);
 
         input.images.forEach((image) => {
           formData.append(`images`, image);
@@ -115,7 +136,12 @@ export default function ComplexForm({ complex, authUser }) {
               images: [],
               imagesPreviews: [],
               address: "",
-              contact: "",
+              tel: "",
+              whatsapp: "",
+              email: "",
+              web: "",
+              lat: -32.2172425800549,
+              lng: -65.04836357980413,
             });
             Swal.fire({
               title: "Creado",
@@ -154,7 +180,12 @@ export default function ComplexForm({ complex, authUser }) {
         formData.append("name", input.name);
         formData.append("description", input.description);
         formData.append("address", input.address);
-        formData.append("contact", input.contact);
+        formData.append("tel", input.tel);
+        formData.append("whatsapp", input.whatsapp);
+        formData.append("email", input.email);
+        formData.append("web", input.web);
+        formData.append("lat", input.lat);
+        formData.append("lng", input.lng);
 
         if (input.images.length) {
           input.images.forEach((image) => {
@@ -172,7 +203,12 @@ export default function ComplexForm({ complex, authUser }) {
               images: [],
               imagesPreviews: [],
               address: "",
-              contact: "",
+              tel: "",
+              whatsapp: "",
+              email: "",
+              web: "",
+              lat: -32.2172425800549,
+              lng: -65.04836357980413,
             });
             Swal.fire({
               title: "Actulaizado",
@@ -202,7 +238,7 @@ export default function ComplexForm({ complex, authUser }) {
         <div className={style.content}>
           <h1>Editar Alojamiento</h1>
           <form onSubmit={handleEdit} className={style.form} encType="multipart/form-data">
-          <div className={style.divInput}>
+            <div className={style.divInput}>
               <label>
                 Nombre{" "}
                 <input
@@ -250,14 +286,79 @@ export default function ComplexForm({ complex, authUser }) {
             </div>
 
             <div className={style.divInput}>
+              <div className={style.inputMap}>
+                Seleccionar ubicación{" "}
+                <LoadScript googleMapsApiKey={VITE_GOOGLE_MAPS_API_KEY}>
+                  <GoogleMap
+                    center={{lat: input.lat, lng: input.lng}}
+                    zoom={15}
+                    onClick={(event) => handleChange(event, "map")}
+                    mapContainerStyle={{ width: "80%", height: "500px" }}
+                  >
+                    <Marker position={{lat: input.lat, lng: input.lng}} />
+                  </GoogleMap>
+                </LoadScript>
+              </div>
+              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+            </div>
+
+            <div className={style.divInput}>
               <label>
-                Contacto{" "}
+                Teléfono{" "}
                 <input
                   type="phone"
-                  name="contact"
-                  value={input.contact}
+                  name="tel"
+                  value={input.tel}
                   onChange={handleChange}
-                  placeholder="Contacto"
+                  placeholder="Teléfono"
+                  className={style.inputText}
+                />
+              </label>
+
+              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+            </div>
+
+            <div className={style.divInput}>
+              <label>
+                Whatsapp{" "}
+                <input
+                  type="phone"
+                  name="whatsapp"
+                  value={input.whatsapp}
+                  onChange={handleChange}
+                  placeholder="Whatsapp"
+                  className={style.inputText}
+                />
+              </label>
+
+              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+            </div>
+
+            <div className={style.divInput}>
+              <label>
+                E-mail{" "}
+                <input
+                  type="email"
+                  name="email"
+                  value={input.email}
+                  onChange={handleChange}
+                  placeholder="E-mail"
+                  className={style.inputText}
+                />
+              </label>
+
+              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+            </div>
+
+            <div className={style.divInput}>
+              <label>
+                Web{" "}
+                <input
+                  type="url"
+                  name="web"
+                  value={input.web}
+                  onChange={handleChange}
+                  placeholder="Web"
                   className={style.inputText}
                 />
               </label>
@@ -349,14 +450,79 @@ export default function ComplexForm({ complex, authUser }) {
             </div>
 
             <div className={style.divInput}>
+              <div className={style.inputMap}>
+                Seleccionar ubicación{" "}
+                <LoadScript googleMapsApiKey={VITE_GOOGLE_MAPS_API_KEY}>
+                  <GoogleMap
+                    center={{lat: input.lat, lng: input.lng}}
+                    zoom={15}
+                    onClick={(event) => handleChange(event, "map")}
+                    mapContainerStyle={{ width: "80%", height: "500px" }}
+                  >
+                    <Marker position={{lat: input.lat, lng: input.lng}} />
+                  </GoogleMap>
+                </LoadScript>
+              </div>
+              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+            </div>
+
+            <div className={style.divInput}>
               <label>
-                Contacto{" "}
+                Teléfono{" "}
                 <input
                   type="phone"
-                  name="contact"
-                  value={input.contact}
+                  name="tel"
+                  value={input.tel}
                   onChange={handleChange}
-                  placeholder="Contacto"
+                  placeholder="Teléfono"
+                  className={style.inputText}
+                />
+              </label>
+
+              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+            </div>
+
+            <div className={style.divInput}>
+              <label>
+                Whatsapp{" "}
+                <input
+                  type="phone"
+                  name="whatsapp"
+                  value={input.whatsapp}
+                  onChange={handleChange}
+                  placeholder="Whatsapp"
+                  className={style.inputText}
+                />
+              </label>
+
+              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+            </div>
+
+            <div className={style.divInput}>
+              <label>
+                E-mail{" "}
+                <input
+                  type="email"
+                  name="email"
+                  value={input.email}
+                  onChange={handleChange}
+                  placeholder="E-mail"
+                  className={style.inputText}
+                />
+              </label>
+
+              {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+            </div>
+
+            <div className={style.divInput}>
+              <label>
+                Web{" "}
+                <input
+                  type="url"
+                  name="web"
+                  value={input.web}
+                  onChange={handleChange}
+                  placeholder="Web"
                   className={style.inputText}
                 />
               </label>

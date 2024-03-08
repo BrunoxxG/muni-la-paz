@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FaUsers, FaUser } from "react-icons/fa";
 import { VscChromeClose } from "react-icons/vsc";
 import { MdDashboardCustomize, MdCabin, MdOutlineLibraryBooks } from "react-icons/md";
-import logo from "../../../assets/logo.png";
+const logo = "/img/logo.webp";
 import style from "./SideBar.module.css";
 
 export default function SideBar({ user, signOut, onLinkClick }) {

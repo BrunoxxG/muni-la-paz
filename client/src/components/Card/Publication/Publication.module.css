@@ -20,6 +20,8 @@
     .cardText {
       min-height: 200px;
       padding: 15px;
+      display: flex;
+      flex-direction: column;
 
       & small {
         color: var(--card-link-hover-color);
@@ -45,6 +47,10 @@
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
+      }
+
+      .eventDate {
+        margin-top: auto;
       }
       position: relative;
       overflow: hidden;

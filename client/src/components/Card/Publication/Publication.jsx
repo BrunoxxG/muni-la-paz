@@ -101,9 +101,10 @@ export default function Publication({ publication, complex, authUser, handleForm
       >
         <img src={VITE_BACKEND_URL + publication.images[0]} alt={publication.title} />
         <div className={style.cardText}>
-          <small>{format(publication.date, "PP")}</small>
+          <small>Publicado: {format(publication.date, "PP")}</small>
           <h3>{publication.title}</h3>
           <p>{publication.description}</p>
+          {publication.isEvent && <small className={style.eventDate}>Evento: {format(publication.eventDate, "PP")}</small>}
         </div>
         <div className={style.cardFooter}>
           <div className={style.types}>
