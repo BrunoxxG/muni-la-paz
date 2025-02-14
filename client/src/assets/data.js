@@ -3,7 +3,7 @@ export const imagesCarrousel = [
     src: "/img/carrousel/ciudad1.webp",
   },
   {
-    src: "/img/carrousel/aljibe-entrada-lapaz.webp",
+    src: "/img/carrousel/entrada.webp",
   },
   {
     src: "/img/carrousel/vivalapatria.webp",
@@ -51,7 +51,7 @@ export const imagesCarrousel = [
     src: "/img/carrousel/niños-el-club.webp",
   },
   {
-    src: "/img/carrousel/futbol.webp",
+    src: "/img/carrousel/obras.webp",
   },
   {
     src: "/img/carrousel/oficina-turismo-nublado.webp",
@@ -66,10 +66,13 @@ export const imagesCarrousel = [
     src: "/img/carrousel/todos.webp",
   },
   {
+    src: "/img/carrousel/festival.webp",
+  },
+  {
     src: "/img/carrousel/todoss.webp",
   },
   {
-    src: "/img/carrousel/rosa3.webp",
+    src: "/img/carrousel/lomabola.webp",
   },
 ];
 
