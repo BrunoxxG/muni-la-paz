@@ -1,0 +1,80 @@
+{
+  "users": [
+    {
+      "name": "Admin",
+      "email": "admin@admin.com",
+      "password": "$2b$10$mJurSR5IVWzYpST8a3WWzOIjOgK7zkZ8OcLHfw27DUJD4YiMuq8ya",
+      "rol": "superAdmin",
+      "active": true,
+      "passwordChanged": true
+    },
+    {
+      "name": "Bruno Gimenez",
+      "email": "brunogimenez389@gmail.com",
+      "password": "$2b$10$oGygqhwliATRxNTQ2m9hYOvj67ANlDOpNNwUhfKH6K.6D.aKwjah6",
+      "rol": "Admin",
+      "active": true,
+      "passwordChanged": true
+    }
+  ],
+  "publications": [
+    {
+      "type": "Servicio",
+      "title": "Vecinos, usuarios de agua corriente",
+      "description": "El servicio de agua corriente estará interrumpido hasta mañana lunes 8/1 al mediodía.",
+      "date": "2024-03-04T23:30:46.682Z",
+      "isEvent": false,
+      "eventDate": "2024-02-05T23:30:46.682Z",
+      "images": ["/public/images/publications/1/noticia1.jpg"],
+      "check": true
+    },
+    {
+      "type": "Cultura",
+      "title": "Semana de la Juventud",
+      "description": "Ante las recientes lluvias intensas, se ha observado un aumento significativo en el nivel de varios arroyos en nuestra comunidad. Instamos a todos los residentes a tomar precauciones inmediatas y evitar áreas cercanas a estos cuerpos de agua.",
+      "date": "2024-03-03T22:30:46.682Z",
+      "isEvent": false,
+      "eventDate": "2024-02-05T22:30:46.682Z",
+      "images": ["/public/images/publications/2/noticia2.jpg"],
+      "check": true
+    },
+    {
+      "type": "Deporte",
+      "title": "Vacunatorio municipal informa",
+      "description": "El pediatra a partir de Enero completará las planillas de cus, los días Martes y Jueves",
+      "images": ["/public/images/publications/3/noticia3.jpg"],
+      "date": "2024-02-01T22:30:46.682Z",
+      "isEvent": true,
+      "eventDate": "2024-03-15T22:30:46.682Z",
+      "check": true
+    }
+  ],
+  "complexes": [
+    {
+      "name": "Complejo Cerro Loma Bola",
+      "description": "Complejo Cerro Loma Bola chalets & piscina. ¡Abierto todo el año!. Confortables chalets de 80mts2, 2 dormitorios, todos los servicios. PRECIOS PROMOCIONALES TODO EL AÑO.",
+      "lat": -32.2156620816531,
+      "lng": -65.0297313247391,
+      "address": "Del Piquillin 235, Loma Bola, Cordoba",
+      "images": ["/public/images/complexes/1/alojamiento.jpg", "/public/images/complexes/1/alojamiento2.jpg", "/public/images/complexes/1/alojamiento3.jpg"],
+      "tel":"3544506114",
+      "instagram": "",
+      "email": "",
+      "web": "",
+      "check": true
+    },
+    {
+      "name": "Cabaña Los Nogales",
+      "description": "Emprendimiento familiar, desde hace 20 años al servicio del turismo. ¡Abierto todo el año!. WiFi, TV-cable, Cocheras, Piscinas, Parrillas, Ropa de Cama.",
+      "lat": -32.2139243749852,
+      "lng": -65.0529901002833,
+      "address": "La Paz, Traslasierra - Cordoba",
+      "images": ["/public/images/complexes/2/los-nogales1.jpg", "/public/images/complexes/2/los-nogales2.jpg", "/public/images/complexes/2/los-nogales3.jpg"],
+      "tel":"3544446044",
+      "instagram": "@losnogales_casasdealquiler",
+      "email": "",
+      "web": "",
+      "check": true
+    }
+  ]
+}

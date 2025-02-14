@@ -1,0 +1,199 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+
+  .form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+
+    .divInput {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        font-size: 1.25rem;
+        text-align: center;
+
+        .inputText {
+          width: 80%;
+          font-size: large;
+          text-align: center;
+        }
+
+        textarea {
+          width: 80%;
+          font-family: var(--font-main);
+          min-height: 350px;
+          font-size: large;
+        }
+
+        select {
+          font-size: large;
+        }
+
+        .inputCheckbox {
+          scale: 1.4;
+        }
+
+        .inputFile {
+          display: none;
+        }
+
+        .icon {
+          font-size: 2.5rem;
+          cursor: pointer;
+
+          &:hover {
+            color: var(--main-color);
+          }
+        }
+      }
+
+      .isEventLabel {
+        width: auto;
+      }
+
+      .dayPicker {
+        display: flex;
+        justify-content: center;
+      }
+
+      .video {
+        aspect-ratio: 16/9;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: auto;
+      }
+
+      .gridImages {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
+        justify-content: center;
+        gap: 3rem;
+
+        .divImage {
+          position: relative;
+
+          img {
+            width: 250px;
+          }
+
+          .buttonsImage {
+            position: absolute;
+            top: 2%;
+            left: 1%;
+            display: flex;
+            gap: 0.5rem;
+
+            .btn,
+            .btnDelete {
+              background: var(--main-color);
+              color: white;
+              border: none;
+              cursor: pointer;
+              padding: 0.25rem 0.5rem;
+              font-size: 1rem;
+              border-radius: 4px;
+              transition: 0.3s ease;
+
+              &:hover {
+                scale: 1.05;
+              }
+            }
+
+            .btnDelete {
+              background: red;
+            }
+          }
+        }
+      }
+
+      .divPdf {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        .pdf {
+          position: relative;
+        }
+
+        .buttonsImage {
+          position: absolute;
+          top: 2%;
+          left: 1%;
+          display: flex;
+          gap: 0.5rem;
+
+          .btn,
+          .btnDelete {
+            background: var(--main-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: 0.3s ease;
+
+            &:hover {
+              scale: 1.05;
+            }
+          }
+
+          .btnDelete {
+            background: red;
+          }
+        }
+      }
+    }
+
+    .btn {
+      background: var(--main-color);
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: 0.3s ease;
+
+      &:hover {
+        scale: 1.1;
+      }
+    }
+  }
+}
+
+
+
+@media screen and (max-width: 980px) {
+  .content {
+    .form{
+      .divInput {
+        .video {
+          margin-left: 0;
+          margin-right: 0;
+          width: auto;
+        }
+      } 
+    }
+  }
+}
+
+

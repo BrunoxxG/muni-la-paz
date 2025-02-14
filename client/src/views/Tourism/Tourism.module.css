@@ -1,0 +1,172 @@
+.container {
+  margin-top: 100px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.imgHeader {
+  width: 100%;
+  min-height: 400px;
+  background-image: url("/img/turismo.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .titleHeader {
+    color: white;
+    filter: drop-shadow(0 0 5px black);
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 1rem;
+  }
+}
+
+.navTitlesTourism {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tourismOffice {
+  font-size: 1.1rem;
+  font-weight: 500;
+  background-color: var(--main-color);
+  padding: 0.5rem;
+  border-radius: .5rem;
+  transition: all .4s ease;
+  a {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  
+}
+.tourismOffice:hover {
+  transform: scale(1.1);
+}
+
+.navTitles {
+  display: flex;
+  align-items: start;
+  gap: 0.5rem;
+
+
+  a {
+    color: var(--main-text-color);
+  }
+  a:hover {
+    color: var(--main-color);
+  }
+
+  span {
+    color: var(--main-color);
+  }
+  span::before {
+    color: var(--main-text-color);
+    content: "/";
+    margin-right: 0.5rem;
+  }
+}
+
+.section {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--main-text-color);
+  padding-top: 1rem;
+
+  .titlePublications {
+    display: flex;
+    flex-direction: column;
+    & h2 {
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 22px;
+    }
+    & span {
+      font-size: 22px;
+      font-weight: 400;
+    }
+    & a {
+      margin-left: auto;
+      color: var(--main-text-color);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      &:hover {
+        color: var(--card-link-hover-color);
+      }
+    }
+  }
+}
+
+.grid {
+  width: 90%;
+  margin: 1rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 400px));
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+
+/*---MEDIIA QUERIES---*/
+@media screen and (max-width: 1700px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .container {
+    margin-top: 70px;
+  }
+
+  .imgHeader {
+    min-height: 200px;
+  
+    .titleHeader {
+      font-size: .75rem;
+    }
+  }
+
+  .title {
+    & h2 {
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+    & span {
+      font-size: 22px;
+    }
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 280px));
+  }
+
+  .tourismOffice {
+    a {
+      gap: .25rem;
+    } 
+  }
+}
+
+@media screen and (max-width: 450px) {
+
+  .navTitlesTourism {
+    flex-direction: column;
+    align-items: self-start;
+    gap: .5rem; 
+  }
+}
