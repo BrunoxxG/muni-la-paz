@@ -8,17 +8,19 @@ module.exports = async (body, files) => {
 
   let { carrouselPreviews } = body;
 
-  if (typeof carrouselPreviews === 'string') {   
+  if (typeof carrouselPreviews === 'string') {
+    try {
       carrouselPreviews = JSON.parse(carrouselPreviews);
+    } catch (err) {
+      carrouselPreviews = [];
+    }
   }
 
-  if (carrouselPreviews.length !== imagePaths.length) {
-    const toDelete = imagePaths.filter(img => !carrouselPreviews.includes(img));
+  const toDelete = imagePaths.filter(img => !carrouselPreviews.includes(img));
 
-    for (const imagePath of toDelete) {
-      const filePath = path.join('.', imagePath);
-      await fs.unlink(filePath);
-    }
+  for (const imagePath of toDelete) {
+    const filePath = path.join('.', imagePath);
+    await fs.unlink(filePath);
   }
 
   if (files) {
