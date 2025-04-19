@@ -52,7 +52,7 @@ export default function SideBar({ user, signOut, onLinkClick }) {
               <MdCabin className={style.icon} />
               <span className={style.smallText}>Alojamientos</span>
             </div>
-          </li>
+          </li>    
           {user.rol && (
             <li
               className={`${style.listItem} ${activeLink === "users" ? style.active : ""}`}

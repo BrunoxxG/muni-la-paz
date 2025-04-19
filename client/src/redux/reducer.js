@@ -9,7 +9,8 @@ import {
   GET_COMPLEXES_BY_NAME,
   GET_USERS_BY_NAME,
   FILTERED_PUBLICATIONS,
-  SET_CURRENT_PAGE
+  SET_CURRENT_PAGE,
+  GET_CARROUSEL,
 } from "./actions";
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
   complexDetail: {},
   publicationDetail: {},
   currentPage: 1,
+  carrousel: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -43,6 +45,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         users: action.payload,
+      };
+    case GET_CARROUSEL:
+      return {
+        ...state,
+        carrousel: action.payload,
       };
     case GET_COMPLEX_DETAIL:
       return {

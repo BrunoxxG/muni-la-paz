@@ -17,5 +17,6 @@ import SearchBar from './Dashboard/SearchBar/SearchBar';
 import PublicationForm from './Form/Publication/PublicationForm';
 import ComplexForm from './Form/Complex/ComplexForm';
 import UserForm from './Form/User/UserForm';
+import CarrouselForm from './Form/Carrousel/CarrouselForm';
 
-export { NavBar, Carousel, Footer, Pagination, Publication, Contact, User, SideBar, Panel, PublicationsDashboard, ComplexesDashboard, UsersDashboard, SearchBar, PublicationForm, ComplexForm, UserForm };
+export { NavBar, Carousel, Footer, Pagination, Publication, Contact, User, SideBar, Panel, PublicationsDashboard, ComplexesDashboard, UsersDashboard, SearchBar, PublicationForm, ComplexForm, UserForm, CarrouselForm };

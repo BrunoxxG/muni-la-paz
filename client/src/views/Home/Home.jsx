@@ -11,7 +11,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import style from "./Home.module.css";
 const { VITE_BACKEND_URL, VITE_GOOGLE_MAPS_API_KEY } = import.meta.env;
 
-export default function Home({ publications, complexes }) {
+export default function Home({ publications, complexes, carrousel }) {
   const filteredPublications = publications
     .filter((publication) => publication.check && !publication.isEvent && !publication.images[0]?.endsWith('.pdf'))
     .slice(0, 7);
@@ -28,7 +28,7 @@ export default function Home({ publications, complexes }) {
   return (
     <main>
       <div className={style.carrousel}>
-        <Carousel />
+        <Carousel carrousel={carrousel}/>
       </div>
       <div className={style.navCenter}>
         <Link to="/alojamientos" className={style.buttonNavCenter}>

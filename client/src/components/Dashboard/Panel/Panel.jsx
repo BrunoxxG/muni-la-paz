@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { ComplexForm, Publication, PublicationForm, User, UserForm } from "../../";
+import { ComplexForm, Publication, PublicationForm, User, UserForm, CarrouselForm } from "../../";
 import { IoIosAddCircle } from "react-icons/io";
 import { MdOutlineNotificationsNone } from "react-icons/md";
 import style from "./Panel.module.css";
 
-export default function Panel({ authUser, notifications, publications, complexes, users }) {
+export default function Panel({ authUser, notifications, publications, complexes, users, carrousel }) {
   const [viewForm, setViewForm] = useState({
     visible: false,
     form: "",
@@ -43,6 +43,7 @@ export default function Panel({ authUser, notifications, publications, complexes
         {viewForm.form === "publication" && <PublicationForm publication={viewForm.data} authUser={authUser} />}
         {viewForm.form === "complex" && <ComplexForm complex={viewForm.data} authUser={authUser} />}
         {viewForm.form === "user" && <UserForm user={viewForm.data} authUser={authUser} />}
+        {viewForm.form === "carrousel" && <CarrouselForm carrousel={carrousel} authUser={authUser} />}
       </div>
     );
   }
@@ -78,6 +79,10 @@ export default function Panel({ authUser, notifications, publications, complexes
 
             <button className={style.btnAccess} name="complex" onClick={handleForm}>
             <IoIosAddCircle className={style.icon} /><p>CREAR ALOJAMIENTO</p>
+            </button>
+
+            <button className={style.btnAccess} name="carrousel" onClick={handleForm}>
+            <IoIosAddCircle className={style.icon} /><p>FOTOS CARROUSEL</p>
             </button>
 
             {authUser.rol && (

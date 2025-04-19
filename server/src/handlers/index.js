@@ -22,6 +22,10 @@ const updateUserHandler = require('./users/updateUser.handler');
 const getUsersByNameHandler = require('./users/getUsersByName.handler');
 const deleteUserHandler = require('./users/deleteUser.handler');
 
+//CARROUSEL HANDLERS
+const getCarrouselHandler = require('./carrousel/getCarrousel.handler');
+const updateCarrouselHandler = require('./carrousel/updateCarrousel.handler');
+
 module.exports = {
   getAllComplexesHandler,
   postComplexHandler,
@@ -40,5 +44,7 @@ module.exports = {
   loginUserHandler,
   updateUserHandler,
   getUsersByNameHandler,
-  deleteUserHandler
+  deleteUserHandler,
+  getCarrouselHandler,
+  updateCarrouselHandler,
 }
