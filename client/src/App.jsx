@@ -3,7 +3,7 @@ import { NavBar, Footer } from "./components";
 import { Contacts, Home, Publications, Login, Dashboard, Complexes, ComplexDetail, PublicationDetail, Tourism } from "./views";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getComplexes, getPublications } from "./redux/actions";
+import { getComplexes, getPublications, getCarrousel } from "./redux/actions";
 import RequireAuth from "@auth-kit/react-router/RequireAuth";
 
 import "./App.css";
@@ -14,6 +14,7 @@ function App() {
 
   const allPublications = useSelector((state) => state.publications);
   const allComplexes = useSelector((state) => state.complexes);
+  const carrousel = useSelector((state) => state.carrousel);
 
   const events = allPublications
   .filter((publication) => publication.check && publication.isEvent)
@@ -31,14 +32,14 @@ function App() {
   const complexes = allComplexes.filter((complex) => complex.check);
 
   useEffect(() => {
-    dispatch(getComplexes()).then(() => dispatch(getPublications()));
+    dispatch(getComplexes()).then(() => dispatch(getPublications()).then(() => dispatch(getCarrousel())));
   }, []);
 
   return (
     <div className="container">
       {!location.pathname.startsWith("/dashboard") && <NavBar />}
       <Routes>
-        <Route exact path="/" element={<Home publications={allPublications} complexes={allComplexes} />} />
+        <Route exact path="/" element={<Home publications={allPublications} complexes={allComplexes} carrousel={carrousel}/>} />
         <Route exact path="/contacto" element={<Contacts />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/alojamientos" element={<Complexes complexes={complexes} />} />

@@ -4,6 +4,7 @@ const { VITE_BACKEND_URL } = import.meta.env;
 export const GET_COMPLEXES = "GET_COMPLEXES";
 export const GET_PUBLICATIONS = "GET_PUBLICATIONS";
 export const GET_USERS = "GET_USERS";
+export const GET_CARROUSEL = "GET_CARROUSEL";
 export const GET_COMPLEX_DETAIL = "GET_COMPLEX_DETAIL";
 export const GET_PUBLICATION_DETAIL = "GET_PUBLICATION_DETAIL";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
@@ -49,6 +50,21 @@ export const getUsers = (token) => {
             const { data } = await axios.get(`${VITE_BACKEND_URL}/users`, { headers: { Authorization: token } });
             return dispatch({
                 type: GET_USERS,
+                payload: data,
+            });
+        } catch (error) {
+            console.log(error.response.data);
+        }
+
+    };
+};
+
+export const getCarrousel = () => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`${VITE_BACKEND_URL}/carrousel`);
+            return dispatch({
+                type: GET_CARROUSEL,
                 payload: data,
             });
         } catch (error) {

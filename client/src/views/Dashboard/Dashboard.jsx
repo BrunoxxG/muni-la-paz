@@ -8,7 +8,7 @@ import { BsFillShieldLockFill } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 import style from "./Dashboard.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getComplexes, getPublications, getUsers } from "../../redux/actions";
+import { getComplexes, getPublications, getUsers, getCarrousel } from "../../redux/actions";
 import axios from "axios";
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -38,6 +38,7 @@ export default function Dashboard() {
   const allPublications = useSelector((state) => state.publications);
   const allComplexes = useSelector((state) => state.complexes);
   const allUsers = useSelector((state) => state.users);
+  const carrousel = useSelector((state) => state.carrousel);
 
   const sumObjectsDisable = (array) => {
     return array.reduce((total, currentObject) => {
@@ -57,7 +58,7 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    dispatch(getComplexes()).then(() => dispatch(getPublications()).then(() => dispatch(getUsers(token))));
+    dispatch(getComplexes()).then(() => dispatch(getPublications()).then(() => dispatch(getUsers(token)).then(() => dispatch(getCarrousel()))));
   }, []);
 
   const handleLinkClick = (component) => {
@@ -174,6 +175,7 @@ export default function Dashboard() {
               publications={allPublications}
               complexes={allComplexes}
               users={allUsers}
+              carrousel={carrousel}
             />
           )}
           {activeComponent === "publications" && (

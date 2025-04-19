@@ -22,6 +22,9 @@ const updateUserController = require('./users/updateUser.controller');
 const getUsersByNameController = require('./users/getUsersByName.controller');
 const deleteUserController = require('./users/deleteUser.controller');
 
+//USERS CONTROLLERS
+const getCarrouselController = require('./carrousel/getCarrousel.controller');
+const updateCarrouselController = require('./carrousel/updateCarrousel.controller');
 
 module.exports = {
   getAllComplexesController,
@@ -41,5 +44,7 @@ module.exports = {
   loginUserController,
   updateUserController,
   getUsersByNameController,
-  deleteUserController
+  deleteUserController,
+  getCarrouselController,
+  updateCarrouselController,
 };
