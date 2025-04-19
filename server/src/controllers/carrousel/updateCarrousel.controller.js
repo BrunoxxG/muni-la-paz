@@ -3,10 +3,14 @@ const path = require('path');
 
 module.exports = async (body, files) => {
 
-  const { carrouselPreviews } = body;
-
   const imgFolder = await fs.readdir('./public/images/carrousel');
   const imagePaths = imgFolder.map(filename => `/public/images/carrousel/${filename}`);
+
+  let { carrouselPreviews } = body;
+
+  if (typeof carrouselPreviews === 'string') {   
+      carrouselPreviews = JSON.parse(carrouselPreviews);
+  }
 
   if (carrouselPreviews.length !== imagePaths.length) {
     const toDelete = imagePaths.filter(img => !carrouselPreviews.includes(img));
