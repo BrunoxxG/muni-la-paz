@@ -141,6 +141,7 @@ export default function PublicationForm({ publication, authUser }) {
   const handleCreate = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
     Swal.fire({
       title: "Confirmación",
       text: `Confirma CREAR`,
@@ -157,16 +158,21 @@ export default function PublicationForm({ publication, authUser }) {
         formData.append("isEvent", input.isEvent);
         formData.append("date", input.date.toISOString());
         formData.append("eventDate", input.eventDate.toISOString());
+        formData.append("check", false);
         formData.append("video", input.video);
 
-        input.images.forEach((image) => {
-          formData.append(`images`, image);
-        });
+        if (input.images.length) {
+          input.images.forEach((image) => {
+            formData.append("images", image);
+          });
+        }
+
         try {
           const response = await axios.post(`${VITE_BACKEND_URL}/publications`, formData, {
             headers: { Authorization: authUser.token },
           });
-          if (response.status === 200) {
+
+          if (response.status === 201) {
             setInput({
               title: "",
               description: "",
@@ -178,14 +184,15 @@ export default function PublicationForm({ publication, authUser }) {
               eventDate: new Date(),
               video: "",
             });
+
             Swal.fire({
-              title: "Creado",
-              text: "Se creo correctamente",
+              title: "Publicado",
+              text: "Se publicó correctamente",
               icon: "success",
               showConfirmButton: false,
               timer: 2500,
             });
-            setIsSubmitting(false);
+
             window.location.reload();
           }
         } catch (error) {
@@ -196,15 +203,19 @@ export default function PublicationForm({ publication, authUser }) {
             showConfirmButton: false,
             timer: 2500,
           });
+        } finally {
+          setIsSubmitting(false);
         }
+      } else {
+        setIsSubmitting(false);
       }
     });
-    setIsSubmitting(false);
   };
 
   const handleEdit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
     Swal.fire({
       title: "Confirmación",
       text: `Confirma EDITAR`,
@@ -229,6 +240,7 @@ export default function PublicationForm({ publication, authUser }) {
             formData.append(`images`, image);
           });
         }
+
         try {
           const response = await axios.patch(`${VITE_BACKEND_URL}/publications/${publication.id}`, formData, {
             headers: { Authorization: authUser.token },
@@ -246,8 +258,8 @@ export default function PublicationForm({ publication, authUser }) {
               video: "",
             });
             Swal.fire({
-              title: "Actulaizado",
-              text: "Se actualizo correctamente",
+              title: "Actualizado",
+              text: "Se actualizó correctamente",
               icon: "success",
               showConfirmButton: false,
               timer: 2500,
@@ -262,10 +274,13 @@ export default function PublicationForm({ publication, authUser }) {
             showConfirmButton: false,
             timer: 2500,
           });
+        } finally {
+          setIsSubmitting(false);
         }
+      } else {
+        setIsSubmitting(false);
       }
     });
-    setIsSubmitting(false);
   };
 
   return (
@@ -464,7 +479,7 @@ export default function PublicationForm({ publication, authUser }) {
               )}
             </div>
 
-            <button type="submit" className={style.btn}>
+            <button type="submit" disabled={isSubmitting} className={style.btn}>
               EDITAR
             </button>
           </form>
