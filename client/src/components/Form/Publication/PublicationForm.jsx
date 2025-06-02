@@ -663,7 +663,7 @@ export default function PublicationForm({ publication, authUser }) {
               )}
             </div>
 
-            <button type="submit" className={style.btn}>
+            <button type="submit" disabled={isSubmitting} className={style.btn}>
               CREAR
             </button>
           </form>
