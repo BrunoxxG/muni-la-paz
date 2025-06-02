@@ -37,6 +37,8 @@ export default function PublicationForm({ publication, authUser }) {
     video: publication?.video || "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   let footer;
   if (input.eventDate) {
     footer = (
@@ -138,6 +140,7 @@ export default function PublicationForm({ publication, authUser }) {
 
   const handleCreate = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     Swal.fire({
       title: "Confirmación",
       text: `Confirma CREAR`,
@@ -182,6 +185,7 @@ export default function PublicationForm({ publication, authUser }) {
               showConfirmButton: false,
               timer: 2500,
             });
+            setIsSubmitting(false);
             window.location.reload();
           }
         } catch (error) {
@@ -195,10 +199,12 @@ export default function PublicationForm({ publication, authUser }) {
         }
       }
     });
+    setIsSubmitting(false);
   };
 
   const handleEdit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     Swal.fire({
       title: "Confirmación",
       text: `Confirma EDITAR`,
@@ -259,6 +265,7 @@ export default function PublicationForm({ publication, authUser }) {
         }
       }
     });
+    setIsSubmitting(false);
   };
 
   return (
