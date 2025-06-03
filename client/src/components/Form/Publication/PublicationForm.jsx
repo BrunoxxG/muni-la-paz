@@ -464,7 +464,7 @@ export default function PublicationForm({ publication, authUser }) {
             </div>
 
             <button type="submit" disabled={isSubmitting} className={style.btn}>
-              EDITAR
+              {isSubmitting ? "CARGANDO..." : "EDITAR"}
             </button>
           </form>
         </div>
@@ -663,7 +663,7 @@ export default function PublicationForm({ publication, authUser }) {
             </div>
 
             <button type="submit" disabled={isSubmitting} className={style.btn}>
-              CREAR
+              {isSubmitting ? "CARGANDO..." : "CREAR"}
             </button>
           </form>
         </div>
