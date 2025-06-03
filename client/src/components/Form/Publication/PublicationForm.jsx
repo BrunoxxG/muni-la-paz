@@ -9,6 +9,7 @@ import "react-day-picker/dist/style.css";
 import axios from "axios";
 const { VITE_BACKEND_URL } = import.meta.env;
 import { FaUpload } from "react-icons/fa";
+import imageCompression from "browser-image-compression";
 
 import { Document, Page, pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.js", import.meta.url).toString();
@@ -159,9 +160,19 @@ export default function PublicationForm({ publication, authUser }) {
         formData.append("eventDate", input.eventDate.toISOString());
         formData.append("video", input.video);
 
-        input.images.forEach((image) => {
-          formData.append(`images`, image);
-        });
+        const options = {
+          maxSizeMB: 2,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+          fileType: "image/webp",
+          initialQuality: 0.7,
+        };
+
+        for (const image of input.images) {
+          const compressedFile = await imageCompression(image, options);
+          formData.append("images", compressedFile, compressedFile.name.replace(/\.\w+$/, ".webp"));
+        }
+
         try {
           const response = await axios.post(`${VITE_BACKEND_URL}/publications`, formData, {
             headers: { Authorization: authUser.token },
@@ -223,11 +234,19 @@ export default function PublicationForm({ publication, authUser }) {
         formData.append("check", false);
         formData.append("video", input.video);
 
-        if (input.images.length) {
-          input.images.forEach((image) => {
-            formData.append(`images`, image);
-          });
+        const options = {
+          maxSizeMB: 2,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+          fileType: "image/webp",
+          initialQuality: 0.7,
+        };
+
+        for (const image of input.images) {
+          const compressedFile = await imageCompression(image, options);
+          formData.append("images", compressedFile, compressedFile.name.replace(/\.\w+$/, ".webp"));
         }
+
         try {
           const response = await axios.patch(`${VITE_BACKEND_URL}/publications/${publication.id}`, formData, {
             headers: { Authorization: authUser.token },
