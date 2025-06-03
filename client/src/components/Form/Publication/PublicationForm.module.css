@@ -176,24 +176,27 @@
       &:hover {
         scale: 1.1;
       }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+        transform: none;
+      }
     }
   }
 }
 
-
-
 @media screen and (max-width: 980px) {
   .content {
-    .form{
+    .form {
       .divInput {
         .video {
           margin-left: 0;
           margin-right: 0;
           width: auto;
         }
-      } 
+      }
     }
   }
 }
-
-
