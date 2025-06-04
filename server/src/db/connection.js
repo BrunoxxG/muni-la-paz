@@ -1,6 +1,6 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
-const { UserModel, PublicationModel, ComplexModel } = require('../models');
+const { UserModel, PublicationModel, ComplexModel, CarrouselImageModel } = require('../models');
 
 //const { loadData } = require('../seeder/loadData');
 
@@ -13,6 +13,7 @@ const sequelize = new Sequelize(process.env.DB, {
 UserModel(sequelize);
 PublicationModel(sequelize);
 ComplexModel(sequelize);
+CarrouselImageModel(sequelize);
 
 const { User, Publication, Complex } = sequelize.models;
 
