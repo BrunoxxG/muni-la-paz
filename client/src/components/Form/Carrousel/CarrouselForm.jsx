@@ -8,13 +8,12 @@ import imageCompression from "browser-image-compression";
 
 export default function CarrouselForm({ carrousel, authUser }) {
   const [input, setInput] = useState({
-    images: [], // archivos nuevos para subir
+    images: [],
     carrouselPreviews: carrousel ? [...carrousel] : [],
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Función para intercambiar posiciones de imágenes (izq o derecha)
   const swapImages = (index1, index2) => {
     if (
       index1 < 0 ||
@@ -29,7 +28,7 @@ export default function CarrouselForm({ carrousel, authUser }) {
       [newPreviews[index1], newPreviews[index2]] = [newPreviews[index2], newPreviews[index1]];
       return {
         ...prev,
-        carrouselPreviews: newPreviews.map((img, i) => ({ ...img, order: i })),
+        carrouselPreviews: newPreviews.map((img, i) => ({ ...img, order: i + 1 })),
       };
     });
   };
@@ -39,7 +38,7 @@ export default function CarrouselForm({ carrousel, authUser }) {
       const files = Array.from(e.target.files);
       const newPreviews = files.map((file, i) => ({
         path: URL.createObjectURL(file),
-        order: input.carrouselPreviews.length + i,
+        order: input.carrouselPreviews.length + i + 1,
         isNew: true,
         file,
       }));
@@ -57,7 +56,6 @@ export default function CarrouselForm({ carrousel, authUser }) {
       const removed = prev.carrouselPreviews[index];
       const updatedPreviews = prev.carrouselPreviews.filter((_, i) => i !== index);
 
-      // Si la imagen eliminada es nueva, la removemos del array images
       let updatedImages = prev.images;
       if (removed.isNew) {
         updatedImages = prev.images.filter((imgFile) => imgFile !== removed.file);
@@ -67,7 +65,7 @@ export default function CarrouselForm({ carrousel, authUser }) {
         ...prev,
         carrouselPreviews: updatedPreviews.map((img, i) => ({
           ...img,
-          order: i,
+          order: i + 1,
         })),
         images: updatedImages,
       };
@@ -100,7 +98,16 @@ export default function CarrouselForm({ carrousel, authUser }) {
     }
 
     const formData = new FormData();
-    formData.append("carrouselPreviews", JSON.stringify(input.carrouselPreviews.map((img) => img.path)));
+
+    formData.append(
+      "carrouselPreviews",
+      JSON.stringify(
+        input.carrouselPreviews.map((img) => ({
+          path: img.isNew ? img.file.name.replace(/\.\w+$/, ".webp") : img.path,
+          order: img.order,
+        }))
+      )
+    );
 
     const options = {
       maxSizeMB: 2,
@@ -155,10 +162,13 @@ export default function CarrouselForm({ carrousel, authUser }) {
 
         {input.carrouselPreviews.length > 0 && (
           <div className={style.divInput}>
-            <div className={style.gridImages}>         
+            <div className={style.gridImages}>
               {input.carrouselPreviews.map((img, index) => (
                 <div key={index} className={style.divImage}>
-                  <img src={img.isNew ? img.path : VITE_BACKEND_URL + '/public/images/carrousel/' + img.path} alt={`imagen ${index}`} />
+                  <img
+                    src={img.isNew ? img.path : VITE_BACKEND_URL + "/public/images/carrousel/" + img.path}
+                    alt={`imagen ${index}`}
+                  />
                   <div className={style.buttonsImage}>
                     <button
                       type="button"
