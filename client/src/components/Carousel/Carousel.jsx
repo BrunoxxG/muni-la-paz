@@ -22,9 +22,9 @@ export default function Carousel({ carrousel }) {
         delay: 4000,
       }}
     >
-      {carrousel.map((path, index) => (
+      {carrousel.map((img, index) => (
         <SwiperSlide key={index}>
-          <img src={VITE_BACKEND_URL + path} alt={`Slide${index}`} className={style.slideImg} />
+          <img src={VITE_BACKEND_URL + '/public/images/carrousel/' + img.path} alt={`Slide${index}`} className={style.slideImg} />
         </SwiperSlide>
       ))}
     </Swiper>

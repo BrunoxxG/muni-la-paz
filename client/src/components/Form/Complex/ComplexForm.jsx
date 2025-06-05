@@ -4,7 +4,7 @@ import axios from "axios";
 const { VITE_BACKEND_URL, VITE_GOOGLE_MAPS_API_KEY } = import.meta.env;
 import { FaUpload } from "react-icons/fa";
 import style from "./ComplexForm.module.css";
-
+import imageCompression from "browser-image-compression";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 export default function ComplexForm({ complex, authUser }) {
@@ -21,6 +21,8 @@ export default function ComplexForm({ complex, authUser }) {
     lat: complex?.lat || -32.2172425800549,
     lng: complex?.lng || -65.04836357980413,
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e, source) => {
     setInput((prevInput) => {
@@ -101,6 +103,7 @@ export default function ComplexForm({ complex, authUser }) {
 
   const handleCreate = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     Swal.fire({
       title: "Confirmación",
       text: `Confirma CREAR`,
@@ -121,9 +124,19 @@ export default function ComplexForm({ complex, authUser }) {
         formData.append("lat", input.lat);
         formData.append("lng", input.lng);
 
-        input.images.forEach((image) => {
-          formData.append(`images`, image);
-        });
+        const options = {
+          maxSizeMB: 2,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+          fileType: "image/webp",
+          initialQuality: 0.7,
+        };
+
+        for (const image of input.images) {
+          const compressedFile = await imageCompression(image, options);
+          formData.append("images", compressedFile, compressedFile.name.replace(/\.\w+$/, ".webp"));
+        }
+
         try {
           const response = await axios.post(`${VITE_BACKEND_URL}/complexes`, formData, {
             headers: { Authorization: authUser.token },
@@ -159,6 +172,7 @@ export default function ComplexForm({ complex, authUser }) {
             showConfirmButton: false,
             timer: 2500,
           });
+          setIsSubmitting(false);
         }
       }
     });
@@ -166,6 +180,7 @@ export default function ComplexForm({ complex, authUser }) {
 
   const handleEdit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     Swal.fire({
       title: "Confirmación",
       text: `Confirma EDITAR`,
@@ -187,11 +202,19 @@ export default function ComplexForm({ complex, authUser }) {
         formData.append("lng", input.lng);
         formData.append("check", false);
 
-        if (input.images.length) {
-          input.images.forEach((image) => {
-            formData.append(`images`, image);
-          });
+        const options = {
+          maxSizeMB: 2,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+          fileType: "image/webp",
+          initialQuality: 0.7,
+        };
+
+        for (const image of input.images) {
+          const compressedFile = await imageCompression(image, options);
+          formData.append("images", compressedFile, compressedFile.name.replace(/\.\w+$/, ".webp"));
         }
+
         try {
           const response = await axios.patch(`${VITE_BACKEND_URL}/complexes/${complex.id}`, formData, {
             headers: { Authorization: authUser.token },
@@ -227,6 +250,7 @@ export default function ComplexForm({ complex, authUser }) {
             showConfirmButton: false,
             timer: 2500,
           });
+          setIsSubmitting(false);
         }
       }
     });
@@ -393,8 +417,8 @@ export default function ComplexForm({ complex, authUser }) {
               )}
             </div>
 
-            <button type="submit" className={style.btn}>
-              EDITAR
+            <button type="submit" disabled={isSubmitting} className={style.btn}>
+              {isSubmitting ? "CARGANDO..." : "EDITAR"}
             </button>
           </form>
         </div>
@@ -557,8 +581,8 @@ export default function ComplexForm({ complex, authUser }) {
               )}
             </div>
 
-            <button type="submit" className={style.btn}>
-              CREAR
+            <button type="submit" disabled={isSubmitting} className={style.btn}>
+              {isSubmitting ? "CARGANDO..." : "CREAR"}
             </button>
           </form>
         </div>

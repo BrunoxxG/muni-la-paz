@@ -1,10 +1,9 @@
-const fs = require('fs/promises');
+const { CarrouselImage } = require('../../db/connection');
 
 module.exports = async () => {
 
-  const files = await fs.readdir('./public/images/carrousel');
-  const imagePaths = files.map(filename => `/public/images/carrousel/${filename}`);
-  
-  return imagePaths;
+  const imagesCarrousel = await CarrouselImage.findAll({ order: [['order', 'ASC']] });
+
+  return imagesCarrousel;
 
 };
