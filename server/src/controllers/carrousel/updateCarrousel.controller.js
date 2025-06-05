@@ -5,7 +5,7 @@ const { CarrouselImage } = require('../../db/connection');
 module.exports = async (body, files) => {
 
   let { carrouselPreviews } = body;
-  
+
   if (typeof carrouselPreviews === 'string') {
     try {
       carrouselPreviews = JSON.parse(carrouselPreviews);
@@ -13,9 +13,10 @@ module.exports = async (body, files) => {
       carrouselPreviews = [];
     }
   }
-  
+
   const imgFolder = await fs.readdir('./public/images/carrousel');
-  const toDelete = imgFolder.filter(img => !carrouselPreviews.includes(img));
+  const previewPaths = carrouselPreviews.map(img => img.path);
+  const toDelete = imgFolder.filter(img => !previewPaths.includes(img));
 
   for (const imageName of toDelete) {
     const filePath = path.join('./public/images/carrousel', imageName);
@@ -34,19 +35,24 @@ module.exports = async (body, files) => {
       const newPath = `./public/images/carrousel/${filename}`;
 
       await fs.mkdir(path.dirname(newPath), { recursive: true });
-
       await fs.rename(image.path, newPath);
+
+      const found = Array.isArray(carrouselPreviews)
+        ? carrouselPreviews.find((img) => img.path === filename)
+        : null;
+
+      const order = found?.order ?? 0;
 
       await CarrouselImage.create({
         path: filename,
-        order: 0
+        order
       });
     }
   }
 
   if (carrouselPreviews && Array.isArray(carrouselPreviews)) {
     for (let i = 0; i < carrouselPreviews.length; i++) {
-      const imageName = carrouselPreviews[i];
+      const imageName = carrouselPreviews[i].path;
 
       await CarrouselImage.update(
         { order: i + 1 },
