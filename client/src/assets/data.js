@@ -78,18 +78,22 @@ export const imagesCarrousel = [
 
 export const contacts = [
   {
-    title: 'Municipalidad de la Paz',
+    title: 'Municipalidad de la Paz (mesa de entrada 7:00 - 13:00)',
     phone: '3544-496010',
+    whatsapp: '3544-594311',
     email: 'municipalidadelapaz@hotmail.com'
   },
   {
-    title: 'Acción Social y Oficina de Empleo',
-    phone: '3544-416691',
-    email: 'oe.lapaz@gmail.com'
+    title: 'Desarrollo Social y Oficina de Empleo (oficina)',
+    phone: '3544-615352',
+    email: 'oe.lapaz@gmail.com',
+    title2: 'Directora Lic.María Jose Altamirano',
+    phone2: '3544-416691',
   },
   {
-    title: 'Reclamos Agua (24hs)',
-    phone: '3544-460636',
+    title: 'Hospital Municipal Santa Rita (7:00 - 13:00 y 16:00 - 20:00)',
+    phone: '3544-496058',
+    whatsapp: '3544-593956',
   },
   {
     title: 'Turismo',
@@ -97,33 +101,33 @@ export const contacts = [
     email: 'sectorlapaz@gmail.com'
   },
   {
-    title: 'Publicidad - Radio Eventos - Zoonosis',
+    title: 'Ceremonial - Eventos',
     phone: '3544-416376',
   },
-  {
-    title: 'Hospital Municipal - Santa Rita',
-    phone: '3544-496058',
-    whatsapp: '3544-593956',
+   {
+    title: 'Radio Municipal Programas',
+    phone: '3544-314281',
   },
   {
-    title: 'Comisaria La Paz',
-    phone: '3544-496600',
+    title: 'Reclamos Agua',
+    phone: '3544-588733',
   },
   {
-    title: 'Bomberos Voluntarios',
-    phone: '3544-496600',
-    whatsapp: '3544-536590',
-    instagram: 'https://www.instagram.com/bomberos_la_paz_97?igsh=MWMzc3FpaGNwMGUwMQ==',
-    facebook: 'https://www.facebook.com/profile.php?id=100011400955700&mibextid=ZbWKwL'
+    title: 'Castraciones',
+    whatsapp: '3544-506114',
+    phone: '3544-611283',
+  },
+    {
+    title: 'Juzgado de Paz (La Paz)',
+    phone: '351-2356999'
   },
   {
     title: 'Vacunatorio Municipal',
-    phone: '3544-594129',
-    whatsapp: '3544-594129'
+    phone: '3544-594129'
   },
-  {
-    title: 'Oficina de Genero (24hs)',
-    phone: '3544-625515',
+ {
+    title: 'Bromatologia (lunes-viernes 8 a 13hs)',
+    phone: '3544-417006',
   },
  {
     title: 'Oficina de Derechos Humanos',
@@ -131,20 +135,25 @@ export const contacts = [
   },
   {
     title: 'Defensa Civil',
-    phone: '011-32728757',
+    phone: '103',
   },
   {
-    title: 'Caja/Cobros-oficina',
+    title: 'Caja Cobros (8:00 - 13:00)',
     phone: '3544-594151',
   },
-  {
-    title: 'Bromatologia (lunes a viernes - 8 a 13hs)',
-    phone: '3544-417006',
+    {
+    title: 'Comisaria La Paz (24hs)',
+    phone: '496600',
+    title2: 'Destacamento Cruz de Caña (24hs)',
+    phone2: '3544-594024',
   },
   {
-    title: 'Juzgado de Paz(La Paz)',
-    phone: '351-2356999',
-    whatsapp: '351-2356999'
+    title: 'Bomberos Voluntarios',
+    phone2: '100',
+    phone: '3544-496219',
+    whatsapp: '3544-536590',
+    instagram: 'https://www.instagram.com/bomberos_la_paz_97?igsh=MWMzc3FpaGNwMGUwMQ==',
+    facebook: 'https://www.facebook.com/profile.php?id=100011400955700&mibextid=ZbWKwL'
   },
 ];
 
