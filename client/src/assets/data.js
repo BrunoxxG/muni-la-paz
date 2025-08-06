@@ -208,7 +208,7 @@ export const court = [
   },
   {
     name: 'Virginia Ochoa',
-    position: 'Vicepresidente H.T.D.C',
+    position: 'Vocal H.T.D.C',
     img: '/img/team/VirginiaOchoa.webp'
   },
   {
@@ -235,8 +235,8 @@ export const institutional = [
     img: '/img/team/CarlosGustavoHachuel.webp'
   },
   {
-    name: 'Franco Suau',
+    name: 'Cr. Lorenzo Brito',
     position: 'Secretaría de Hacienda',
-    img: '/img/team/SuauFranco.webp'
+    img: '/img/team/LorenzoBrito.webp'
   }
 ];
