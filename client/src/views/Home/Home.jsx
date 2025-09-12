@@ -13,7 +13,7 @@ const { VITE_BACKEND_URL, VITE_GOOGLE_MAPS_API_KEY } = import.meta.env;
 
 export default function Home({ publications, complexes, carrousel }) {
   const filteredPublications = publications
-    .filter((publication) => publication.check && !publication.isEvent && !publication.images[0]?.endsWith('.pdf'))
+    .filter((publication) => publication.check && !publication.isEvent && publication.type !== "Concejo")
     .slice(0, 7);
   const filteredComplexes = complexes.filter((complexes) => complexes.check).slice(0, 3);
   const events = publications
