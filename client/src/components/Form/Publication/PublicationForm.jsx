@@ -36,6 +36,7 @@ export default function PublicationForm({ publication, authUser }) {
     date: publication?.date ? new Date(publication.date) : new Date(),
     eventDate: publication?.eventDate ? new Date(publication.eventDate) : new Date(),
     video: publication?.video || "",
+    changeDate: false,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -49,12 +50,21 @@ export default function PublicationForm({ publication, authUser }) {
     );
   }
 
+  let footerDate;
+  if (input.date) {
+    footerDate = (
+      <p>
+        Fecha seleccionada: <b>{format(input.date, "P")}</b>.
+      </p>
+    );
+  }
+
   const handleChange = (e) => {
     setInput((prevInput) => {
-      if (e instanceof Date) {
+      if (e && e.name && e.value !== undefined) {
         return {
           ...prevInput,
-          eventDate: e,
+          [e.name]: e.value,
         };
       } else if (e.target.type === "file") {
         const selectedFiles = Array.from(e.target.files);
@@ -78,6 +88,11 @@ export default function PublicationForm({ publication, authUser }) {
         return {
           ...prevInput,
           isEvent: e.target.checked,
+        };
+      } else if (e.target.name === "changeDate") {
+        return {
+          ...prevInput,
+          changeDate: e.target.checked,
         };
       } else {
         return {
@@ -353,7 +368,7 @@ export default function PublicationForm({ publication, authUser }) {
                 <DayPicker
                   mode="single"
                   locale={es}
-                  onDayClick={handleChange}
+                  onDayClick={(day) => handleChange({ name: "eventDate", value: day })}
                   defaultMonth={input.eventDate}
                   selected={input.eventDate}
                   footer={footer}
@@ -482,6 +497,35 @@ export default function PublicationForm({ publication, authUser }) {
               )}
             </div>
 
+            <div className={style.divInput}>
+              <label className={style.isEventLabel}>
+                Marcar para cambiar la fecha de Publicación
+                <input
+                  type="checkbox"
+                  name="changeDate"
+                  checked={input.changeDate}
+                  className={style.inputCheckbox}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+
+            {input.changeDate && (
+              <div className={style.divInput}>
+                {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+                <label>Seleccione fecha de la publicación</label>
+                <DayPicker
+                  mode="single"
+                  locale={es}
+                  onDayClick={(day) => handleChange({ name: "date", value: day })}
+                  defaultMonth={input.date}
+                  selected={input.date}
+                  footer={footerDate}
+                  className={style.dayPicker}
+                />
+              </div>
+            )}
+
             <button type="submit" disabled={isSubmitting} className={style.btn}>
               {isSubmitting ? "CARGANDO..." : "EDITAR"}
             </button>
@@ -552,7 +596,7 @@ export default function PublicationForm({ publication, authUser }) {
                 <DayPicker
                   mode="single"
                   locale={es}
-                  onDayClick={handleChange}
+                  onDayClick={(day) => handleChange({ name: "eventDate", value: day })}
                   defaultMonth={input.eventDate}
                   selected={input.eventDate}
                   footer={footer}
@@ -680,6 +724,35 @@ export default function PublicationForm({ publication, authUser }) {
                 </>
               )}
             </div>
+
+            <div className={style.divInput}>
+              <label className={style.isEventLabel}>
+                Marcar para cambiar la fecha de Publicación
+                <input
+                  type="checkbox"
+                  name="changeDate"
+                  checked={input.changeDate}
+                  className={style.inputCheckbox}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+
+            {input.changeDate && (
+              <div className={style.divInput}>
+                {/* {errors.name && <p className=" text-red-600 text-sm font-semibold ">{errors.name}</p>} */}
+                <label>Seleccione fecha de la publicación</label>
+                <DayPicker
+                  mode="single"
+                  locale={es}
+                  onDayClick={(day) => handleChange({ name: "date", value: day })}
+                  defaultMonth={input.date}
+                  selected={input.date}
+                  footer={footerDate}
+                  className={style.dayPicker}
+                />
+              </div>
+            )}
 
             <button type="submit" disabled={isSubmitting} className={style.btn}>
               {isSubmitting ? "CARGANDO..." : "CREAR"}

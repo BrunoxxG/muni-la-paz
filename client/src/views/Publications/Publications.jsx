@@ -26,7 +26,6 @@ export default function Publications({ items }) {
     "Salud",
     "Institucional",
     "Deporte",
-    "Concejo",
     "Cultura",
     "Servicio",
     "Turismo",
@@ -248,6 +247,7 @@ export default function Publications({ items }) {
       )}
       <div className={style.grid}>
         {publications?.map((publication, index) => (
+          publication.type !== "Concejo" &&
           <Publication key={index} publication={publication} />
         ))}
       </div>

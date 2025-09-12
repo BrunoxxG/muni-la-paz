@@ -119,9 +119,9 @@ export default function Publication({ publication, complex, authUser, handleForm
           <img src={VITE_BACKEND_URL + publication.images[0]} alt={publication.title} />
         )}
         <div className={style.cardText}>
-          {publication.type !== "Concejo" && location.pathname !== "/" && (
+          {/* {publication.type !== "Concejo" && location.pathname !== "/" && (
             <small>Publicado: {format(publication.date, "PP")}</small>
-          )}
+          )} */}
           <h3>{publication.title}</h3>
           <p>{publication.description}</p>
           {publication.isEvent && (
