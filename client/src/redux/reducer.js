@@ -39,7 +39,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         publications: action.payload,
         publicationsCopy: action.payload,
-        filteredPublications: action.payload,
+        filteredPublications: action.payload.filter((publication) => publication.type !== "Concejo"),
       };
     case GET_USERS:
       return {

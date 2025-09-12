@@ -10,7 +10,12 @@ import { councilors, court, institutional } from "../../assets/data";
 export default function Publications({ items }) {
   const { currentView, currentViewItems } = usePaginate(items);
 
+  console.log("CURRENT VIEW", currentView);
+  console.log("CURRENT VIEW ITEMS", currentViewItems);
+
   const publications = currentView || currentViewItems;
+
+  console.log("PUBLICATION", publications);
 
   const location = useLocation();
 
@@ -247,7 +252,6 @@ export default function Publications({ items }) {
       )}
       <div className={style.grid}>
         {publications?.map((publication, index) => (
-          publication.type !== "Concejo" &&
           <Publication key={index} publication={publication} />
         ))}
       </div>

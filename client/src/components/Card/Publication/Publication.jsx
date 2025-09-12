@@ -122,6 +122,9 @@ export default function Publication({ publication, complex, authUser, handleForm
           {/* {publication.type !== "Concejo" && location.pathname !== "/" && (
             <small>Publicado: {format(publication.date, "PP")}</small>
           )} */}
+          {publication.type !== "Concejo" && location.pathname === "/dashboard" && (
+            <small>Publicado: {format(publication.date, "PP")}</small>
+          )}
           <h3>{publication.title}</h3>
           <p>{publication.description}</p>
           {publication.isEvent && (
