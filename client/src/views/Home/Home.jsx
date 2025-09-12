@@ -88,7 +88,7 @@ export default function Home({ publications, complexes, carrousel }) {
           </div>
           <div className={style.firstNoticeText}>
             <div className={style.firstNoticeTextTop}>
-              {filteredPublications[0]?.date && <small>Publicado: {format(filteredPublications[0].date, "PP")}</small>}
+              {/* {filteredPublications[0]?.date && <small>Publicado: {format(filteredPublications[0].date, "PP")}</small>} */}
               <h3>{filteredPublications[0]?.title}</h3>
               <p>{filteredPublications[0]?.description}</p>
             </div>
