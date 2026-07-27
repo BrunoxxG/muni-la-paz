@@ -1,9 +1,9 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { NavBar, Footer } from "./components";
-import { Contacts, Home, Publications, Login, Dashboard, Complexes, ComplexDetail, PublicationDetail, Tourism } from "./views";
+import { Contacts, Home, Publications, Login, Dashboard, Complexes, ComplexDetail, PublicationDetail, Tourism, Documents } from "./views";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getComplexes, getPublications, getCarrousel } from "./redux/actions";
+import { getComplexes, getPublications, getCarrousel, getDocuments } from "./redux/actions";
 import RequireAuth from "@auth-kit/react-router/RequireAuth";
 
 import "./App.css";
@@ -15,6 +15,7 @@ function App() {
   const allPublications = useSelector((state) => state.publications);
   const allComplexes = useSelector((state) => state.complexes);
   const carrousel = useSelector((state) => state.carrousel);
+  const allDocuments = useSelector((state) => state.documents);
 
   const events = allPublications
   .filter((publication) => publication.check && publication.isEvent)
@@ -31,8 +32,10 @@ function App() {
 
   const complexes = allComplexes.filter((complex) => complex.check);
 
+  const documents = allDocuments.filter((document) => document.check);
+
   useEffect(() => {
-    dispatch(getComplexes()).then(() => dispatch(getPublications()).then(() => dispatch(getCarrousel())));
+    dispatch(getComplexes()).then(() => dispatch(getPublications()).then(() => dispatch(getCarrousel())).then(() => dispatch(getDocuments())));
   }, []);
 
   return (
@@ -54,6 +57,7 @@ function App() {
         <Route exact path="/turismo" element={<Tourism items={tourism} events={events} complexes={allComplexes}/>} />
         <Route exact path="/institucional" element={<Publications items={institutional} />} />
         <Route exact path="/concejo" element={<Publications items={advice} />} />
+        <Route exact path="/documentospdf" element={<Documents documents={documents}/>} />
         <Route
           exact
           path="/dashboard/*"

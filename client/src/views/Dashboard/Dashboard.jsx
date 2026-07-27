@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import useSignOut from "react-auth-kit/hooks/useSignOut";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
-import { ComplexesDashboard, PublicationsDashboard, Panel, SideBar, UsersDashboard } from "../../components";
+import { ComplexesDashboard, PublicationsDashboard, Panel, SideBar, UsersDashboard, DocumentsDashboard } from "../../components";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 import style from "./Dashboard.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getComplexes, getPublications, getUsers, getCarrousel } from "../../redux/actions";
+import { getComplexes, getPublications, getUsers, getCarrousel, getDocuments } from "../../redux/actions";
 import axios from "axios";
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -37,6 +37,7 @@ export default function Dashboard() {
 
   const allPublications = useSelector((state) => state.publications);
   const allComplexes = useSelector((state) => state.complexes);
+  const allDocuments = useSelector((state) => state.documents);
   const allUsers = useSelector((state) => state.users);
   const carrousel = useSelector((state) => state.carrousel);
 
@@ -50,7 +51,7 @@ export default function Dashboard() {
     }, 0);
   };
 
-  const sumTotal = sumObjectsDisable(allPublications) + sumObjectsDisable(allComplexes) + sumObjectsDisable(allUsers);
+  const sumTotal = sumObjectsDisable(allPublications) + sumObjectsDisable(allComplexes) + sumObjectsDisable(allUsers) + sumObjectsDisable(allDocuments);
 
   const signOutAction = () => {
     signOut();
@@ -58,7 +59,7 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    dispatch(getComplexes()).then(() => dispatch(getPublications()).then(() => dispatch(getUsers(token)).then(() => dispatch(getCarrousel()))));
+    dispatch(getComplexes()).then(() => dispatch(getPublications()).then(() => dispatch(getUsers(token)).then(() => dispatch(getCarrousel())).then(() => dispatch(getDocuments()))));
   }, []);
 
   const handleLinkClick = (component) => {
@@ -182,6 +183,7 @@ export default function Dashboard() {
             <PublicationsDashboard publications={allPublications} authUser={authUser} />
           )}
           {activeComponent === "complexes" && <ComplexesDashboard complexes={allComplexes} authUser={authUser} />}
+          {activeComponent === "documents" && <DocumentsDashboard documents={allDocuments} authUser={authUser} />}
           {activeComponent === "users" && authUser.rol && <UsersDashboard users={allUsers} authUser={authUser} />}
         </div>
       </div>

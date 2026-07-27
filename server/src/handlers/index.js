@@ -14,6 +14,13 @@ const postPublicationHandler = require('./publications/postPublication.handler')
 const updatePublicationHandler = require('./publications/updatePublication.handler');
 const deletePublicationHandler = require('./publications/deletePublication.handler');
 
+//DOCUMENTS HANDLERS
+const getAllDocumentsHandler = require('./documents/getDocuments.handler');
+const getDocumentByIdHandler = require('./documents/getDocumentById.handler');
+const postDocumentHandler = require('./documents/postDocument.handler');
+const updateDocumentHandler = require('./documents/updateDocument.handler');
+const deleteDocumentHandler = require('./documents/deleteDocument.handler');
+
 //USERS HANDLERS
 const getUsersHandler = require('./users/getUsers.handler');
 const createUserHandler = require('./users/createUser.handler');
@@ -47,4 +54,9 @@ module.exports = {
   deleteUserHandler,
   getCarrouselHandler,
   updateCarrouselHandler,
+  getAllDocumentsHandler,
+  getDocumentByIdHandler,
+  postDocumentHandler,
+  updateDocumentHandler,
+  deleteDocumentHandler,
 }
