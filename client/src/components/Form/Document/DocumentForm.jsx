@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { format, setDefaultOptions } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import { es } from "date-fns/locale";
@@ -15,6 +15,8 @@ import { Document, Page, pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.js", import.meta.url).toString();
 
 export default function DocumentForm({ document, authUser }) {
+  const fileInputRef = useRef(null);
+
   const [input, setInput] = useState({
     title: document?.title || "",
     description: document?.description || "",
@@ -25,6 +27,18 @@ export default function DocumentForm({ document, authUser }) {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const removeDocument = () => {
+    setInput((prev) => ({
+      ...prev,
+      pdf: "",
+      pdfPreview: "",
+    }));
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
 
   const handleChange = (e) => {
     setInput((prevInput) => {
@@ -205,15 +219,28 @@ export default function DocumentForm({ document, authUser }) {
             <div className={style.divInput}>
               <label>
                 Click para subir Archivo PDF
-                <input type="file" name="pdf" accept="application/pdf" single className={style.inputFile} onChange={handleChange} />
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  name="pdf"
+                  accept="application/pdf"
+                  single
+                  className={style.inputFile}
+                  onChange={handleChange}
+                />
                 <FaUpload className={style.icon} />
               </label>
               {input.pdfPreview && (
                 <div className={style.divPdf}>
-                  <Document file={input.pdfPreview} className={style.pdf}>
+                  <Document
+                    file={input.pdfPreview}
+                    className={style.pdf}
+                    loading="Cargando PDF..."
+                    error="No se pudo cargar el PDF"
+                  >
                     <Page pageNumber={1} width={280} renderTextLayer={false} renderAnnotationLayer={false} />
                     <div className={style.buttonsImage}>
-                      <button type="button" className={style.btnDelete} onClick={() => removePhoto(index, "pdf")}>
+                      <button type="button" className={style.btnDelete} onClick={() => removeDocument()}>
                         eliminar
                       </button>
                     </div>
@@ -265,6 +292,7 @@ export default function DocumentForm({ document, authUser }) {
               <label>
                 Click para subir Archivo PDF
                 <input
+                  ref={fileInputRef}
                   type="file"
                   name="pdf"
                   accept="application/pdf"
@@ -273,7 +301,23 @@ export default function DocumentForm({ document, authUser }) {
                 />
                 <FaUpload className={style.icon} />
               </label>
-              {input.pdfPreview && <div className={style.gridImages}></div>}
+              {input.pdfPreview && (
+                <div className={style.divPdf}>
+                  <Document
+                    file={input.pdfPreview}
+                    className={style.pdf}
+                    loading="Cargando PDF..."
+                    error="No se pudo cargar el PDF"
+                  >
+                    <Page pageNumber={1} width={280} renderTextLayer={false} renderAnnotationLayer={false} />
+                    <div className={style.buttonsImage}>
+                      <button type="button" className={style.btnDelete} onClick={() => removeDocument()}>
+                        eliminar
+                      </button>
+                    </div>
+                  </Document>
+                </div>
+              )}
             </div>
 
             <button type="submit" disabled={isSubmitting} className={style.btn}>

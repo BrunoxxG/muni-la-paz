@@ -7,11 +7,11 @@ module.exports = async (id) => {
   const document = await Document.findByPk(id);
 
   if (!document) {
-    throw new Error('El complejo no existe');
+    throw new Error('El documento no existe');
   }
 
-  const imagePath = path.join(__dirname, '../../../public/images/documents', String(id));
-  await fs.rm(imagePath, { recursive: true, force: true });
+  const documentPath = path.join(__dirname, '../../../public/documents', String(id));
+  await fs.rm(documentPath, { recursive: true, force: true });
 
   await Document.destroy({ where: { id } });
 
