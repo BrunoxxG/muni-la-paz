@@ -3,6 +3,7 @@ const { VITE_BACKEND_URL } = import.meta.env;
 
 export const GET_COMPLEXES = "GET_COMPLEXES";
 export const GET_PUBLICATIONS = "GET_PUBLICATIONS";
+export const GET_DOCUMENTS = "GET_DOCUMENTS";
 export const GET_USERS = "GET_USERS";
 export const GET_CARROUSEL = "GET_CARROUSEL";
 export const GET_COMPLEX_DETAIL = "GET_COMPLEX_DETAIL";
@@ -35,6 +36,21 @@ export const getPublications = () => {
             const { data } = await axios.get(`${VITE_BACKEND_URL}/publications`);
             return dispatch({
                 type: GET_PUBLICATIONS,
+                payload: data,
+            });
+        } catch (error) {
+            console.log(error.response.data);
+        }
+
+    };
+};
+
+export const getDocuments = () => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`${VITE_BACKEND_URL}/documents`);
+            return dispatch({
+                type: GET_DOCUMENTS,
                 payload: data,
             });
         } catch (error) {

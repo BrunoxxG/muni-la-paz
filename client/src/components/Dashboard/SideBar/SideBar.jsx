@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FaUsers, FaUser } from "react-icons/fa";
 import { VscChromeClose } from "react-icons/vsc";
 import { MdDashboardCustomize, MdCabin, MdOutlineLibraryBooks } from "react-icons/md";
+import { FaRegFilePdf } from "react-icons/fa6";
 const logo = "/img/logo.webp";
 import style from "./SideBar.module.css";
 
@@ -52,7 +53,16 @@ export default function SideBar({ user, signOut, onLinkClick }) {
               <MdCabin className={style.icon} />
               <span className={style.smallText}>Alojamientos</span>
             </div>
-          </li>    
+          </li> 
+          <li
+            className={`${style.listItem} ${activeLink === "documents" ? style.active : ""}`}
+            onClick={() => handleLinkClick("documents")}
+          >
+            <div className={style.menuLink}>
+              <FaRegFilePdf className={style.icon} />
+              <span className={style.smallText}>Documentos PDF</span>
+            </div>
+          </li>   
           {user.rol && (
             <li
               className={`${style.listItem} ${activeLink === "users" ? style.active : ""}`}

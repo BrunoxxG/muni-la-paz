@@ -6,6 +6,13 @@ const getComplexByIdController = require('./complexes/getComplexById.controller'
 const updateComplexController = require('./complexes/updateComplex.controller');
 const deleteComplexController = require('./complexes/deleteComplex.controller');
 
+//DOCUMENTS CONTROLLERS
+const getAllDocumentsController = require('./documents/getAllDocuments.controller');
+const postDocumentController = require('./documents/postDocument.controller');
+const getDocumentByIdController = require('./documents/getDocumentById.controller');
+const updateDocumentController = require('./documents/updateDocument.controller');
+const deleteDocumentController = require('./documents/deleteDocument.controller');
+
 //PUBLICATIONS CONTROLLERS
 const getPublicationsController = require('./publications/getPublications.controller');
 const getPublicationsByTitleController = require('./publications/getPublicationsByTitle.controller');
@@ -47,4 +54,9 @@ module.exports = {
   deleteUserController,
   getCarrouselController,
   updateCarrouselController,
+  getAllDocumentsController,
+  postDocumentController,
+  getDocumentByIdController,
+  updateDocumentController,
+  deleteDocumentController,
 };

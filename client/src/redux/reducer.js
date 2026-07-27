@@ -11,11 +11,13 @@ import {
   FILTERED_PUBLICATIONS,
   SET_CURRENT_PAGE,
   GET_CARROUSEL,
+  GET_DOCUMENTS,
 } from "./actions";
 
 const initialState = {
   complexes: [],
   publications: [],
+  documents: [],
   publicationsCopy: [],
   filteredPublications: [],
   users: [],
@@ -40,6 +42,11 @@ const rootReducer = (state = initialState, action) => {
         publications: action.payload,
         publicationsCopy: action.payload,
         filteredPublications: action.payload.filter((publication) => publication.type !== "Concejo"),
+      };
+    case GET_DOCUMENTS:
+      return {
+        ...state,
+        documents: action.payload,
       };
     case GET_USERS:
       return {

@@ -28,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const publicFolderPath = path.join(__dirname, '../../public');
 app.use('/public/images', express.static(path.join(publicFolderPath, 'images')));
+app.use('/public/documents', express.static(path.join(publicFolderPath, 'documents')));
 
 // DB CONNECT
 dbConnection();

@@ -52,8 +52,11 @@ export default function NavBar() {
             <Link to="/concejo" className={style.border}>
               Concejo Deliberante
             </Link>
-            <Link to="/contacto" className={style.lastLink}>
+            <Link to="/contacto" className={style.border}>
               Contacto
+            </Link>
+            <Link to="/documentospdf" className={style.lastLink}>
+              Documentos PDF
             </Link>
           </div>
           <div className={style.social}>
@@ -86,6 +89,9 @@ export default function NavBar() {
             </Link>
             <Link to="/contacto" onClick={() => setIsOpenMenu(!isOpenMenu)}>
               Contacto
+            </Link>
+            <Link to="/documentospdf" onClick={() => setIsOpenMenu(!isOpenMenu)}>
+              Documentos PDF
             </Link>
           </div>
           <div className={`${style.socialMobile} ${isOpenSocial && style.open}`}>
